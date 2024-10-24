@@ -7,16 +7,17 @@ public class Player : Character
     [SerializeField] private float speedMove = 5f;
     [SerializeField] private FloatingJoystick floatingJoystick;
     [SerializeField] GameObject playerVisual;
-
+    
     private Vector3 targetPosition;
+    private Transform targetEnemy;
 
     private void Start()
     {
-        targetPosition = transform.position;
+        OnInit();
     }
     private void Update()
     {
-       
+        
 
         if (floatingJoystick.Horizontal != 0 && floatingJoystick.Vertical != 0)
         {
@@ -27,7 +28,18 @@ public class Player : Character
         {
             ChangeAnim(Constants.IDLE_ANIM_NAME);
         }
+        FindTarget(transform.position, 2);
+        if (targetEnemy != null)
+        {
+            Attack();
+            Debug.Log("da attack");
+        }
 
+    }
+    public override void OnInit()
+    {
+        
+        
     }
 
     private void MovePlayer()
@@ -35,7 +47,7 @@ public class Player : Character
         Vector3 direction = Vector3.forward * floatingJoystick.Vertical + Vector3.right * floatingJoystick.Horizontal;
         if (direction != Vector3.zero)
         {
-            ChangeAnim(Constants.RUN_ANIM_NAME);
+            ChangeAnim(Constants.RUN_ANIM_NAME);           
             targetPosition = transform.position + direction * speedMove * Time.deltaTime;
             // transform.rotation = Quaternion.LookRotation(direction);
             Vector3 lookDirection = direction + playerVisual.transform.position;
