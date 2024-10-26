@@ -11,26 +11,30 @@ public class Character : MonoBehaviour
     [SerializeField] GameObject attackPrefab;
     [SerializeField] Transform attackParent;
     [SerializeField] float attackForce;
+    [SerializeField] float rotationSpeed;
+    [SerializeField] private GameObject bulletVisual;
     int numOfEnemy;
     Collider[] hitColliders = new Collider[20];
     private string currentAnim;
-    Vector3 targetEnemy;
+    private Bullet bulletRotiton;
+    public Vector3 targetEnemy;
+
 
 
     public virtual void OnInit()
     {
-
+        
     }
     public void FindTarget(Vector3 position, float radius)
     {
-      
-        numOfEnemy = Physics.OverlapSphereNonAlloc(position, radius,hitColliders,enemyLayer);
+
+        numOfEnemy = Physics.OverlapSphereNonAlloc(position, radius, hitColliders, enemyLayer);
         float minDistance = Mathf.Infinity;
         Collider nearestEnemy = null;
 
         for (int i = 0; i < numOfEnemy; i++)
         {
-           
+
             float distance = Vector3.Distance(position, hitColliders[i].transform.position);
             if (distance < minDistance)
             {
@@ -40,12 +44,13 @@ public class Character : MonoBehaviour
         }
         if (nearestEnemy != null)
         {
-            
+            targetEnemy = nearestEnemy.transform.position;
             Debug.Log("Enemy gần nhất: " + nearestEnemy.name);
         }
-        //targetEnemy = nearestEnemy.transform.position;
-        
-
+        if (numOfEnemy == 0)
+        {
+            targetEnemy = Vector3.zero;
+        }
 
     }
     public void OnDrawGizmos()
@@ -60,11 +65,20 @@ public class Character : MonoBehaviour
     }
     public void Attack()
     {
-        //Vector3 shootDirection
+        
+        Vector3 shootDirection = (targetEnemy - transform.position).normalized;
         GameObject bullet = Instantiate(attackPrefab, transform.position, Quaternion.identity, attackParent);
-        bullet.GetComponent<Rigidbody>().AddForce(targetEnemy * attackForce);
+        bullet.GetComponent<Rigidbody>().AddForce(shootDirection * attackForce);
+        bullet.transform.position = transform.position+Vector3.up*0.5f;
+        bulletVisual.transform.rotation = Quaternion.Euler(-90, 180, 0);   
+        
+       
     }
 
+    public void UpSize()
+    {
+        transform.localScale += Vector3.one;
+    }
     public void ChangeWeapon(WeaponType weaponType)
     {
 
@@ -86,4 +100,6 @@ public class Character : MonoBehaviour
             animator.SetTrigger(currentAnim);
         }
     }
+
+    
 }
