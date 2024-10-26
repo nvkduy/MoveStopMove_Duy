@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class Character : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-    [SerializeField] private float radius;
+    [SerializeField] protected float radius;
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] GameObject attackPrefab;
     [SerializeField] Transform attackParent;
@@ -16,14 +14,14 @@ public class Character : MonoBehaviour
     int numOfEnemy;
     Collider[] hitColliders = new Collider[20];
     private string currentAnim;
-    private Bullet bulletRotiton;
-    public Vector3 targetEnemy;
+    protected Vector3 targetEnemy;
+    public UnityAction onDie;
 
 
 
     public virtual void OnInit()
     {
-        
+
     }
     public void FindTarget(Vector3 position, float radius)
     {
@@ -45,6 +43,7 @@ public class Character : MonoBehaviour
         if (nearestEnemy != null)
         {
             targetEnemy = nearestEnemy.transform.position;
+            nearestEnemy.gameObject.GetComponent<Character>().onDie += CongDiem;
             Debug.Log("Enemy gần nhất: " + nearestEnemy.name);
         }
         if (numOfEnemy == 0)
@@ -52,6 +51,10 @@ public class Character : MonoBehaviour
             targetEnemy = Vector3.zero;
         }
 
+    }
+    private void CongDiem()
+    {
+        Debug.Log(gameObject.name + " da duoc ong diem");
     }
     public void OnDrawGizmos()
     {
@@ -65,19 +68,24 @@ public class Character : MonoBehaviour
     }
     public void Attack()
     {
-        
+
         Vector3 shootDirection = (targetEnemy - transform.position).normalized;
         GameObject bullet = Instantiate(attackPrefab, transform.position, Quaternion.identity, attackParent);
         bullet.GetComponent<Rigidbody>().AddForce(shootDirection * attackForce);
-        bullet.transform.position = transform.position+Vector3.up*0.5f;
-        bulletVisual.transform.rotation = Quaternion.Euler(-90, 180, 0);   
-        
-       
+        bullet.transform.position = transform.position + Vector3.up * 0.5f;
+        bulletVisual.transform.rotation = Quaternion.Euler(-90, 180, 0);
+
+
+    }
+    public void Die()
+    {
+        onDie?.Invoke();
     }
 
     public void UpSize()
     {
         transform.localScale += Vector3.one;
+        radius += 1f;
     }
     public void ChangeWeapon(WeaponType weaponType)
     {
@@ -101,5 +109,5 @@ public class Character : MonoBehaviour
         }
     }
 
-    
+
 }

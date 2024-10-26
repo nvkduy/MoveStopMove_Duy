@@ -6,10 +6,12 @@ public class PlayerManager : Singleton<PlayerManager>
 {
    private int playerCount = 50;
    public int KillCount { get; private set; }
-   public void KillNumber()
+   public int KillNumber()
     {
         KillCount++;
         Debug.Log(KillCount);
+        return KillCount;
+
     }
  
 }
