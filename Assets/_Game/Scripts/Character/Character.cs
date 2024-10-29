@@ -6,16 +6,15 @@ public class Character : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] protected float radius;
     [SerializeField] LayerMask enemyLayer;
-    [SerializeField] GameObject attackPrefab;
-    [SerializeField] Transform attackParent;
-    [SerializeField] float attackForce;
-    [SerializeField] float rotationSpeed;
-    [SerializeField] private GameObject bulletVisual;
+    //[SerializeField] GameObject attackPrefab;
+
+    public Weapon currentSkin;
     int numOfEnemy;
     Collider[] hitColliders = new Collider[20];
+   
+    internal Vector3 targetEnemy;
     private string currentAnim;
-    protected Vector3 targetEnemy;
-    public UnityAction onDie;
+    
 
 
 
@@ -43,7 +42,7 @@ public class Character : MonoBehaviour
         if (nearestEnemy != null)
         {
             targetEnemy = nearestEnemy.transform.position;
-            nearestEnemy.gameObject.GetComponent<Character>().onDie += CongDiem;
+            
             Debug.Log("Enemy gần nhất: " + nearestEnemy.name);
         }
         if (numOfEnemy == 0)
@@ -68,18 +67,19 @@ public class Character : MonoBehaviour
     }
     public void Attack()
     {
-
-        Vector3 shootDirection = (targetEnemy - transform.position).normalized;
-        GameObject bullet = Instantiate(attackPrefab, transform.position, Quaternion.identity, attackParent);
-        bullet.GetComponent<Rigidbody>().AddForce(shootDirection * attackForce);
-        bullet.transform.position = transform.position + Vector3.up * 0.5f;
-        bulletVisual.transform.rotation = Quaternion.Euler(-90, 180, 0);
+        currentSkin.Shoot(this, OnHitVicTim);
+        Debug.Log("đã attack");
 
 
     }
+    protected virtual  void  OnHitVicTim(Character accterker, Character Victim)
+    {
+        Victim.Die();
+    }
     public void Die()
     {
-        onDie?.Invoke();
+        Debug.Log("die");
+        Destroy(gameObject);
     }
 
     public void UpSize()

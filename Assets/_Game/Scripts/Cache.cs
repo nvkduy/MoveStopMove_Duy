@@ -4,18 +4,15 @@ using UnityEngine;
 
 public class Cache : MonoBehaviour
 {
-    private static Dictionary<GameObject, Character> characters = new Dictionary<GameObject, Character>();
-    public static Character GetCharacter(GameObject obj)
+    private static Dictionary<Collider, Character> characters = new Dictionary<Collider, Character>();
+
+    public static Character GetCharacter(Collider collider)
     {
-        if (!characters.ContainsKey(obj))
+        if (!characters.ContainsKey(collider))
         {
-            Character character = obj.GetComponent<Character>();
-            if (character != null) // Chỉ thêm nếu thành phần tồn tại
-            {
-                characters.Add(obj, character);
-            }
+            characters.Add(collider, collider.GetComponent<Character>());
         }
 
-        return characters.ContainsKey(obj) ? characters[obj] : null;
+        return characters[collider];
     }
 }

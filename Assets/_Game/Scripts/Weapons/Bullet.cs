@@ -3,16 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : GameUnit
 {
     [SerializeField] private float rotationSpeed;
     [SerializeField] GameObject bulletVisual;
+    protected Character attacker;
+    protected Action<Character ,Character >onHit;
     private float maxDistance = 2.1f;
     private Vector3 startBullet;
 
     private void Start()
     {
-        Character character = Cache.GetCharacter(gameObject);
         startBullet = transform.position;
     }
     void Update()
@@ -21,16 +22,24 @@ public class Bullet : MonoBehaviour
         float distanceTravelled = Vector3.Distance(startBullet, transform.position);
         if (distanceTravelled > maxDistance)
         {
-            Destroy(gameObject);
+           SimplePool.Despawn(this);
         }
     }
-    private void OnTriggerEnter(Collider other)
+   
+    //Set bullet data for bullet
+    public virtual void OnInit(Character attacker, Action<Character, Character> onHit)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        this.attacker = attacker;
+        this.onHit = onHit;
+    }
+
+    private void OnTriggerEnter(Collider collder)
+    {
+        if (collder.CompareTag(Constants.TAG_CHARACTER))
         {
-            Destroy(gameObject);
-            Destroy(other.gameObject);
-            other.gameObject.GetComponent<Character>().Die();
+            Character victim = Cache.GetCharacter(collder);
+            onHit?.Invoke(attacker, victim);
+            SimplePool.Despawn(this);
         }
     }
 }
