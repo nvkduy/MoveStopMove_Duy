@@ -6,21 +6,25 @@ public class Character : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] protected float radius;
     [SerializeField] LayerMask enemyLayer;
+    [SerializeField] Transform weaponParent;
     //[SerializeField] GameObject attackPrefab;
 
-    public Weapon currentSkin;
+    public Weapon currentWeapon;
     int numOfEnemy;
     Collider[] hitColliders = new Collider[20];
    
     internal Vector3 targetEnemy;
     private string currentAnim;
-    
 
 
 
+    //private void Start()
+    //{
+    //    OnInit();
+    //}
     public virtual void OnInit()
     {
-
+        ChangeWeapon(WeaponType.Axe1);
     }
     public void FindTarget(Vector3 position, float radius)
     {
@@ -67,8 +71,12 @@ public class Character : MonoBehaviour
     }
     public void Attack()
     {
-        currentSkin.Shoot(this, OnHitVicTim);
-        Debug.Log("đã attack");
+        if (currentWeapon != null)
+        {
+            currentWeapon.Shoot(this, OnHitVicTim);
+            Debug.Log("đã attack");
+
+        }
 
 
     }
@@ -89,7 +97,11 @@ public class Character : MonoBehaviour
     }
     public void ChangeWeapon(WeaponType weaponType)
     {
-
+        Weapon wp =  DataManager.Instance.GetWeapon(weaponType);
+        
+            currentWeapon = SimplePool.Spawn<Weapon>(wp, weaponParent);
+        
+       //Instantiate(wp.gameObject, weaponParent.position, Quaternion.identity, weaponParent);
     }
     //public void ChangeHat(HatType hatType)
     //{

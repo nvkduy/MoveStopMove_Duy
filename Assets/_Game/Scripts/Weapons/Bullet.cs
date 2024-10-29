@@ -18,7 +18,7 @@ public class Bullet : GameUnit
     }
     void Update()
     {
-        bulletVisual.transform.Rotate(new Vector3(0, 0, rotationSpeed));
+        bulletVisual.transform.Rotate(new Vector3(0, 0, rotationSpeed*Time.deltaTime));
         float distanceTravelled = Vector3.Distance(startBullet, transform.position);
         if (distanceTravelled > maxDistance)
         {

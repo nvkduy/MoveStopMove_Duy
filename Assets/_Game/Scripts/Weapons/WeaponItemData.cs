@@ -4,9 +4,9 @@ using UnityEngine;
 
 public enum WeaponType
 {
-    Arrow = 0,
-    Axe0 = 1,
-    Axe1 = 2,
+    
+    Axe0 = 0,
+    Axe1 = 1,
     Boomerang= 3,
     Candy0= 4,
     Candy1= 5,
@@ -23,10 +23,10 @@ public enum WeaponType
 [CreateAssetMenu(fileName = "WeaponItemData",menuName = "ScriptableObject/WeaponItemData",order =1)]
 public class WeaponItemData:ScriptableObject
 {
-    [SerializeField] public List<Material> weaponTypes;
+    [SerializeField] Weapon weapon;
+    [SerializeField] WeaponType weaponType;
+    public float Price { get; }
 
-    public Material GetWeapon(WeaponType weaponType)
-    {
-        return weaponTypes[(int)weaponType];
-    }
+    public Weapon Weapon {  get { return weapon; } }
+   
 }

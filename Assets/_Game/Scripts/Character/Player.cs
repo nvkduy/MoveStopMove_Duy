@@ -41,7 +41,11 @@ public class Player : Character
     public override void OnInit()
     {
 
-
+        base.OnInit();
+    }
+    private void OnEnable()
+    {
+        OnInit();
     }
 
     private IEnumerator ResetAttack()
