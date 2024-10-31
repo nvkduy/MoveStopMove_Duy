@@ -27,10 +27,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7815194456651815390}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000050736993, y: 0.000000063924126, z: -0.7832883, w: 0.62165856}
+  m_LocalRotation: {x: 0.031528108, y: 0.20182332, z: -0.15108976, w: 0.9671841}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 32.947132, y: 32.947132, z: 32.947132}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 32, y: 32, z: 32}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -99,5 +99,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolType: 5
-  attackForce: 50
+  attackForce: 20
   bulletPrefab: {fileID: 4575198524417935891, guid: 7ac15320968464c41be6444e636e1a4f, type: 3}

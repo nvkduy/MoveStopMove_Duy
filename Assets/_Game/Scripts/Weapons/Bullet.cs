@@ -18,7 +18,8 @@ public class Bullet : GameUnit
     }
     void Update()
     {
-        bulletVisual.transform.Rotate(new Vector3(0, 0, rotationSpeed*Time.deltaTime));
+        
+        bulletVisual.transform.Rotate(new Vector3(0,0, rotationSpeed*Time.deltaTime));
         float distanceTravelled = Vector3.Distance(startBullet, transform.position);
         if (distanceTravelled > maxDistance)
         {
@@ -35,7 +36,7 @@ public class Bullet : GameUnit
 
     private void OnTriggerEnter(Collider collder)
     {
-        if (collder.CompareTag(Constants.TAG_CHARACTER))
+        if (collder.CompareTag(Constants.TAG_CHARACTER_NAME))
         {
             Character victim = Cache.GetCharacter(collder);
             onHit?.Invoke(attacker, victim);
@@ -57,7 +58,7 @@ public class Bullet : GameUnit
 
     //private void OnTriggerEnter(Collider other)
     //{
-    //    if (other.CompareTag(Constant.TAG_CHARACTER))
+    //    if (other.CompareTag(Constant.TAG_CHARACTER_NAME))
     //    {
     //        Character victim = Cache.GetCharacter(other);
     //        onHit?.Invoke(attacker, victim);

@@ -8,11 +8,11 @@ public class Character : MonoBehaviour
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] Transform weaponParent;
     //[SerializeField] GameObject attackPrefab;
-
+    public bool isAttack = false;
     public Weapon currentWeapon;
     int numOfEnemy;
     Collider[] hitColliders = new Collider[20];
-   
+
     internal Vector3 targetEnemy;
     private string currentAnim;
 
@@ -46,7 +46,7 @@ public class Character : MonoBehaviour
         if (nearestEnemy != null)
         {
             targetEnemy = nearestEnemy.transform.position;
-            
+
             Debug.Log("Enemy gần nhất: " + nearestEnemy.name);
         }
         if (numOfEnemy == 0)
@@ -73,35 +73,49 @@ public class Character : MonoBehaviour
     {
         if (currentWeapon != null)
         {
-            currentWeapon.Shoot(this, OnHitVicTim);
+            currentWeapon.Throw(this, OnHitVicTim);
             Debug.Log("đã attack");
 
         }
 
 
     }
-    protected virtual  void  OnHitVicTim(Character accterker, Character Victim)
+    protected virtual void OnHitVicTim(Character accterker, Character Victim)
     {
+        accterker.isAttack = true;  
         Victim.Die();
+        accterker.UpSize();
+        
+
     }
     public void Die()
     {
+        
+        
+        ChangeAnim(Constants.DIE_ANIM_NAME);
         Debug.Log("die");
-        Destroy(gameObject);
+
+        Destroy(gameObject, 1f);
     }
 
     public void UpSize()
     {
+        Debug.Log("currentRadius" + radius);
+        Debug.Log("UpSize() is called"); // Kiểm tra xem hàm có chạy không
         transform.localScale += Vector3.one;
         radius += 1f;
+        Debug.Log("LastRadius" + radius);
+        Debug.Log("Size: " + transform.localScale);
+
     }
+
     public void ChangeWeapon(WeaponType weaponType)
     {
-        Weapon wp =  DataManager.Instance.GetWeapon(weaponType);
-        
-            currentWeapon = SimplePool.Spawn<Weapon>(wp, weaponParent);
-        
-       //Instantiate(wp.gameObject, weaponParent.position, Quaternion.identity, weaponParent);
+        Weapon wp = DataManager.Instance.GetWeapon(weaponType);
+
+        currentWeapon = SimplePool.Spawn<Weapon>(wp, weaponParent);
+
+        //Instantiate(wp.gameObject, weaponParent.position, Quaternion.identity, weaponParent);
     }
     //public void ChangeHat(HatType hatType)
     //{

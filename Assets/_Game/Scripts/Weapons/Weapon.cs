@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,17 +8,20 @@ public class Weapon : GameUnit
     private Character character;
     [SerializeField] float attackForce;
     [SerializeField] private Bullet bulletPrefab;
-    public void Shoot(Character character, Action<Character , Character > onHit)
+    public void Throw(Character character, Action<Character , Character > onHit)
     {
         Vector3 shootDirection = (character.targetEnemy - transform.position);
         Bullet bullet = SimplePool.Spawn<Bullet>(bulletPrefab);
-        bullet.TF.position= transform.position;
+        bullet.transform.position = transform.position;
         Debug.Log("da ban");
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        if (rb != null) 
+        if (rb != null)
         {
-            rb.AddForce(shootDirection*50f);
-            Debug.Log("da addforce");
+            //Đặt lại vận tốc tránh trường hợp sẽ cộng đồn lực khi addforce 
+            rb.velocity=Vector3.zero;
+            rb.AddForce(shootDirection * attackForce);
+
+            Debug.Log("attackForce" + attackForce);
         }
         bullet.OnInit(character, onHit);
     }

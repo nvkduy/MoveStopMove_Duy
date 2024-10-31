@@ -9,7 +9,7 @@ public class Player : Character
     [SerializeField] GameObject playerVisual;
 
     private Vector3 targetPosition;
-    bool isAttack = false;
+    
     float horizontal;
     float vertical;
    
@@ -33,7 +33,7 @@ public class Player : Character
             ChangeAnim(Constants.IDLE_ANIM_NAME);
    
         }
-        FindTarget(transform.position, 2);
+        FindTarget(transform.position, radius);
 
 
 
@@ -51,7 +51,7 @@ public class Player : Character
     private IEnumerator ResetAttack()
     {
         ChangeAnim(Constants.IDLE_ANIM_NAME);
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(3f);
         isAttack = false;
     }
     

@@ -26,13 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2892072896217934937}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000081460335, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.4317293, y: -0.372025, z: 1.2012774}
-  m_LocalScale: {x: 32.947132, y: 32.947132, z: 32.947132}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1508318671432001042}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &5168405187554773416
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -61,9 +61,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 32956d08aa86aa64693a21e2a4a7f74e, type: 2}
+  - {fileID: 2100000, guid: fa3a93f0bfb89d44ca7ad77560d801fa, type: 2}
+  - {fileID: 2100000, guid: 39acb57efcd167944864b369decef068, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 1508318671432001042}
   - component: {fileID: 4575198524417935891}
   - component: {fileID: -3748402921713940475}
+  - component: {fileID: 6975070887811620236}
   m_Layer: 0
   m_Name: BulletAxe1
   m_TagString: Untagged
@@ -112,9 +113,9 @@ Transform:
   m_GameObject: {fileID: 9118491210323468325}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.4317293, y: 0.372025, z: -1.2012774}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2801150105258900471}
   m_Father: {fileID: 0}
@@ -132,8 +133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolType: 1
-  rotationSpeed: 30
-  bulletVisual: {fileID: 7815194456651815390, guid: 46df4cf013dbaaf45825753bf4b655f0, type: 3}
+  rotationSpeed: 180
+  bulletVisual: {fileID: 2892072896217934937}
 --- !u!54 &-3748402921713940475
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -159,5 +160,26 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!65 &6975070887811620236
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9118491210323468325}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.012231331, y: 0.0027455878, z: 0.01576266}
+  m_Center: {x: -0.00022292696, y: -0.00005565374, z: -0.007564586}
