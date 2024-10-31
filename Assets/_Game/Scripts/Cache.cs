@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Cache : MonoBehaviour
 {
-    private static Dictionary<Collider, Character> characters = new Dictionary<Collider, Character>();
+    private static Dictionary<Collider, Bot> characters = new Dictionary<Collider, Bot>();
 
-    public static Character GetCharacter(Collider collider)
+    public static Bot GetCharacter(Collider collider)
     {
         if (!characters.ContainsKey(collider))
         {
-            characters.Add(collider, collider.GetComponent<Character>());
+            characters.Add(collider, collider.GetComponent<Bot>());
         }
 
         return characters[collider];

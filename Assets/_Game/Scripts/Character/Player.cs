@@ -9,10 +9,11 @@ public class Player : Character
     [SerializeField] GameObject playerVisual;
 
     private Vector3 targetPosition;
-    
+
     float horizontal;
     float vertical;
-   
+    
+
     private void Update()
     {
 
@@ -22,18 +23,18 @@ public class Player : Character
             MovePlayer();
         }
         else if (targetEnemy != Vector3.zero && isAttack == false)
-        {       
-                ChangeAnim(Constants.ATTACK_ANIM_NAME);
-                Attack();
-                isAttack = true;
-                StartCoroutine(ResetAttack());           
+        {
+            ChangeAnim(Constants.ATTACK_ANIM_NAME);
+            Attack(); 
+            isAttack = true;
+            StartCoroutine(ResetAttack());
         }
         else
         {
             ChangeAnim(Constants.IDLE_ANIM_NAME);
-   
+            FindTarget(transform.position, radius);
         }
-        FindTarget(transform.position, radius);
+        
 
 
 
@@ -53,6 +54,7 @@ public class Player : Character
         ChangeAnim(Constants.IDLE_ANIM_NAME);
         yield return new WaitForSeconds(3f);
         isAttack = false;
+        Debug.Log("time:" +Time.time);
     }
     
     private bool GetInPut()
@@ -72,7 +74,7 @@ public class Player : Character
         if (direction != Vector3.zero)
         {
             ChangeAnim(Constants.RUN_ANIM_NAME);
-            targetPosition = transform.position + direction * speedMove * Time.deltaTime;           
+            targetPosition = transform.position + direction * speedMove * Time.deltaTime;
             Vector3 lookDirection = direction + playerVisual.transform.position;
             playerVisual.transform.LookAt(lookDirection);
         }

@@ -7,14 +7,18 @@ public class Character : MonoBehaviour
     [SerializeField] protected float radius;
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] Transform weaponParent;
-    //[SerializeField] GameObject attackPrefab;
+
     public bool isAttack = false;
     public Weapon currentWeapon;
-    int numOfEnemy;
-    Collider[] hitColliders = new Collider[20];
 
     internal Vector3 targetEnemy;
+
+    protected float currentTime = 0;
+
+    Collider[] hitColliders = new Collider[20];
     private string currentAnim;
+    int numOfEnemy;
+    
 
 
 
@@ -63,35 +67,46 @@ public class Character : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, radius);
-
-        for (int i = 0; i < numOfEnemy; i++)
+        if (hitColliders != null)
         {
-            Gizmos.DrawLine(transform.position, hitColliders[i].transform.position);
+            for (int i = 0; i < numOfEnemy; i++)
+            {
+                if (hitColliders[i] != null)
+                {
+                    Gizmos.DrawLine(transform.position, hitColliders[i].transform.position);
+                }
+               
+            }
         }
+
     }
     public void Attack()
     {
-        if (currentWeapon != null)
+        if (currentWeapon != null /*&& currentTime <= 0*/)
         {
             currentWeapon.Throw(this, OnHitVicTim);
-            Debug.Log("đã attack");
+            Debug.Log("đã attack");/* currentTime = 5f;*/
 
         }
+        //else
+        //{
+        //    currentTime -= Time.deltaTime;
+        //}
 
 
     }
     protected virtual void OnHitVicTim(Character accterker, Character Victim)
     {
-        accterker.isAttack = true;  
+        isAttack = true;
         Victim.Die();
         accterker.UpSize();
-        
+
 
     }
     public void Die()
     {
-        
-        
+
+
         ChangeAnim(Constants.DIE_ANIM_NAME);
         Debug.Log("die");
 
@@ -100,13 +115,8 @@ public class Character : MonoBehaviour
 
     public void UpSize()
     {
-        Debug.Log("currentRadius" + radius);
-        Debug.Log("UpSize() is called"); // Kiểm tra xem hàm có chạy không
-        transform.localScale += Vector3.one;
+        transform.localScale += Vector3.one*0.5f;
         radius += 1f;
-        Debug.Log("LastRadius" + radius);
-        Debug.Log("Size: " + transform.localScale);
-
     }
 
     public void ChangeWeapon(WeaponType weaponType)
@@ -115,7 +125,6 @@ public class Character : MonoBehaviour
 
         currentWeapon = SimplePool.Spawn<Weapon>(wp, weaponParent);
 
-        //Instantiate(wp.gameObject, weaponParent.position, Quaternion.identity, weaponParent);
     }
     //public void ChangeHat(HatType hatType)
     //{
