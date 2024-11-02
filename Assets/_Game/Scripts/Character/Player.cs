@@ -37,10 +37,10 @@ public class Player : Character
         }
         else
         {
+            FindEnemy(transform.position, radius);   
             ChangeAnim(Constants.IDLE_ANIM_NAME);
-            FindEnemy(transform.position, radius);
+            
         }
-        
 
 
 

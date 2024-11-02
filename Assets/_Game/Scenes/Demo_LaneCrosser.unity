@@ -5527,6 +5527,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Tile_Column_Cube_Water_03 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1930970910000556, guid: 9bbba2bd8ad9eba4b8252167221e0baf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4142315304098366, guid: 9bbba2bd8ad9eba4b8252167221e0baf, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -6550,6 +6554,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 170777740}
     m_Modifications:
+    - target: {fileID: 1930970910000556, guid: 9bbba2bd8ad9eba4b8252167221e0baf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4142315304098366, guid: 9bbba2bd8ad9eba4b8252167221e0baf, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -9795,8 +9803,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.36, z: 1}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 1, y: 2.1778228, z: 1}
+  m_Center: {x: 0, y: 1.088459, z: 0}
 --- !u!4 &1292175376
 Transform:
   m_ObjectHideFlags: 0
@@ -9806,7 +9814,7 @@ Transform:
   m_GameObject: {fileID: 1292175372}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.27, y: 0, z: -1.4}
+  m_LocalPosition: {x: 3.27, y: -0.235, z: -1.4}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -9831,8 +9839,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   weaponParent: {fileID: 0}
-  isAttack: 0
   currentWeapon: {fileID: 0}
+  numOfEnemy: 0
   speedMove: 0.3
   range: 10
   agent: {fileID: 1292175378}
@@ -9846,7 +9854,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.36
-  m_Speed: 1
+  m_Speed: 1.98
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -10018,6 +10026,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Tile_Column_Cube_Water_03 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1930970910000556, guid: 9bbba2bd8ad9eba4b8252167221e0baf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4142315304098366, guid: 9bbba2bd8ad9eba4b8252167221e0baf, type: 3}
       propertyPath: m_RootOrder
       value: 58
@@ -10152,13 +10164,13 @@ GameObject:
   - component: {fileID: 1314465571}
   - component: {fileID: 1314465573}
   - component: {fileID: 1314465572}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1314465570
 Transform:
   m_ObjectHideFlags: 0
@@ -10193,8 +10205,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   weaponParent: {fileID: 843774351}
-  isAttack: 0
   currentWeapon: {fileID: 0}
+  numOfEnemy: 0
   speedMove: 2
   floatingJoystick: {fileID: 1065239449}
   playerVisual: {fileID: 1491307117}
@@ -10721,6 +10733,10 @@ PrefabInstance:
     - target: {fileID: 1930970910000556, guid: 9bbba2bd8ad9eba4b8252167221e0baf, type: 3}
       propertyPath: m_Name
       value: SM_Tile_Column_Cube_Water_03 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930970910000556, guid: 9bbba2bd8ad9eba4b8252167221e0baf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4142315304098366, guid: 9bbba2bd8ad9eba4b8252167221e0baf, type: 3}
       propertyPath: m_RootOrder
@@ -13225,8 +13241,8 @@ GameObject:
   - component: {fileID: 1948886110}
   - component: {fileID: 1948886108}
   - component: {fileID: 1948886107}
-  - component: {fileID: 1948886111}
   - component: {fileID: 1948886112}
+  - component: {fileID: 1948886111}
   m_Layer: 3
   m_Name: Bot - 1
   m_TagString: Character
@@ -13298,30 +13314,7 @@ Transform:
   - {fileID: 1152651615}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1948886111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1948886106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c32f3660c985df140a4d836bf59ce710, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 1152651616}
-  radius: 0
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  weaponParent: {fileID: 0}
-  isAttack: 0
-  currentWeapon: {fileID: 0}
-  speedMove: 0
-  range: 10
-  agent: {fileID: 1948886112}
---- !u!195 &1948886112
+--- !u!195 &1948886111
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13343,6 +13336,29 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1948886112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948886106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32f3660c985df140a4d836bf59ce710, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1152651616}
+  radius: 0
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  weaponParent: {fileID: 0}
+  currentWeapon: {fileID: 0}
+  numOfEnemy: 0
+  speedMove: 2
+  range: 10
+  agent: {fileID: 1948886111}
 --- !u!1001 &1948893365
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - FxTemporaire
   - Character
+  - Bot
   layers:
   - Default
   - TransparentFX

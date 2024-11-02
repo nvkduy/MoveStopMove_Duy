@@ -10,16 +10,18 @@ public class Character : MonoBehaviour
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] Transform weaponParent;
 
-    public bool isAttack = false;
+    
     public Weapon currentWeapon;
 
     internal Vector3 targetEnemy;
 
     protected float currentTime = 0;
+    public int numOfEnemy;
+    protected bool isAttack = false;
 
     Collider[] hitColliders = new Collider[20];
     private string currentAnim;
-    int numOfEnemy;
+    
 
 
 
@@ -58,7 +60,7 @@ public class Character : MonoBehaviour
 
             Debug.Log("Enemy gần nhất: " + nearestEnemy.name);
         }
-        if (numOfEnemy == 0)
+        if (numOfEnemy == 1)
         {
             targetEnemy = Vector3.zero;
         }
@@ -115,13 +117,11 @@ public class Character : MonoBehaviour
     protected virtual void OnHitVicTim(Character accterker, Character Victim)
     {
 
-        
-        if (Victim != null)
+        if ( Victim !=null && accterker != Victim)
         {
             Victim.Die();
             accterker.UpSize();
-        }
-
+        }  
 
     }
     public void Die()
@@ -129,6 +129,7 @@ public class Character : MonoBehaviour
         ChangeAnim(Constants.DIE_ANIM_NAME);
         Debug.Log("die");
         Destroy(gameObject, 1f);
+      
         
     }
 

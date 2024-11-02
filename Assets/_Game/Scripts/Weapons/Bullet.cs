@@ -11,10 +11,12 @@ public class Bullet : GameUnit
     protected Action<Character ,Character >onHit;
     private float maxDistance = 2.1f;
     private Vector3 startBullet;
+    
 
     private void Start()
     {
         startBullet = transform.position;
+        
     }
     void Update()
     {
@@ -23,8 +25,11 @@ public class Bullet : GameUnit
         float distanceTravelled = Vector3.Distance(startBullet, transform.position);
         if (distanceTravelled > maxDistance)
         {
-           SimplePool.Despawn(this);
+            SimplePool.Despawn(this);
+            startBullet = transform.position;
+            Debug.Log("da despawn");
         }
+       
     }
    
     //Set bullet data for bullet
@@ -32,16 +37,24 @@ public class Bullet : GameUnit
     {
         this.attacker = attacker;
         this.onHit = onHit;
+        
     }
 
-    private void OnTriggerEnter(Collider collder)
+    private void OnTriggerEnter(Collider collider)
     {
-        if (collder.CompareTag(Constants.TAG_CHARACTER_NAME))
+        if (collider.CompareTag(Constants.TAG_CHARACTER_NAME))
         {
-            Character victim = Cache.GetCharacter(collder);
+            
+            Character victim = Cache.GetBot(collider); 
+            victim = Cache.GetCharacter(collider);
+           
             onHit?.Invoke(attacker, victim);
-            SimplePool.Despawn(this);
+            if (attacker != victim && victim !=null)
+            {
+                SimplePool.Despawn(this);
+            }
         }
+        
     }
 }
 
