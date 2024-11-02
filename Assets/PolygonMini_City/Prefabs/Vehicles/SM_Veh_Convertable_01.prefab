@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 33142145412545992}
   - component: {fileID: 23895759983153548}
   - component: {fileID: 5967596372857362436}
+  - component: {fileID: 8104945238914150811}
   m_Layer: 0
   m_Name: SM_Veh_Convertable_01
   m_TagString: Untagged
@@ -358,6 +359,25 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8351364, y: 0.78, z: 1.518322}
   m_Center: {x: 0.0000007599592, y: 0.26472968, z: 0.00000011920929}
+--- !u!114 &8104945238914150811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914111903830988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &1966563658887524
 GameObject:
   m_ObjectHideFlags: 0

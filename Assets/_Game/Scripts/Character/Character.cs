@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.Events;
 
 public class Character : MonoBehaviour
@@ -18,7 +20,7 @@ public class Character : MonoBehaviour
     Collider[] hitColliders = new Collider[20];
     private string currentAnim;
     int numOfEnemy;
-    
+
 
 
 
@@ -30,7 +32,7 @@ public class Character : MonoBehaviour
     {
         ChangeWeapon(WeaponType.Axe1);
     }
-    public void FindTarget(Vector3 position, float radius)
+    public void FindEnemy(Vector3 position, float radius)
     {
 
         numOfEnemy = Physics.OverlapSphereNonAlloc(position, radius, hitColliders, enemyLayer);
@@ -39,13 +41,16 @@ public class Character : MonoBehaviour
 
         for (int i = 0; i < numOfEnemy; i++)
         {
-
-            float distance = Vector3.Distance(position, hitColliders[i].transform.position);
-            if (distance < minDistance)
+            if (hitColliders[i].gameObject != this.gameObject)
             {
-                minDistance = distance;
-                nearestEnemy = hitColliders[i];
+                float distance = Vector3.Distance(position, hitColliders[i].transform.position);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    nearestEnemy = hitColliders[i];
+                }
             }
+
         }
         if (nearestEnemy != null)
         {
@@ -59,10 +64,7 @@ public class Character : MonoBehaviour
         }
 
     }
-    private void CongDiem()
-    {
-        Debug.Log(gameObject.name + " da duoc ong diem");
-    }
+
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -75,17 +77,19 @@ public class Character : MonoBehaviour
                 {
                     Gizmos.DrawLine(transform.position, hitColliders[i].transform.position);
                 }
-               
+
             }
         }
 
     }
     public void Attack()
     {
-        if (currentWeapon != null /*&& currentTime <= 0*/)
+        if (currentWeapon != null /*&& /*currentTime <= 0*/)
         {
+            ChangeAnim(Constants.ATTACK_ANIM_NAME);
             currentWeapon.Throw(this, OnHitVicTim);
-            Debug.Log("đã attack");/* currentTime = 5f;*/
+            Debug.Log("đã attack"); 
+            //currentTime = 3f;
 
         }
         //else
@@ -95,27 +99,42 @@ public class Character : MonoBehaviour
 
 
     }
+    
+    public IEnumerator ResetAttack()
+    {
+
+        yield return new WaitForSeconds(3f);
+        ChangeAnim(Constants.IDLE_ANIM_NAME);
+        isAttack = false;
+        resetAttackCoroutine = null; // Đặt lại về null khi Coroutine kết thúc
+        Debug.Log("isAttackrestet:" + isAttack);
+    }
+
+    public Coroutine resetAttackCoroutine = null; // Thêm biến để theo dõi Coroutine
+
     protected virtual void OnHitVicTim(Character accterker, Character Victim)
     {
-        isAttack = true;
-        Victim.Die();
-        accterker.UpSize();
+
+        
+        if (Victim != null)
+        {
+            Victim.Die();
+            accterker.UpSize();
+        }
 
 
     }
     public void Die()
     {
-
-
         ChangeAnim(Constants.DIE_ANIM_NAME);
         Debug.Log("die");
-
         Destroy(gameObject, 1f);
+        
     }
 
     public void UpSize()
     {
-        transform.localScale += Vector3.one*0.5f;
+        transform.localScale += Vector3.one * 0.5f;
         radius += 1f;
     }
 

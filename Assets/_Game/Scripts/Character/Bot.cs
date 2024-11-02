@@ -6,14 +6,17 @@ using UnityEngine.AI;
 public class Bot : Character
 {
     [SerializeField] float speedMove;
+
     public float range = 10.0f;
     public NavMeshAgent agent;
+
     private Vector3 target;
     private IState<Bot> currentState;
-
+    private bool isMoveBot= true;
     protected virtual void Start()
     {
         OnInit();
+        agent.stoppingDistance = 0.01f;
     }
 
     // Update is called once per frame
@@ -23,12 +26,7 @@ public class Bot : Character
         {
             currentState.OnExecute(this);
         }
-        Vector3 point;
-        if (RandomPoint(transform.position, range, out point))
-        {
-            Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
-        }
-        BotMove();
+     
     }
     private void OnInit()
     {
@@ -49,6 +47,38 @@ public class Bot : Character
             currentState.OnEnter(this);
         }
     }
+    public void FindAndAttack()
+    {
+        if (isMoveBot)
+        {
+            Vector3 point;
+            if (RandomPoint(transform.position, range, out point))
+            {
+                target = point;
+                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
+                BotMove(target);
+                isMoveBot = false;
+               
+            }
+
+        }else if(targetEnemy != Vector3.zero && !isAttack)
+        {
+            Attack();
+            isAttack = false;
+
+            if (resetAttackCoroutine == null)
+            {
+                resetAttackCoroutine = StartCoroutine(ResetAttack());
+            }
+        }    
+
+        if (isMoveBot == false && agent.remainingDistance <= agent.stoppingDistance)
+        {
+            isMoveBot= true;
+        }
+
+
+    }
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
         for (int i = 0; i < 30; i++)
@@ -61,13 +91,14 @@ public class Bot : Character
                 return true;
             }
         }
-        result = target;
         result = Vector3.zero;
         return false;
     }
-    public void BotMove()
+    public void BotMove(Vector3 target)
     {
-        
-        agent.SetDestination(target*Time.deltaTime);
+        if (target != Vector3.zero)
+        {
+            agent.SetDestination(target * Time.deltaTime);
+        }
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +7,7 @@ public class Player : Character
     [SerializeField] private float speedMove = 5f;
     [SerializeField] private FloatingJoystick floatingJoystick;
     [SerializeField] GameObject playerVisual;
-
+   
     private Vector3 targetPosition;
 
     float horizontal;
@@ -18,21 +18,27 @@ public class Player : Character
     {
 
 
-        if (GetInPut() == true)
+        if (GetInPut())
         {
             MovePlayer();
         }
-        else if (targetEnemy != Vector3.zero && isAttack == false)
+        else if (targetEnemy != Vector3.zero && !isAttack)
         {
-            ChangeAnim(Constants.ATTACK_ANIM_NAME);
-            Attack(); 
+            
+            Attack();
             isAttack = true;
-            StartCoroutine(ResetAttack());
+            Debug.Log("isattackupdate: " + isAttack);
+            
+            if (resetAttackCoroutine == null)
+            {
+                resetAttackCoroutine = StartCoroutine(ResetAttack());
+            }
+
         }
         else
         {
             ChangeAnim(Constants.IDLE_ANIM_NAME);
-            FindTarget(transform.position, radius);
+            FindEnemy(transform.position, radius);
         }
         
 
@@ -49,14 +55,8 @@ public class Player : Character
         OnInit();
     }
 
-    private IEnumerator ResetAttack()
-    {
-        ChangeAnim(Constants.IDLE_ANIM_NAME);
-        yield return new WaitForSeconds(3f);
-        isAttack = false;
-        Debug.Log("time:" +Time.time);
-    }
-    
+
+
     private bool GetInPut()
     {
         horizontal = floatingJoystick.Horizontal;

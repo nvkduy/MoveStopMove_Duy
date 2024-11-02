@@ -4,21 +4,17 @@ using UnityEngine;
 
 public class FindState : IState<Bot>
 {
-    private int brickNumber;
-    private int currentBrick;
+    
     public void OnEnter(Bot t)
     {
-        brickNumber = Random.Range(5,8);
+        
         
     }
 
     public void OnExecute(Bot t)
     {
-        if (currentBrick < brickNumber)
-        {
-
-        }
-        Debug.Log("FindState");
+        t.ChangeAnim(Constants.RUN_ANIM_NAME);
+       
     }
 
     public void OnExit(Bot t)
