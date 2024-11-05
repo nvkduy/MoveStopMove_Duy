@@ -84,35 +84,25 @@ public class Character : MonoBehaviour
         }
 
     }
+    private void ThrowAttack()
+    {
+        currentWeapon.Throw(this, OnHitVicTim); // Gọi phương thức với tham số
+    }
     public void Attack()
     {
-        if (currentWeapon != null /*&& /*currentTime <= 0*/)
+        if (currentWeapon != null && currentTime <= 0)
         {
-            
-            currentWeapon.Throw(this, OnHitVicTim);
-            Debug.Log("đã attack"); 
-            //currentTime = 3f;
 
+            Invoke(nameof(ThrowAttack), 0.5f);
+            currentTime = 3f;
         }
-        //else
-        //{
-        //    currentTime -= Time.deltaTime;
-        //}
+        else
+        {
+            currentTime -= Time.deltaTime;
+        }
 
 
     }
-    
-    public IEnumerator ResetAttack()
-    {
-
-        yield return new WaitForSeconds(3f);
-        ChangeAnim(Constants.IDLE_ANIM_NAME);
-        isAttack = false;
-        resetAttackCoroutine = null; // Đặt lại về null khi Coroutine kết thúc
-        Debug.Log("isAttackrestet:" + isAttack);
-    }
-
-    public Coroutine resetAttackCoroutine = null; // Thêm biến để theo dõi Coroutine
 
     protected virtual void OnHitVicTim(Character accterker, Character Victim)
     {

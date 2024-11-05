@@ -8,10 +8,17 @@ public class Bot : Character
     [SerializeField] float speedMove;
     [SerializeField] float range = 10.0f;
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] Rigidbody rb;
-    private Vector3 target;
+
     private IState<Bot> currentState;
     private bool isMoveBot= true;
+    private Vector3 destionation;
+    
+
+    public Vector3 TargetEnemy
+    {
+        get { return targetEnemy; }
+    }
+    public bool IsDestination => Vector3.Distance(destionation, Vector3.right * transform.position.x + Vector3.forward * transform.position.z) < 0.1f;
     protected virtual void Start()
     {
         OnInit();
@@ -30,9 +37,8 @@ public class Bot : Character
     private void OnInit()
     {
         ChangeState(new IdleState());
-        agent.stoppingDistance = 1f;
+        agent.stoppingDistance = 0.01f;
         ChangeWeapon(WeaponType.Boomerang);
-        rb = GetComponent<Rigidbody>();
 
     }
     public void ChangeState(IState<Bot> state)
@@ -49,33 +55,20 @@ public class Bot : Character
             currentState.OnEnter(this);
         }
     }
-    public void FindAndMove()
+    public void BotMove()
     {
         if (isMoveBot)
         {
             Vector3 point;
             if (RandomPoint(transform.position, range, out point))
             {
-                target = point;
+                
                 Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
-                BotMove(target);
+                SetDestination(point);
                 isMoveBot = false;
             }
         }
-        else if (targetEnemy != Vector3.zero && !isAttack)
-        {
-            rb.velocity = Vector3.zero;
-            ChangeAnim(Constants.ATTACK_ANIM_NAME);
-            Invoke(nameof(Attack), 0.5f);
-            isAttack = true;
-            if (resetAttackCoroutine == null)
-            {
-                resetAttackCoroutine = StartCoroutine(ResetAttack());
-            }
-            
-        }
-        
-        FindEnemy(transform.position,radius);
+             
     }
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
@@ -89,14 +82,46 @@ public class Bot : Character
                 return true;
             }
         }
-        result = Vector3.zero;
+        result = transform.position;
         return false;
     }
-    public void BotMove(Vector3 target)
+   
+    public void SetDestination(Vector3 position)
     {
-        if (target != Vector3.zero&&isMoveBot)
-        {
-            agent.SetDestination(target);
-        }
+        agent.enabled = true;
+        destionation = position;
+        destionation.y = 0;
+        agent.SetDestination(position);
     }
+    public void FindToEnemy()
+    {
+        base.FindEnemy(transform.position,radius);
+    }
+    public void OnAttack()
+    {
+        base.Attack();
+    }
+    //public IEnumerator ColldowAttack()
+    //{
+    //    base.ResetAttack();
+    //}
+    //public void onattack()
+    //{
+    //    if (targetenemy != vector3.zero && !isattack)
+    //    {
+    //        changeanim(constants.attack_anim_name);
+    //        base.attack();
+    //        isattack = true;
+    //        if (resetattackcoroutine == null)
+    //        {
+    //            resetattackcoroutine = startcoroutine(resetattack());
+    //        }
+    //    }
+
+    //}
+    public void MoveStop()
+    {
+        agent.enabled = false;
+    }
+   
 }

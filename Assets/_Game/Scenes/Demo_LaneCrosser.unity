@@ -4185,7 +4185,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.060000002
+  m_VoxelSize: 0.016666668
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 970e35ae99d416f458d4e893ecd76dfa, type: 2}
   m_BuildHeightMesh: 0
@@ -5242,7 +5242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!195 &706690880
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5288,7 +5288,6 @@ MonoBehaviour:
   speedMove: 0.3
   range: 10
   agent: {fileID: 706690880}
-  rb: {fileID: 0}
 --- !u!54 &706690882
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8664,12 +8663,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6376382370113454513, guid: aee313891e7c35c4f8c1e47c2de98500, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1403386412345452, guid: aee313891e7c35c4f8c1e47c2de98500, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1407098558}
   m_SourcePrefab: {fileID: 100100000, guid: aee313891e7c35c4f8c1e47c2de98500, type: 3}
 --- !u!4 &1117600546 stripped
 Transform:
@@ -10506,6 +10508,30 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4976670106195806, guid: 15ca788a39427fe43ad768d0a8d41ceb, type: 3}
   m_PrefabInstance: {fileID: 1388966442}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1407098554 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1403386412345452, guid: aee313891e7c35c4f8c1e47c2de98500, type: 3}
+  m_PrefabInstance: {fileID: 1117600545}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1407098558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407098554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1001 &1412056594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11460,7 +11486,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!195 &1626143118
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -11506,7 +11532,6 @@ MonoBehaviour:
   speedMove: 0.3
   range: 10
   agent: {fileID: 1626143118}
-  rb: {fileID: 0}
 --- !u!54 &1626143120
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11564,7 +11589,7 @@ Transform:
   m_GameObject: {fileID: 1626143117}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.74, y: 0, z: 5.8}
+  m_LocalPosition: {x: -2.24, y: 0, z: 5.8}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -13509,7 +13534,6 @@ MonoBehaviour:
   speedMove: 0.3
   range: 10
   agent: {fileID: 1948886111}
-  rb: {fileID: 0}
 --- !u!1001 &1948893365
 PrefabInstance:
   m_ObjectHideFlags: 0

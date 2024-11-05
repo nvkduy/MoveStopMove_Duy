@@ -19,7 +19,7 @@ public class IdleState : IState<Bot>
         if (currentTime < 2f)
         {
             t.ChangeAnim(Constants.IDLE_ANIM_NAME);
-
+            t.MoveStop();
         }
         else
         {

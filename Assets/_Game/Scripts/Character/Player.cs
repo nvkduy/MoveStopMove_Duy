@@ -16,8 +16,6 @@ public class Player : Character
 
     private void Update()
     {
-
-
         if (GetInPut())
         {
             MovePlayer();
@@ -25,37 +23,27 @@ public class Player : Character
         else if (targetEnemy != Vector3.zero && !isAttack)
         {
             ChangeAnim(Constants.ATTACK_ANIM_NAME);
-            Invoke(nameof(Attack),0.5f);
-            isAttack = true;
-            Debug.Log("isattackupdate: " + isAttack);
-            
-            if (resetAttackCoroutine == null)
-            {
-                resetAttackCoroutine = StartCoroutine(ResetAttack());
-            }
-
+            Attack();
         }
-        else if(!GetInPut()) 
+        else if(!GetInPut() && !isAttack)
         {
-            FindEnemy(transform.position, radius);   
-            //ChangeAnim(Constants.IDLE_ANIM_NAME);       
+             
+            ChangeAnim(Constants.IDLE_ANIM_NAME);       
         }
-
-
-
+        FindEnemy(transform.position, radius);
     }
+
     public override void OnInit()
     {
 
         base.OnInit();
         ChangeWeapon(WeaponType.Axe1);
     }
+
     private void OnEnable()
     {
         OnInit();
     }
-
-
 
     private bool GetInPut()
     {
@@ -66,7 +54,6 @@ public class Player : Character
             return false;
         }
         return true;
-
     }
     private void MovePlayer()
     {
@@ -78,9 +65,6 @@ public class Player : Character
             Vector3 lookDirection = direction + playerVisual.transform.position;
             playerVisual.transform.LookAt(lookDirection);
         }
-
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speedMove * Time.deltaTime);
-
     }
-
 }
