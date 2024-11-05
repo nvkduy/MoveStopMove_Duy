@@ -32,7 +32,7 @@ public class Character : MonoBehaviour
     //}
     public virtual void OnInit()
     {
-        ChangeWeapon(WeaponType.Axe1);
+        
     }
     public void FindEnemy(Vector3 position, float radius)
     {
@@ -88,7 +88,7 @@ public class Character : MonoBehaviour
     {
         if (currentWeapon != null /*&& /*currentTime <= 0*/)
         {
-            ChangeAnim(Constants.ATTACK_ANIM_NAME);
+            
             currentWeapon.Throw(this, OnHitVicTim);
             Debug.Log("đã attack"); 
             //currentTime = 3f;

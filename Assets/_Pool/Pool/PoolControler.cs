@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+
 
 
 public class PoolControler : MonoBehaviour
@@ -145,11 +147,27 @@ public enum PoolType
 {
     None,
 
-    Bullet_1,
-    Bullet_2,
-    Bullet_3,
-    Bullet_4,
-    Weapon,
+    BulletAxe_0,
+    BulletAxe_1,
+    BulletBoomerang,
+    BulletCandy_1,
+    BulletCandy_2,
+    BulletCandy_3,
+    BulletCandy_4,
+    BulletHamer,
+    BulletKnife,
+    BulletUzi,
+
+    WeaponAxe_0,
+    WeaponAxe_1,
+    WeaponBoomerang,
+    WeaponCandy_1,
+    WeaponCandy_2,
+    WeaponCandy_3,
+    WeaponCandy_4,
+    WeaponHamer,
+    WeaponKnife,
+    WeaponUzi,
 }
 
 

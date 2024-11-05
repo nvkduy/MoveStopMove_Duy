@@ -21,7 +21,7 @@ public class Bullet : GameUnit
     void Update()
     {
         
-        bulletVisual.transform.Rotate(new Vector3(0,0, rotationSpeed*Time.deltaTime));
+        transform.Rotate(new Vector3(0,0, rotationSpeed*Time.deltaTime));
         float distanceTravelled = Vector3.Distance(startBullet, transform.position);
         if (distanceTravelled > maxDistance)
         {
@@ -77,7 +77,7 @@ public class Bullet : GameUnit
     //        onHit?.Invoke(attacker, victim);
     //    }
     //}
-    //public class Weapon :
+    //public class WeaponAxe_1 :
     //{
 
     //    public void Throw(Character character, Action<Character attacker, Character victim> onHit)
@@ -92,7 +92,7 @@ public class Bullet : GameUnit
     //{
     //    public void Throw()
     //    {
-    //        currentSkin.Weapon.Throw(this, OnHitVictim);
+    //        currentSkin.WeaponAxe_1.Throw(this, OnHitVictim);
     //    }
     //    // Logic when bullet hit victim
     //    protected virtual OnHitVictim(Character attacker, Character victim)

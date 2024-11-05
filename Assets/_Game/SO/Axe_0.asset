@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874524155cb71a14192710792d7e7a97, type: 3}
   m_Name: Axe_0
   m_EditorClassIdentifier: 
-  weapon: {fileID: 3021243714630544392, guid: 91e0ff88f85a1b742a5417ac25c20554, type: 3}
+  weapon: {fileID: 736024372622672723, guid: 91e0ff88f85a1b742a5417ac25c20554, type: 3}
   weaponType: 0

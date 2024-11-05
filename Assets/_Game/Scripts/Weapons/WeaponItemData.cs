@@ -7,15 +7,15 @@ public enum WeaponType
     
     Axe0 = 0,
     Axe1 = 1,
-    Boomerang= 3,
-    Candy0= 4,
-    Candy1= 5,
-    Candy2= 6,
-    Candy3= 7,
-    Candy4= 8,
-    Hammer= 9,
-    Knife= 10,
-    Uzi= 11,
+    Boomerang= 2,
+    Candy0= 3,
+    Candy1= 4,
+    Candy2= 5,
+    Candy3= 6,
+    Candy4= 7,
+    Hammer= 8,
+    Knife= 9,
+    Uzi= 10,
     None = 100
 }
 

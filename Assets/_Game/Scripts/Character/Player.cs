@@ -24,8 +24,8 @@ public class Player : Character
         }
         else if (targetEnemy != Vector3.zero && !isAttack)
         {
-            
-            Attack();
+            ChangeAnim(Constants.ATTACK_ANIM_NAME);
+            Invoke(nameof(Attack),0.5f);
             isAttack = true;
             Debug.Log("isattackupdate: " + isAttack);
             
@@ -35,11 +35,10 @@ public class Player : Character
             }
 
         }
-        else
+        else if(!GetInPut()) 
         {
             FindEnemy(transform.position, radius);   
-            ChangeAnim(Constants.IDLE_ANIM_NAME);
-            
+            //ChangeAnim(Constants.IDLE_ANIM_NAME);       
         }
 
 
@@ -49,6 +48,7 @@ public class Player : Character
     {
 
         base.OnInit();
+        ChangeWeapon(WeaponType.Axe1);
     }
     private void OnEnable()
     {

@@ -14,7 +14,8 @@ public class FindState : IState<Bot>
     public void OnExecute(Bot t)
     {
         t.ChangeAnim(Constants.RUN_ANIM_NAME);
-        t.FindAndAttack();
+        t.FindAndMove();
+
        
     }
 

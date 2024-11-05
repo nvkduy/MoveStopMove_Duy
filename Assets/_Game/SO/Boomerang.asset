@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 874524155cb71a14192710792d7e7a97, type: 3}
-  m_Name: Axe_1
+  m_Name: Boomerang
   m_EditorClassIdentifier: 
-  weapon: {fileID: 4199842716416880844, guid: 46df4cf013dbaaf45825753bf4b655f0, type: 3}
-  weaponType: 1
+  weapon: {fileID: 6363121186971617203, guid: 9aec1782806c4f34c928a69995ee81fd, type: 3}
+  weaponType: 3
