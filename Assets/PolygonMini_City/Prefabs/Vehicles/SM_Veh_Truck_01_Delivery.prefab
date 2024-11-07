@@ -593,6 +593,7 @@ GameObject:
   - component: {fileID: 33540849339000620}
   - component: {fileID: 23948190054700322}
   - component: {fileID: 7160686481935659445}
+  - component: {fileID: 1353268038175532270}
   m_Layer: 0
   m_Name: SM_Veh_Truck_01_Delivery
   m_TagString: Untagged
@@ -695,6 +696,25 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.76459295, y: 0.71266395, z: 1.6705832}
   m_Center: {x: 0.000000029802322, y: 0.46853212, z: 0.00000014901161}
+--- !u!114 &1353268038175532270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823100718939478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &1825403911213546
 GameObject:
   m_ObjectHideFlags: 0

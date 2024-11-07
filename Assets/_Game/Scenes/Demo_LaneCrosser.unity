@@ -5283,11 +5283,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   weaponParent: {fileID: 0}
+  agent: {fileID: 706690880}
   currentWeapon: {fileID: 0}
   numOfEnemy: 0
   speedMove: 0.3
   range: 10
-  agent: {fileID: 706690880}
 --- !u!54 &706690882
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8622,12 +8622,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 355340509}
     m_Modifications:
     - target: {fileID: 1403386412345452, guid: aee313891e7c35c4f8c1e47c2de98500, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4202061414978240, guid: aee313891e7c35c4f8c1e47c2de98500, type: 3}
-      propertyPath: m_RootOrder
-      value: 33
+      propertyPath: m_Name
+      value: SM_Veh_Car_Small_01
       objectReference: {fileID: 0}
     - target: {fileID: 4202061414978240, guid: aee313891e7c35c4f8c1e47c2de98500, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8658,20 +8654,21 @@ PrefabInstance:
       value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4202061414978240, guid: aee313891e7c35c4f8c1e47c2de98500, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4202061414978240, guid: aee313891e7c35c4f8c1e47c2de98500, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -90.00001
       objectReference: {fileID: 0}
-    - target: {fileID: 6376382370113454513, guid: aee313891e7c35c4f8c1e47c2de98500, type: 3}
-      propertyPath: m_Enabled
-      value: 1
+    - target: {fileID: 4202061414978240, guid: aee313891e7c35c4f8c1e47c2de98500, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1403386412345452, guid: aee313891e7c35c4f8c1e47c2de98500, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1407098558}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aee313891e7c35c4f8c1e47c2de98500, type: 3}
 --- !u!4 &1117600546 stripped
 Transform:
@@ -8837,10 +8834,6 @@ PrefabInstance:
       value: SM_Veh_Convertable_01 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4188471369724380, guid: 34127c2be91fb71439c2bb99245fa851, type: 3}
-      propertyPath: m_RootOrder
-      value: 119
-      objectReference: {fileID: 0}
-    - target: {fileID: 4188471369724380, guid: 34127c2be91fb71439c2bb99245fa851, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.507
       objectReference: {fileID: 0}
@@ -8869,8 +8862,16 @@ PrefabInstance:
       value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4188471369724380, guid: 34127c2be91fb71439c2bb99245fa851, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4188471369724380, guid: 34127c2be91fb71439c2bb99245fa851, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 449.999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4188471369724380, guid: 34127c2be91fb71439c2bb99245fa851, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9307,20 +9308,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 355340509}
     m_Modifications:
     - target: {fileID: 1364467399105774, guid: bb71acf1b4729754abc597418e317dc9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4250556611032856, guid: bb71acf1b4729754abc597418e317dc9, type: 3}
-      propertyPath: m_RootOrder
-      value: 27
-      objectReference: {fileID: 0}
-    - target: {fileID: 4250556611032856, guid: bb71acf1b4729754abc597418e317dc9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4250556611032856, guid: bb71acf1b4729754abc597418e317dc9, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
+      propertyPath: m_Name
+      value: SM_Veh_Bus_01
       objectReference: {fileID: 0}
     - target: {fileID: 4250556611032856, guid: bb71acf1b4729754abc597418e317dc9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9351,12 +9340,16 @@ PrefabInstance:
       value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4250556611032856, guid: bb71acf1b4729754abc597418e317dc9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4250556611032856, guid: bb71acf1b4729754abc597418e317dc9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 269.999
       objectReference: {fileID: 0}
-    - target: {fileID: 5099100318082696459, guid: bb71acf1b4729754abc597418e317dc9, type: 3}
-      propertyPath: m_Enabled
-      value: 1
+    - target: {fileID: 4250556611032856, guid: bb71acf1b4729754abc597418e317dc9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10140,7 +10133,7 @@ Transform:
   m_GameObject: {fileID: 1314465569}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.55, y: 1.94, z: -1.236}
+  m_LocalPosition: {x: -1.55, y: 1.94, z: 6.29}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -10165,6 +10158,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   weaponParent: {fileID: 843774351}
+  agent: {fileID: 0}
   currentWeapon: {fileID: 736024372622672723, guid: 91e0ff88f85a1b742a5417ac25c20554, type: 3}
   numOfEnemy: 0
   speedMove: 2
@@ -10508,30 +10502,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4976670106195806, guid: 15ca788a39427fe43ad768d0a8d41ceb, type: 3}
   m_PrefabInstance: {fileID: 1388966442}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1407098554 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1403386412345452, guid: aee313891e7c35c4f8c1e47c2de98500, type: 3}
-  m_PrefabInstance: {fileID: 1117600545}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1407098558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1407098554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 1
-  m_Area: 1
-  m_OverrideGenerateLinks: 0
-  m_GenerateLinks: 0
-  m_IgnoreFromBuild: 0
-  m_ApplyToChildren: 1
-  m_AffectedAgents: ffffffff
 --- !u!1001 &1412056594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11486,7 +11456,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!195 &1626143118
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -11527,11 +11497,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   weaponParent: {fileID: 1571317310}
+  agent: {fileID: 1626143118}
   currentWeapon: {fileID: 6363121186971617203, guid: 9aec1782806c4f34c928a69995ee81fd, type: 3}
   numOfEnemy: 0
   speedMove: 0.3
   range: 10
-  agent: {fileID: 1626143118}
 --- !u!54 &1626143120
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11589,7 +11559,7 @@ Transform:
   m_GameObject: {fileID: 1626143117}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.24, y: 0, z: 5.8}
+  m_LocalPosition: {x: 3.98, y: 0, z: 5.8}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -13208,17 +13178,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 355340509}
     m_Modifications:
-    - target: {fileID: 4922074669826246, guid: 118415f9a43cc674e968c1911c8a40b6, type: 3}
-      propertyPath: m_RootOrder
-      value: 31
-      objectReference: {fileID: 0}
-    - target: {fileID: 4922074669826246, guid: 118415f9a43cc674e968c1911c8a40b6, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4922074669826246, guid: 118415f9a43cc674e968c1911c8a40b6, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
+    - target: {fileID: 1198537294408038, guid: 118415f9a43cc674e968c1911c8a40b6, type: 3}
+      propertyPath: m_Name
+      value: SM_Veh_Car_Police_01
       objectReference: {fileID: 0}
     - target: {fileID: 4922074669826246, guid: 118415f9a43cc674e968c1911c8a40b6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13249,16 +13211,21 @@ PrefabInstance:
       value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4922074669826246, guid: 118415f9a43cc674e968c1911c8a40b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4922074669826246, guid: 118415f9a43cc674e968c1911c8a40b6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 269.999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4922074669826246, guid: 118415f9a43cc674e968c1911c8a40b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1198537294408038, guid: 118415f9a43cc674e968c1911c8a40b6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2091582368}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 118415f9a43cc674e968c1911c8a40b6, type: 3}
 --- !u!4 &1909768746 stripped
 Transform:
@@ -13529,11 +13496,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   weaponParent: {fileID: 477650081}
+  agent: {fileID: 1948886111}
   currentWeapon: {fileID: 6363121186971617203, guid: 9aec1782806c4f34c928a69995ee81fd, type: 3}
   numOfEnemy: 0
   speedMove: 0.3
   range: 10
-  agent: {fileID: 1948886111}
 --- !u!1001 &1948893365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14168,9 +14135,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 355340509}
     m_Modifications:
-    - target: {fileID: 4652208548346144, guid: acc38c2af7333a944b76df42b4c9e28d, type: 3}
-      propertyPath: m_RootOrder
-      value: 40
+    - target: {fileID: 1823100718939478, guid: acc38c2af7333a944b76df42b4c9e28d, type: 3}
+      propertyPath: m_Name
+      value: SM_Veh_Truck_01_Delivery
       objectReference: {fileID: 0}
     - target: {fileID: 4652208548346144, guid: acc38c2af7333a944b76df42b4c9e28d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14182,7 +14149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4652208548346144, guid: acc38c2af7333a944b76df42b4c9e28d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.86
+      value: 10.25
       objectReference: {fileID: 0}
     - target: {fileID: 4652208548346144, guid: acc38c2af7333a944b76df42b4c9e28d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -14201,8 +14168,16 @@ PrefabInstance:
       value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4652208548346144, guid: acc38c2af7333a944b76df42b4c9e28d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652208548346144, guid: acc38c2af7333a944b76df42b4c9e28d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652208548346144, guid: acc38c2af7333a944b76df42b4c9e28d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14697,30 +14672,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4245781815190936, guid: 148b2b1982dbbd24db7cc282f912bf40, type: 3}
   m_PrefabInstance: {fileID: 2087454108}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2091582364 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1198537294408038, guid: 118415f9a43cc674e968c1911c8a40b6, type: 3}
-  m_PrefabInstance: {fileID: 1909768745}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2091582368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2091582364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 1
-  m_Area: 1
-  m_OverrideGenerateLinks: 0
-  m_GenerateLinks: 0
-  m_IgnoreFromBuild: 0
-  m_ApplyToChildren: 1
-  m_AffectedAgents: ffffffff
 --- !u!1001 &2105111712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14959,10 +14910,6 @@ PrefabInstance:
     - target: {fileID: 1784311713693984, guid: 3efbccecd02307c4cbb55294a44ac198, type: 3}
       propertyPath: m_Name
       value: SM_Prop_BusStop_01
-      objectReference: {fileID: 0}
-    - target: {fileID: 1784311713693984, guid: 3efbccecd02307c4cbb55294a44ac198, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4843331409320386, guid: 3efbccecd02307c4cbb55294a44ac198, type: 3}
       propertyPath: m_LocalPosition.x

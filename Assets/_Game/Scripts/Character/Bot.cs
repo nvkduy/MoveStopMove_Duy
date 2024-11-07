@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class Bot : Character
 {
     [SerializeField] float speedMove;
-    [SerializeField] float range = 10.0f;
-    [SerializeField] NavMeshAgent agent;
+    
+    
+    public float range = 10.0f;
 
     private IState<Bot> currentState;
     private bool isMoveBot= true;
@@ -18,7 +20,8 @@ public class Bot : Character
     {
         get { return targetEnemy; }
     }
-    public bool IsDestination => Vector3.Distance(destionation, Vector3.right * transform.position.x + Vector3.forward * transform.position.z) < 0.1f;
+  
+   public bool IsDestination => Vector3.Distance(new Vector3(destionation.x, transform.position.y, destionation.z),transform.position) < 1f;
     protected virtual void Start()
     {
         OnInit();
@@ -36,7 +39,7 @@ public class Bot : Character
     }
     private void OnInit()
     {
-        ChangeState(new IdleState());
+        ChangeState(new FindState());
         agent.stoppingDistance = 0.01f;
         ChangeWeapon(WeaponType.Boomerang);
 
@@ -55,22 +58,21 @@ public class Bot : Character
             currentState.OnEnter(this);
         }
     }
-    public void BotMove()
-    {
-        if (isMoveBot)
-        {
-            Vector3 point;
-            if (RandomPoint(transform.position, range, out point))
-            {
-                
-                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
-                SetDestination(point);
-                isMoveBot = false;
-            }
-        }
-             
-    }
-    bool RandomPoint(Vector3 center, float range, out Vector3 result)
+    //public void StartMove()
+    //{
+
+    //    Vector3 point;
+    //    if (RandomPoint(transform.position, range, out point))
+    //    {
+    //        agent.enabled = true;
+    //        ChangeAnim(Constants.RUN_ANIM_NAME);
+    //        Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
+    //        SetDestination(point);
+    //    }
+    //}
+
+
+    public bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
         for (int i = 0; i < 30; i++)
         {

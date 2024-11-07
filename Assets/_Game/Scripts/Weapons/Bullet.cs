@@ -6,9 +6,10 @@ using UnityEngine;
 public class Bullet : GameUnit
 {
     [SerializeField] private float rotationSpeed;
-    [SerializeField] GameObject bulletVisual;
+
     protected Character attacker;
     protected Action<Character ,Character >onHit;
+
     private float maxDistance = 2.1f;
     private Vector3 startBullet;
     
@@ -27,7 +28,6 @@ public class Bullet : GameUnit
         {
             SimplePool.Despawn(this);
             startBullet = transform.position;
-            Debug.Log("da despawn");
         }
        
     }

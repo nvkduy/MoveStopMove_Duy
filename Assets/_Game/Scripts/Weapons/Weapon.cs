@@ -13,7 +13,6 @@ public class Weapon : GameUnit
         Vector3 shootDirection = (character.targetEnemy - transform.position);
         Bullet bullet = SimplePool.Spawn<Bullet>(bulletPrefab);
         bullet.transform.position = transform.position;
-        Debug.Log("da ban");
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         if (rb != null)
         {

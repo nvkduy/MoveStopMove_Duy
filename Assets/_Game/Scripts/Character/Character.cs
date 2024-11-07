@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
+using UnityEngine.AI;
 
 public class Character : MonoBehaviour
 {
@@ -9,13 +10,13 @@ public class Character : MonoBehaviour
     [SerializeField] protected float radius;
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] Transform weaponParent;
+    [SerializeField] protected NavMeshAgent agent;
 
-    
     public Weapon currentWeapon;
 
     internal Vector3 targetEnemy;
 
-    protected float currentTime = 0;
+    internal float currentTime = 0;
     public int numOfEnemy;
     protected bool isAttack = false;
 
@@ -92,9 +93,10 @@ public class Character : MonoBehaviour
     {
         if (currentWeapon != null && currentTime <= 0)
         {
-
+            isAttack = true;
             Invoke(nameof(ThrowAttack), 0.5f);
             currentTime = 3f;
+            Invoke(nameof(ResetAttack), 0.5f);
         }
         else
         {
@@ -104,11 +106,17 @@ public class Character : MonoBehaviour
 
     }
 
+    protected void ResetAttack()
+    {
+        isAttack = false;
+    }
+
     protected virtual void OnHitVicTim(Character accterker, Character Victim)
     {
 
         if ( Victim !=null && accterker != Victim)
         {
+            
             Victim.Die();
             accterker.UpSize();
         }  
@@ -116,6 +124,7 @@ public class Character : MonoBehaviour
     }
     public void Die()
     {
+        agent.enabled = false;
         ChangeAnim(Constants.DIE_ANIM_NAME);
         Debug.Log("die");
         Destroy(gameObject, 1f);

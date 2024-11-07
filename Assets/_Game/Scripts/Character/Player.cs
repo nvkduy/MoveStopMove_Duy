@@ -7,28 +7,29 @@ public class Player : Character
     [SerializeField] private float speedMove = 5f;
     [SerializeField] private FloatingJoystick floatingJoystick;
     [SerializeField] GameObject playerVisual;
-   
+
     private Vector3 targetPosition;
 
     float horizontal;
     float vertical;
-    
+
 
     private void Update()
     {
-        if (GetInPut())
+        if (GetInPut() && !isAttack)
         {
             MovePlayer();
         }
-        else if (targetEnemy != Vector3.zero && !isAttack)
+        else if (targetEnemy != Vector3.zero && !isAttack && currentTime <= 0)
         {
+
             ChangeAnim(Constants.ATTACK_ANIM_NAME);
             Attack();
         }
-        else if(!GetInPut() && !isAttack)
+        else if (!GetInPut() && !isAttack)
         {
-             
-            ChangeAnim(Constants.IDLE_ANIM_NAME);       
+
+            ChangeAnim(Constants.IDLE_ANIM_NAME);
         }
         FindEnemy(transform.position, radius);
     }
