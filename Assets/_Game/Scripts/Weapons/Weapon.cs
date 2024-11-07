@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Lean.Pool;
 
 public class Weapon : GameUnit
 {
@@ -12,6 +13,7 @@ public class Weapon : GameUnit
     {
         Vector3 shootDirection = (character.targetEnemy - transform.position);
         Bullet bullet = SimplePool.Spawn<Bullet>(bulletPrefab);
+       // Bullet bullet = LeanPool.Spawn<Bullet>(bulletPrefab);
         bullet.transform.position = transform.position;
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         if (rb != null)
@@ -19,12 +21,16 @@ public class Weapon : GameUnit
             //Đặt lại vận tốc tránh trường hợp sẽ cộng đồn lực khi addforce 
             rb.velocity=Vector3.zero;
             rb.AddForce(shootDirection * attackForce);
-
-            Debug.Log("attackForce" + attackForce);
+            gameObject.SetActive(false);
+            Invoke(nameof(SetActiveWeapon), 0.5f);
         }
+
         bullet.OnInit(character, onHit);
     }
-
+    private void SetActiveWeapon()
+    {
+        gameObject.SetActive(true);
+    }
    
 
 

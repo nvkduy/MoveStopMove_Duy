@@ -13,25 +13,31 @@ public class Player : Character
     float horizontal;
     float vertical;
 
-
-    private void Update()
+    private void FixedUpdate()
     {
-        if (GetInPut() && !isAttack)
+        if (targetEnemy != Vector3.zero &&!GetInPut())
         {
-            MovePlayer();
-        }
-        else if (targetEnemy != Vector3.zero && !isAttack && currentTime <= 0)
-        {
-
-            ChangeAnim(Constants.ATTACK_ANIM_NAME);
             Attack();
         }
-        else if (!GetInPut() && !isAttack)
+        currentTime -= Time.deltaTime;
+        FindEnemy(transform.position,radius);
+        
+    }
+    private void Update()
+    {
+        if (GetInPut())
+        {
+            
+            MovePlayer();
+        }
+        else
         {
 
             ChangeAnim(Constants.IDLE_ANIM_NAME);
         }
-        FindEnemy(transform.position, radius);
+
+        
+       
     }
 
     public override void OnInit()
@@ -65,6 +71,10 @@ public class Player : Character
             targetPosition = transform.position + direction * speedMove * Time.deltaTime;
             Vector3 lookDirection = direction + playerVisual.transform.position;
             playerVisual.transform.LookAt(lookDirection);
+        }
+        else
+        {
+            ChangeAnim(Constants.IDLE_ANIM_NAME);
         }
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speedMove * Time.deltaTime);
     }

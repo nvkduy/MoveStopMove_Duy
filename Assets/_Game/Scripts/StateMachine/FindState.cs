@@ -24,7 +24,7 @@ public class FindState : IState<Bot>
             SeekTarget(t);
         }
         t.FindToEnemy();
-
+        t.currentTime -= Time.deltaTime;
 
     }
 

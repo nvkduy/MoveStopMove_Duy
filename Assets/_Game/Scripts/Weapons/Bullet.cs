@@ -12,23 +12,29 @@ public class Bullet : GameUnit
 
     private float maxDistance = 2.1f;
     private Vector3 startBullet;
-    
+    private float bulletTime;
 
     private void Start()
     {
         startBullet = transform.position;
-        
+        bulletTime = 3f;
     }
     void Update()
     {
         
         transform.Rotate(new Vector3(0,0, rotationSpeed*Time.deltaTime));
         float distanceTravelled = Vector3.Distance(startBullet, transform.position);
-        if (distanceTravelled > maxDistance)
+        if (bulletTime<=0)
         {
-            SimplePool.Despawn(this);
-            startBullet = transform.position;
+                SimplePool.Despawn(this);
+            bulletTime = 3f;
+           
         }
+        else
+        {
+            bulletTime -= Time.deltaTime;
+        }
+
        
     }
    

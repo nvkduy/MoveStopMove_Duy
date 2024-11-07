@@ -85,30 +85,31 @@ public class Character : MonoBehaviour
         }
 
     }
-    private void ThrowAttack()
-    {
-        currentWeapon.Throw(this, OnHitVicTim); // Gọi phương thức với tham số
-    }
+    
     public void Attack()
     {
         if (currentWeapon != null && currentTime <= 0)
         {
-            isAttack = true;
-            Invoke(nameof(ThrowAttack), 0.5f);
+            
+            ChangeAnim(Constants.ATTACK_ANIM_NAME);
+            currentWeapon.Throw(this, OnHitVicTim); // Gọi phương thức với tham số            
             currentTime = 3f;
-            Invoke(nameof(ResetAttack), 0.5f);
+            
+            
+            
         }
         else
         {
-            currentTime -= Time.deltaTime;
+            
         }
+       
 
 
     }
 
     protected void ResetAttack()
     {
-        isAttack = false;
+        isAttack = true;
     }
 
     protected virtual void OnHitVicTim(Character accterker, Character Victim)
@@ -124,7 +125,7 @@ public class Character : MonoBehaviour
     }
     public void Die()
     {
-        agent.enabled = false;
+        
         ChangeAnim(Constants.DIE_ANIM_NAME);
         Debug.Log("die");
         Destroy(gameObject, 1f);

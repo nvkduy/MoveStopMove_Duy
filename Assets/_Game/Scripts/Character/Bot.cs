@@ -58,19 +58,6 @@ public class Bot : Character
             currentState.OnEnter(this);
         }
     }
-    //public void StartMove()
-    //{
-
-    //    Vector3 point;
-    //    if (RandomPoint(transform.position, range, out point))
-    //    {
-    //        agent.enabled = true;
-    //        ChangeAnim(Constants.RUN_ANIM_NAME);
-    //        Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
-    //        SetDestination(point);
-    //    }
-    //}
-
 
     public bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
@@ -101,26 +88,10 @@ public class Bot : Character
     }
     public void OnAttack()
     {
+        agent.enabled =false;
         base.Attack();
     }
-    //public IEnumerator ColldowAttack()
-    //{
-    //    base.ResetAttack();
-    //}
-    //public void onattack()
-    //{
-    //    if (targetenemy != vector3.zero && !isattack)
-    //    {
-    //        changeanim(constants.attack_anim_name);
-    //        base.attack();
-    //        isattack = true;
-    //        if (resetattackcoroutine == null)
-    //        {
-    //            resetattackcoroutine = startcoroutine(resetattack());
-    //        }
-    //    }
 
-    //}
     public void MoveStop()
     {
         agent.enabled = false;

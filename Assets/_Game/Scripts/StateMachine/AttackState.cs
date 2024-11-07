@@ -17,12 +17,13 @@ public class AttackState : IState<Bot>
         }
         else if(t.currentTime <=0)
         {
+            
             t.MoveStop();
             t.OnAttack();
            
         }
         t.FindToEnemy();
-
+        t.currentTime -=Time.deltaTime;
     }
 
     public void OnExit(Bot t)

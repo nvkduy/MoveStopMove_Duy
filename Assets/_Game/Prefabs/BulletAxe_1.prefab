@@ -100,9 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714b2676a3d6e014284b6e8e299eff9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 2
+  poolType: 0
   rotationSpeed: 180
-  bulletVisual: {fileID: 5283581765073517350, guid: 46df4cf013dbaaf45825753bf4b655f0, type: 3}
 --- !u!54 &-1204890007410022435
 Rigidbody:
   m_ObjectHideFlags: 0
