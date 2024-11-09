@@ -25,8 +25,10 @@ public class WeaponItemData:ScriptableObject
 {
     [SerializeField] Weapon weapon;
     [SerializeField] WeaponType weaponType;
-    public float Price { get; }
 
+    public string name;
+    public int price;
+    public bool isUnlocked;
     public Weapon Weapon {  get { return weapon; } }
    
 }

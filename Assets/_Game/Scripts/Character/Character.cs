@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine.AI;
 
-public class Character : MonoBehaviour
+public class Character : GameUnit
 {
     [SerializeField] private Animator animator;
     [SerializeField] protected float radius;
@@ -22,7 +22,7 @@ public class Character : MonoBehaviour
 
     Collider[] hitColliders = new Collider[20];
     private string currentAnim;
-    
+
 
 
 
@@ -31,10 +31,7 @@ public class Character : MonoBehaviour
     //{
     //    OnInit();
     //}
-    public virtual void OnInit()
-    {
-        
-    }
+   
     public void FindEnemy(Vector3 position, float radius)
     {
 
@@ -59,7 +56,6 @@ public class Character : MonoBehaviour
         {
             targetEnemy = nearestEnemy.transform.position;
 
-            Debug.Log("Enemy gần nhất: " + nearestEnemy.name);
         }
         if (numOfEnemy == 1)
         {
@@ -98,10 +94,7 @@ public class Character : MonoBehaviour
             
             
         }
-        else
-        {
-            
-        }
+       
        
 
 
@@ -120,21 +113,23 @@ public class Character : MonoBehaviour
             
             Victim.Die();
             accterker.UpSize();
+            
         }  
 
     }
     public void Die()
     {
-        
+        Collider collider = GetComponent<Collider>();
         ChangeAnim(Constants.DIE_ANIM_NAME);
-        Debug.Log("die");
+        collider.enabled = false;
         Destroy(gameObject, 1f);
-      
+        LevelManager.Instance.RemoveBots();
         
     }
 
     public void UpSize()
     {
+        
         transform.localScale += Vector3.one * 0.5f;
         radius += 1f;
     }

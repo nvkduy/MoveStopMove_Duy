@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 4199842716416880844, guid: 46df4cf013dbaaf45825753bf4b655f0, type: 3}
   weaponType: 1
+  name: Axe1
+  price: 12
+  isUnlocked: 0

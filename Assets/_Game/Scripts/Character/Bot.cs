@@ -12,16 +12,16 @@ public class Bot : Character
     public float range = 10.0f;
 
     private IState<Bot> currentState;
-    private bool isMoveBot= true;
     private Vector3 destionation;
     
 
+    public WeaponType weaponType {  get; private set; }
     public Vector3 TargetEnemy
     {
         get { return targetEnemy; }
     }
   
-   public bool IsDestination => Vector3.Distance(new Vector3(destionation.x, transform.position.y, destionation.z),transform.position) < 1f;
+   public bool IsDestination => Vector3.Distance(new Vector3(destionation.x, TF.position.y, destionation.z),TF.position) < 1f;
     protected virtual void Start()
     {
         OnInit();
@@ -37,11 +37,11 @@ public class Bot : Character
         }
      
     }
-    private void OnInit()
+    public void OnInit()
     {
         ChangeState(new FindState());
-        agent.stoppingDistance = 0.01f;
-        ChangeWeapon(WeaponType.Boomerang);
+        weaponType =(WeaponType) Random.Range(0, 3);
+        ChangeWeapon(weaponType);
 
     }
     public void ChangeState(IState<Bot> state)
@@ -71,7 +71,7 @@ public class Bot : Character
                 return true;
             }
         }
-        result = transform.position;
+        result = TF.position;
         return false;
     }
    

@@ -168,6 +168,8 @@ public enum PoolType
     WeaponHamer,
     WeaponKnife,
     WeaponUzi,
+
+    Bot
 }
 
 

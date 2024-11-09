@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: Boomerang
   m_EditorClassIdentifier: 
   weapon: {fileID: 6363121186971617203, guid: 9aec1782806c4f34c928a69995ee81fd, type: 3}
-  weaponType: 3
+  weaponType: 2
+  name: Boome
+  price: 15
+  isUnlocked: 0

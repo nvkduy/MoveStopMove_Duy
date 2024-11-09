@@ -10,7 +10,6 @@ public class Bullet : GameUnit
     protected Character attacker;
     protected Action<Character ,Character >onHit;
 
-    private float maxDistance = 2.1f;
     private Vector3 startBullet;
     private float bulletTime;
 
@@ -23,7 +22,7 @@ public class Bullet : GameUnit
     {
         
         transform.Rotate(new Vector3(0,0, rotationSpeed*Time.deltaTime));
-        float distanceTravelled = Vector3.Distance(startBullet, transform.position);
+        
         if (bulletTime<=0)
         {
                 SimplePool.Despawn(this);

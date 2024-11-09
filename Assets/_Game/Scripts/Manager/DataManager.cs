@@ -10,5 +10,5 @@ public class DataManager : Singleton<DataManager>
     {
         return weaponData.GetWeapon(weaponType).Weapon;
     }
- 
+    
 }

@@ -8,8 +8,7 @@ public class Player : Character
     [SerializeField] private FloatingJoystick floatingJoystick;
     [SerializeField] GameObject playerVisual;
 
-    private Vector3 targetPosition;
-
+     Vector3 targetPosition;
     float horizontal;
     float vertical;
 
@@ -35,21 +34,12 @@ public class Player : Character
 
             ChangeAnim(Constants.IDLE_ANIM_NAME);
         }
-
-        
        
     }
 
-    public override void OnInit()
+    public  void OnInit()
     {
-
-        base.OnInit();
         ChangeWeapon(WeaponType.Axe1);
-    }
-
-    private void OnEnable()
-    {
-        OnInit();
     }
 
     private bool GetInPut()
