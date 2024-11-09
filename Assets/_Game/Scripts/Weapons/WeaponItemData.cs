@@ -19,7 +19,6 @@ public enum WeaponType
     None = 100
 }
 
-
 [CreateAssetMenu(fileName = "WeaponItemData",menuName = "ScriptableObject/WeaponItemData",order =1)]
 public class WeaponItemData:ScriptableObject
 {

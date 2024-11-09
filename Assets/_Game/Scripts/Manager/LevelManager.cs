@@ -81,7 +81,7 @@ public class LevelManager : Singleton<LevelManager>
         SimplePool.CollectAll();
         bots.Clear();
     }
-    internal void NextLevel(int level)
+    internal void NextLevel()
     {
         levelIndex++;
         PlayerPrefs.SetInt("Level", levelIndex);
@@ -99,7 +99,7 @@ public class LevelManager : Singleton<LevelManager>
         
     }
 
-    internal void OnRetry()
+    internal void RetryLevel()
     {
         OnReset();
         LoadLevel(levelIndex);

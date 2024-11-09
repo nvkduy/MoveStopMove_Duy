@@ -11,3 +11,4 @@ public class WeaponData : ScriptableObject
         return wpItemDatas[(int)weaponType];
     }
 }
+
