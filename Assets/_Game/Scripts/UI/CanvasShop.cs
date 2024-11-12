@@ -7,13 +7,13 @@ public class CanvasShop : UICanvas
     public void WeaponButton()
     {
         Close(0);
-        UIManager.Instance.OpenUI<CanvasWeapon>();
+        UIManager.Instance.OpenUI<WeaponShop>();
 
     }
     public void SkinButton()
     {
         Close(0);
-        UIManager.Instance.OpenUI<CanvasSkin>();
+       
 
     }
 }

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874524155cb71a14192710792d7e7a97, type: 3}
   m_Name: Axe_1
   m_EditorClassIdentifier: 
-  weapon: {fileID: 4199842716416880844, guid: 46df4cf013dbaaf45825753bf4b655f0, type: 3}
-  weaponType: 1
-  name: Axe1
+  itemName: 
   price: 12
   isUnlocked: 0
+  icon: {fileID: 21300000, guid: dd47ffa33ce48924eb157693923298bb, type: 3}
+  weapon: {fileID: 4199842716416880844, guid: 46df4cf013dbaaf45825753bf4b655f0, type: 3}
+  weaponType: 1

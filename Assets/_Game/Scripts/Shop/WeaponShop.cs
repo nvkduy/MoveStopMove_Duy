@@ -1,20 +1,35 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponShop : AShop
+public class WeaponShop : UIShop
 {
-    public override void ChangeItem()
+    [SerializeField]
+    private WeaponData weaponData;
+
+   public override void ChangeItem()
     {
-        WeaponType type = (WeaponType)currentItem;
-        character.ChangeWeapon(type);
+        currentItemData = weaponData.GetWeapon((WeaponType)currentItem);
+        UpdateUI();
+        PreviewItem(currentItemData);
     }
-    public override void BuyItem()
+
+    protected override void EquipItem(ItemData itemData)
     {
-        throw new System.NotImplementedException();
+        WeaponItemData weaponItem = itemData as WeaponItemData;
+        if (weaponItem != null)
+        {
+            character.ChangeWeapon(weaponItem.WeaponType);
+        }
     }
-    public override void TakeItem()
+
+    protected override void PreviewItem(ItemData itemData)
     {
-        throw new System.NotImplementedException();
+        WeaponItemData weaponItem = itemData as WeaponItemData;
+        if (weaponItem != null)
+        {
+            character.PreviewWeapon(weaponItem.WeaponType);
+        }
     }
+
 }

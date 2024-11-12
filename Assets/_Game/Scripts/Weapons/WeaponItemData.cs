@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,14 +20,35 @@ public enum WeaponType
 }
 
 [CreateAssetMenu(fileName = "WeaponItemData",menuName = "ScriptableObject/WeaponItemData",order =1)]
-public class WeaponItemData:ScriptableObject
+public class WeaponItemData:ItemData
 {
     [SerializeField] Weapon weapon;
     [SerializeField] WeaponType weaponType;
 
-    public string name;
+    public Weapon Weapon => weapon;
+    public WeaponType WeaponType => weaponType;
+    private void OnEnable()
+    {
+        isUnlocked = PlayerPrefs.GetInt(GetPlayerPrefsKey(), 0) == 1;
+    }
+    public override void SaveUnlockState()
+    {
+        PlayerPrefs.SetInt(GetPlayerPrefsKey(),isUnlocked ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+    private string GetPlayerPrefsKey()
+    {
+        return $"Weapon_{weaponType}_Unlocked";
+    }
+}
+
+public abstract class ItemData : ScriptableObject
+{
+    public string itemName;
     public int price;
     public bool isUnlocked;
-    public Weapon Weapon {  get { return weapon; } }
-   
+    public Sprite icon;
+    // Phương thức trừu tượng để lưu trạng thái mở khóa
+    // sử dụng cho lớp cơ sở khi muốn định nghĩa khuôn mẫu chung cho lớp con
+    public abstract void SaveUnlockState();
 }

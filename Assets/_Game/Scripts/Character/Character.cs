@@ -6,25 +6,25 @@ using UnityEngine.AI;
 
 public class Character : GameUnit
 {
-    [SerializeField] private Animator animator;
-    [SerializeField] protected float radius;
-    [SerializeField] LayerMask enemyLayer;
-    [SerializeField] Transform weaponParent;
-    [SerializeField] protected NavMeshAgent agent;
-
     public Weapon currentWeapon;
+    public int numOfEnemy;
+
+    [SerializeField] protected float radius;
+    [SerializeField] protected NavMeshAgent agent;
+    [SerializeField] LayerMask enemyLayer;
+    [SerializeField] private Animator animator;
+    [SerializeField] Transform weaponParent;
+    [SerializeField] Transform weaponPreviewPoint;
 
     internal Vector3 targetEnemy;
-
     internal float currentTime = 0;
-    public int numOfEnemy;
+    
     protected bool isAttack = false;
 
     Collider[] hitColliders = new Collider[20];
     private string currentAnim;
-
-
-
+    private Weapon currentPreviewWeapon;
+    public int Coins { get; set; } = 1000;
 
 
     //private void Start()
@@ -90,14 +90,8 @@ public class Character : GameUnit
             ChangeAnim(Constants.ATTACK_ANIM_NAME);
             currentWeapon.Throw(this, OnHitVicTim); // Gọi phương thức với tham số            
             currentTime = 3f;
-            
-            
-            
+      
         }
-       
-       
-
-
     }
 
     protected void ResetAttack()
@@ -113,9 +107,7 @@ public class Character : GameUnit
             
             Victim.Die();
             accterker.UpSize();
-            
         }  
-
     }
     public void Die()
     {
@@ -137,9 +129,28 @@ public class Character : GameUnit
     public void ChangeWeapon(WeaponType weaponType)
     {
         Weapon wp = DataManager.Instance.GetWeapon(weaponType);
+        if (currentPreviewWeapon != null)
+        {
+            SimplePool.Despawn(currentPreviewWeapon);
+            currentPreviewWeapon = null;
+        }
 
         currentWeapon = SimplePool.Spawn<Weapon>(wp, weaponParent);
 
+    }
+    public void PreviewWeapon(WeaponType weaponType)
+    {
+        Weapon weaponPrefab = DataManager.Instance.GetWeapon(weaponType);
+        if (currentPreviewWeapon != null)
+        {
+            SimplePool.Despawn(currentPreviewWeapon);
+        }
+        currentPreviewWeapon = SimplePool.Spawn<Weapon>(weaponPrefab, weaponPreviewPoint);
+        currentPreviewWeapon.transform.localScale = weaponPrefab.transform.localScale;
+        currentPreviewWeapon.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        currentPreviewWeapon.transform.SetParent(weaponPreviewPoint);
+
+        Debug.Log("Xem trước vũ khí: " + weaponPrefab.name);
     }
     //public void ChangeHat(HatType hatType)
     //{
@@ -149,6 +160,13 @@ public class Character : GameUnit
     //{
 
     //}
+
+    //public void PreviewSkin(SkinType skinType)
+    //{
+
+    //}
+
+
     public void ChangeAnim(string animName)
     {
         if (currentAnim != animName)

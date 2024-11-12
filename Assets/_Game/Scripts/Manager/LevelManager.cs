@@ -27,6 +27,7 @@ public class LevelManager : Singleton<LevelManager>
         
         OnStartGame();
         OnInit();
+        UIManager.Instance.OpenUI<CanvasMainMenu>();
     }
 
   public void OnInit()

@@ -6,6 +6,8 @@ using UnityEngine;
 public class WeaponData : ScriptableObject
 {
     [SerializeField] List<WeaponItemData> wpItemDatas;
+    
+    public int Count => wpItemDatas.Count;
     public WeaponItemData GetWeapon(WeaponType weaponType)
     {
         return wpItemDatas[(int)weaponType];
