@@ -5,10 +5,9 @@ using UnityEngine;
 public class Player : Character
 {
     [SerializeField] private float speedMove = 5f;
-    [SerializeField] private FloatingJoystick floatingJoystick;
     [SerializeField] GameObject playerVisual;
 
-     Vector3 targetPosition;
+    Vector3 targetPosition;
     float horizontal;
     float vertical;
 
@@ -39,22 +38,34 @@ public class Player : Character
 
     public  void OnInit()
     {
-        ChangeWeapon(WeaponType.Axe1);
-    }
+       int currenIndexWeapon =  PlayerPrefs.GetInt("currrenWeapon");
+       ChangeWeapon((WeaponType)currenIndexWeapon);
+       
 
+    }
+    private void SetJoystick(Joystick joystick)
+    {
+        
+    }
     private bool GetInPut()
     {
-        horizontal = floatingJoystick.Horizontal;
-        vertical = floatingJoystick.Vertical;
-        if (Mathf.Abs(horizontal) < 0.01f && Mathf.Abs(vertical) < 0.01f)
+        if (UIManager.Instance.Joystick != null)
         {
-            return false;
+            horizontal = UIManager.Instance.Joystick.Horizontal;
+            vertical = UIManager.Instance.Joystick.Vertical;
+            if (Mathf.Abs(horizontal) < 0.01f && Mathf.Abs(vertical) < 0.01f)
+            {
+                return false;
+            }
+            return true;
         }
-        return true;
+        return false;
+      
+       
     }
     private void MovePlayer()
     {
-        Vector3 direction = Vector3.forward * floatingJoystick.Vertical + Vector3.right * floatingJoystick.Horizontal;
+        Vector3 direction = Vector3.forward * UIManager.Instance.Joystick.Vertical + Vector3.right * UIManager.Instance.Joystick.Horizontal;
         if (direction != Vector3.zero)
         {
             ChangeAnim(Constants.RUN_ANIM_NAME);

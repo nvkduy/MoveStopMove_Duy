@@ -22,12 +22,7 @@ public class Bot : Character
     }
   
    public bool IsDestination => Vector3.Distance(new Vector3(destionation.x, TF.position.y, destionation.z),TF.position) < 1f;
-    protected virtual void Start()
-    {
-        OnInit();
-        
-    }
-
+    
     // Update is called once per frame
     void Update()
     {

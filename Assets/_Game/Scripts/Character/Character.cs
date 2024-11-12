@@ -13,7 +13,7 @@ public class Character : GameUnit
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] private Animator animator;
-    [SerializeField] Transform weaponParent;
+    [SerializeField] protected Transform weaponParent;
     [SerializeField] Transform weaponPreviewPoint;
 
     internal Vector3 targetEnemy;
@@ -24,14 +24,17 @@ public class Character : GameUnit
     Collider[] hitColliders = new Collider[20];
     private string currentAnim;
     private Weapon currentPreviewWeapon;
+    private LevelManager levelManager;
+    private int numberBots;
     public int Coins { get; set; } = 1000;
 
 
-    //private void Start()
-    //{
-    //    OnInit();
-    //}
-   
+    private void Start()
+    {
+       // numberBots = levelManager.CountOfBot;
+    }
+
+    
     public void FindEnemy(Vector3 position, float radius)
     {
 
@@ -107,7 +110,12 @@ public class Character : GameUnit
             
             Victim.Die();
             accterker.UpSize();
-        }  
+        }
+        if (accterker is Player && numberBots ==0)
+        {
+            
+            //UIManager.Instance.OpenUI<CanvasVictory>();
+        }
     }
     public void Die()
     {
@@ -150,7 +158,7 @@ public class Character : GameUnit
         currentPreviewWeapon.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         currentPreviewWeapon.transform.SetParent(weaponPreviewPoint);
 
-        Debug.Log("Xem trước vũ khí: " + weaponPrefab.name);
+        Debug.Log("PreviewWeapon: " + weaponPrefab.name);
     }
     //public void ChangeHat(HatType hatType)
     //{

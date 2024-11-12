@@ -867,6 +867,7 @@ GameObject:
   - component: {fileID: 6717811881855745159}
   - component: {fileID: 7926939307608809076}
   - component: {fileID: 4331590454722312529}
+  - component: {fileID: 4628429085141062575}
   m_Layer: 5
   m_Name: Canvas - WeaponShop
   m_TagString: Untagged
@@ -977,8 +978,31 @@ MonoBehaviour:
   btnNext: {fileID: 4313068505154938628}
   btnBuy: {fileID: 4302371280702826866}
   btnTake: {fileID: 3345389880125620102}
-  character: {fileID: 0}
+  character: {fileID: 4628429085141062575}
   weaponData: {fileID: 11400000, guid: 93a955a27bb9360448d730d1c5b5c118, type: 2}
+--- !u!114 &4628429085141062575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7840472360254437472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04a9c394e35ac3047b5a7a1149cd241b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolType: 0
+  currentWeapon: {fileID: 0}
+  numOfEnemy: 0
+  radius: 0
+  agent: {fileID: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  animator: {fileID: 0}
+  weaponParent: {fileID: 0}
+  weaponPreviewPoint: {fileID: 7724718241036961281}
 --- !u!1 &8349708312788163111
 GameObject:
   m_ObjectHideFlags: 0

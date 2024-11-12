@@ -6,20 +6,13 @@ using UnityEngine.UI;
 
 public abstract class UIShop : UICanvas
 {
-    [SerializeField]
-    private WeaponData weaponDataOfNum; 
-    [SerializeField] 
-    private Image previewImage;
-    [SerializeField]
-    protected Button btnPrev;
-    [SerializeField]
-    protected Button btnNext;
-    [SerializeField]
-    protected Button btnBuy;
-    [SerializeField]
-    protected Button btnTake;
-
-    protected Character character;
+    [SerializeField] private WeaponData weaponDataOfNum;
+    [SerializeField] protected Image previewImage;
+    [SerializeField] protected Button btnPrev;
+    [SerializeField] protected Button btnNext;
+    [SerializeField] protected Button btnBuy;
+    [SerializeField] protected Button btnTake;
+    [SerializeField] protected Character character;
 
 
     protected int currentItem = 0;
@@ -29,10 +22,10 @@ public abstract class UIShop : UICanvas
     private void Start()
     {
         OnInit();
+        
     }
     public void OnInit()
     {
-        character = FindObjectOfType<Character>();
         maxNumberOfData = weaponDataOfNum.Count;
         Open();
     }
@@ -51,13 +44,9 @@ public abstract class UIShop : UICanvas
         {
             currentItem++;
             ChangeItem();
-            Debug.Log("n");
         }
     }
 
- 
-    
-    
     public void BuyItem()
     {
         if (!currentItemData.isUnlocked && character.Coins >= currentItemData.price)
@@ -78,10 +67,10 @@ public abstract class UIShop : UICanvas
         {
             EquipItem(currentItemData);
             UpdateUI();
-            Debug.Log("Item equipped: " +  currentItemData.itemName);
+            Debug.Log("Item equipped: " + currentItemData.itemName);
         }
     }
-  
+
 
     protected void UpdateUI()
     {

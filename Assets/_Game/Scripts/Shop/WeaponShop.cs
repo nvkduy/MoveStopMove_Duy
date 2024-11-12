@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class WeaponShop : UIShop
 {
@@ -14,11 +15,13 @@ public class WeaponShop : UIShop
         PreviewItem(currentItemData);
     }
 
+
     protected override void EquipItem(ItemData itemData)
     {
         WeaponItemData weaponItem = itemData as WeaponItemData;
         if (weaponItem != null)
         {
+            PlayerPrefs.SetInt("currrenWeapon",(int) weaponItem.WeaponType );
             character.ChangeWeapon(weaponItem.WeaponType);
         }
     }

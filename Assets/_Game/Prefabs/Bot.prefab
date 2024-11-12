@@ -100,15 +100,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolType: 21
-  animator: {fileID: 9216808991548029282}
+  currentWeapon: {fileID: 6363121186971617203, guid: 9aec1782806c4f34c928a69995ee81fd, type: 3}
+  numOfEnemy: 0
   radius: 2
+  agent: {fileID: 5858730978242830705}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 8
+  animator: {fileID: 9216808991548029282}
   weaponParent: {fileID: 7038476532847246747}
-  agent: {fileID: 5858730978242830705}
-  currentWeapon: {fileID: 6363121186971617203, guid: 9aec1782806c4f34c928a69995ee81fd, type: 3}
-  numOfEnemy: 0
+  weaponPreviewPoint: {fileID: 0}
   speedMove: 0.3
   range: 10
 --- !u!195 &5858730978242830705

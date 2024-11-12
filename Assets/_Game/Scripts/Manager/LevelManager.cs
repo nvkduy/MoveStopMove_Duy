@@ -11,27 +11,30 @@ public class LevelManager : Singleton<LevelManager>
     public int CharacterAmount => currentLevel.botAmount + 1;
     public Level[] levelPrefab;
     
-    private List<Bot> bots = new List<Bot>();
+    public List<Bot> bots = new List<Bot>();
     private Level currentLevel;
     private int levelIndex;
   
-
+    
+    public int CountOfBot => bots.Count;
     private void Awake()
     {
+        UIManager.Instance.OnLoad += OnInit;
         
-        levelIndex = PlayerPrefs.GetInt("Level", 0);
     }
 
-    void Start()
+    private void Start()
     {
         
-        OnStartGame();
-        OnInit();
+    }
+
+    public void OnInit()
+
+    {
+
         UIManager.Instance.OpenUI<CanvasMainMenu>();
-    }
-
-  public void OnInit()
-    {
+        levelIndex = PlayerPrefs.GetInt("Level", 0);
+        OnStartGame();
         //init vị trí bắt đầu game
         Vector3 index = currentLevel.startPoint.position;
         Vector3 point;
@@ -49,6 +52,7 @@ public class LevelManager : Singleton<LevelManager>
         //Set vị trí player
         int rand = Random.Range(0, CharacterAmount);
         player.transform.position = startPoints[rand];
+        player = SimplePool.Spawn<Player>(player, startPoints[rand],Quaternion.identity);
         startPoints.RemoveAt(rand);
         player.OnInit();
 

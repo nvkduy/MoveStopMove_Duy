@@ -19,7 +19,7 @@ public class CanvasFail : UICanvas
     public void RetryButton()
     {
         UIManager.Instance.CloseAll();
-        LevelManager.Instance.RetryLevel();
+        //LevelManager.Instance.RetryLevel();
     }
     
 }
