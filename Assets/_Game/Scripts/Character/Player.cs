@@ -79,4 +79,10 @@ public class Player : Character
         }
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speedMove * Time.deltaTime);
     }
+
+    public override void Die()
+    {
+        base.Die();
+        UIManager.Instance.OpenUI<CanvasFail>();
+    }
 }

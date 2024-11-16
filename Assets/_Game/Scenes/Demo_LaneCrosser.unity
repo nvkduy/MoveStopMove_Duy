@@ -558,7 +558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TF: {fileID: 2067559462}
-  playerTF: {fileID: 5775560608904320638, guid: da0789517aaa1d4468739e8d489e6893, type: 3}
+  playerTF: {fileID: 0}
   offset: {x: 0, y: 30, z: 0}
 --- !u!223 &1492425068665931475
 Canvas:

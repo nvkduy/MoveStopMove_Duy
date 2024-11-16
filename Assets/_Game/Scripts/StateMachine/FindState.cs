@@ -34,6 +34,7 @@ public class FindState : IState<Bot>
     }
     private void SeekTarget(Bot t)
     {
+      
         Vector3 point;
         if (t.RandomPoint(t.transform.position, t.range, out point))
         {

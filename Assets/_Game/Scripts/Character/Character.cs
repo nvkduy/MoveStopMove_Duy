@@ -31,7 +31,7 @@ public class Character : GameUnit
 
     private void Start()
     {
-       // numberBots = levelManager.CountOfBot;
+       //numberBots = levelManager.CountOfBot;
     }
 
     
@@ -111,19 +111,16 @@ public class Character : GameUnit
             Victim.Die();
             accterker.UpSize();
         }
-        if (accterker is Player && numberBots ==0)
-        {
+    //    if (accterker is Player && numberBots ==0)
+    //    {
             
-            //UIManager.Instance.OpenUI<CanvasVictory>();
-        }
+    //        UIManager.Instance.OpenUI<CanvasVictory>();
+    //    }
     }
-    public void Die()
+    public virtual void Die()
     {
-        Collider collider = GetComponent<Collider>();
         ChangeAnim(Constants.DIE_ANIM_NAME);
-        collider.enabled = false;
         Destroy(gameObject, 1f);
-        LevelManager.Instance.RemoveBots();
         
     }
 

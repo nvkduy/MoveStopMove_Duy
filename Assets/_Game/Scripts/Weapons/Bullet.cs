@@ -6,7 +6,7 @@ using UnityEngine;
 public class Bullet : GameUnit
 {
     [SerializeField] private float rotationSpeed;
-
+    [SerializeField] private LayerMask playerLayer;
     protected Character attacker;
     protected Action<Character ,Character >onHit;
 
@@ -20,21 +20,17 @@ public class Bullet : GameUnit
     }
     void Update()
     {
-        
         transform.Rotate(new Vector3(0,0, rotationSpeed*Time.deltaTime));
         
         if (bulletTime<=0)
         {
-                SimplePool.Despawn(this);
+            SimplePool.Despawn(this);
             bulletTime = 3f;
-           
         }
         else
         {
             bulletTime -= Time.deltaTime;
         }
-
-       
     }
    
     //Set bullet data for bullet
@@ -47,12 +43,9 @@ public class Bullet : GameUnit
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.CompareTag(Constants.TAG_CHARACTER_NAME))
+        if (((1<<collider.gameObject.layer)&playerLayer)!=0)
         {
-            
-            Character victim = Cache.GetBot(collider); 
-            victim = Cache.GetCharacter(collider);
-           
+            Character victim = Cache.GetCharacter(collider);
             onHit?.Invoke(attacker, victim);
             if (attacker != victim && victim !=null)
             {

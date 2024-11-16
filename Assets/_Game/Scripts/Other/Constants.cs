@@ -10,6 +10,7 @@ public class Constants
     public const string DIE_ANIM_NAME = "dead";
     public const string LOSE_ANIM_NAME = "lose";
     public const string WIN_ANIM_NAME = "win";
+
     public const string TAG_CHARACTER_NAME = "Character";
 
 }

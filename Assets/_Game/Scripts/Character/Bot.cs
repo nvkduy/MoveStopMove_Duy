@@ -56,6 +56,8 @@ public class Bot : Character
 
     public bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
+        var playerPos = LevelManager.Instance.Player;
+        //center = playerPos;
         for (int i = 0; i < 30; i++)
         {
             Vector3 randomPoint = center + Random.insideUnitSphere * range;
@@ -91,5 +93,11 @@ public class Bot : Character
     {
         agent.enabled = false;
     }
+    public override void Die()
+    {
+        base.Die();
+        agent.enabled = false;
+    }
+    
    
 }

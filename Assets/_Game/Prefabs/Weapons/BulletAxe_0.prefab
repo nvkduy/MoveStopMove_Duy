@@ -101,7 +101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolType: 1
   rotationSpeed: 180
-  bulletVisual: {fileID: 4922135214726904828, guid: 91e0ff88f85a1b742a5417ac25c20554, type: 3}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!54 &-8344344734831091546
 Rigidbody:
   m_ObjectHideFlags: 0

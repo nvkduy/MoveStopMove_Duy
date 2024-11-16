@@ -11,7 +11,7 @@ public class LevelManager : Singleton<LevelManager>
     public int CharacterAmount => currentLevel.botAmount + 1;
     public Level[] levelPrefab;
     public List<Bot> bots = new List<Bot>();
-
+    public Player Player { get { return player; } }
     private Level currentLevel;
     private int levelIndex;
   
@@ -35,7 +35,7 @@ public class LevelManager : Singleton<LevelManager>
         Vector3 index = currentLevel.startPoint.position;
         Vector3 point;
         List<Vector3> startPoints = new List<Vector3>();
-        for (int i = 0; i < CharacterAmount; i++)
+        for (int i = 0; i <= CharacterAmount; i++)
         {
             if (bot.RandomPoint(index, bot.range, out point))
             {

@@ -100,6 +100,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolType: 3
   rotationSpeed: 180
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!54 &5665159155302392587
 Rigidbody:
   m_ObjectHideFlags: 0
