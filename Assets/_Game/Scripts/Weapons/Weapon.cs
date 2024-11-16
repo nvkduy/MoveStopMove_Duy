@@ -9,12 +9,15 @@ public class Weapon : GameUnit
     private Character character;
     [SerializeField] float attackForce;
     [SerializeField] private Bullet bulletPrefab;
-    public void Throw(Character character, Action<Character , Character > onHit)
+    public void Throw(Character character, Action<Character, Character> onHit)
     {
         Vector3 shootDirection = (character.targetEnemy - transform.position);
         Bullet bullet = SimplePool.Spawn<Bullet>(bulletPrefab);
-       // Bullet bullet = LeanPool.Spawn<Bullet>(bulletPrefab);
-        bullet.transform.position = transform.position;
+        // Bullet bullet = LeanPool.Spawn<Bullet>(bulletPrefab);
+        if (bullet != null)
+        {
+            bullet.transform.position = transform.position;
+        } 
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         if (rb != null)
         {

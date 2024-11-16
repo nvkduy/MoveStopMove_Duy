@@ -22,7 +22,7 @@ public class WeaponShop : UIShop
         if (weaponItem != null)
         {
             PlayerPrefs.SetInt("currrenWeapon",(int) weaponItem.WeaponType );
-            character.ChangeWeapon(weaponItem.WeaponType);
+            
         }
     }
 

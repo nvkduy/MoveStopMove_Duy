@@ -12,6 +12,7 @@ public abstract class UIShop : UICanvas
     [SerializeField] protected Button btnNext;
     [SerializeField] protected Button btnBuy;
     [SerializeField] protected Button btnTake;
+    [SerializeField] protected Button btnBack;
     [SerializeField] protected Character character;
 
 
@@ -27,7 +28,12 @@ public abstract class UIShop : UICanvas
     public void OnInit()
     {
         maxNumberOfData = weaponDataOfNum.Count;
-        Open();
+        btnNext.onClick.AddListener(ChangeNext);
+        btnPrev.onClick.AddListener(ChangePrev);
+        btnBuy.onClick.AddListener(BuyItem);
+        btnTake.onClick.AddListener(TakeItem);
+        btnBack.onClick.AddListener(BackShop);
+        ChangeItem();
     }
     public void ChangePrev()
     {
@@ -71,6 +77,11 @@ public abstract class UIShop : UICanvas
         }
     }
 
+    public void BackShop()
+    {
+        Close(0);
+        UIManager.Instance.OpenUI<CanvasShop>();
+    }
 
     protected void UpdateUI()
     {
@@ -84,15 +95,7 @@ public abstract class UIShop : UICanvas
             previewImage.sprite = itemSprite; // Cập nhật ảnh đại diện của item trong ô preview
         }
     }
-    public override void Open()
-    {
-        base.Open();
-        btnNext.onClick.AddListener(ChangeNext);
-        btnPrev.onClick.AddListener(ChangePrev);
-        btnBuy.onClick.AddListener(BuyItem);
-        btnTake.onClick.AddListener(TakeItem);
-        ChangeItem();
-    }
+    
     public abstract void ChangeItem();
     protected abstract void EquipItem(ItemData itemData);
     protected abstract void PreviewItem(ItemData itemData);

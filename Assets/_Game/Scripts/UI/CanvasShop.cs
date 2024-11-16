@@ -13,7 +13,11 @@ public class CanvasShop : UICanvas
     public void SkinButton()
     {
         Close(0);
-       
 
+    }
+    public void Back()
+    {
+        Close(0);
+        UIManager.Instance.OpenUI<CanvasMainMenu>();
     }
 }

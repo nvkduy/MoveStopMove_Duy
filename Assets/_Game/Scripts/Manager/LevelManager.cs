@@ -10,31 +10,27 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField] Bot botPrefab;
     public int CharacterAmount => currentLevel.botAmount + 1;
     public Level[] levelPrefab;
-    
     public List<Bot> bots = new List<Bot>();
+
     private Level currentLevel;
     private int levelIndex;
   
-    
     public int CountOfBot => bots.Count;
     private void Awake()
     {
-        UIManager.Instance.OnLoad += OnInit;
+        //  UIManager.Instance.OnLoad += OnInit;
         
     }
 
     private void Start()
     {
-        
+        UIManager.Instance.OpenUI<CanvasMainMenu>();
     }
 
     public void OnInit()
-
     {
-
-        UIManager.Instance.OpenUI<CanvasMainMenu>();
+        
         levelIndex = PlayerPrefs.GetInt("Level", 0);
-        OnStartGame();
         //init vị trí bắt đầu game
         Vector3 index = currentLevel.startPoint.position;
         Vector3 point;
@@ -67,7 +63,15 @@ public class LevelManager : Singleton<LevelManager>
 
     public void OnStartGame()
     {
-        LoadLevel(levelIndex);
+        GameManager.Instance.ChangeState(GameState.Gameplay);
+        for (int i = 0; i < bots.Count; i++)
+        {
+            bots[i].ChangeState(new FindState());
+        }
+    }
+    public void OnFinshGame()
+    {
+
     }
     public void LoadLevel(int level)
     {
@@ -92,6 +96,7 @@ public class LevelManager : Singleton<LevelManager>
         PlayerPrefs.SetInt("Level", levelIndex);
         OnReset();
         LoadLevel(levelIndex);
+        OnInit();
 
     }
     public void RemoveBots()
@@ -109,7 +114,7 @@ public class LevelManager : Singleton<LevelManager>
         OnReset();
         LoadLevel(levelIndex);
         OnInit();
-        //UIManager.Instance.OpenUI<MainMenu>();
+        UIManager.Instance.OpenUI<CanvasMainMenu>();
     }
 
 }

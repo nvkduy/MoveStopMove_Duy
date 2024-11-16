@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714b2676a3d6e014284b6e8e299eff9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 0
+  poolType: 2
   rotationSpeed: 180
 --- !u!54 &-1204890007410022435
 Rigidbody:
