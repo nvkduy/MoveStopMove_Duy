@@ -10,8 +10,8 @@ public class Player : Character
     Vector3 targetPosition;
     float horizontal;
     float vertical;
-
-   
+    private Joystick joystick;
+    public  Joystick Joystick { get; set; }
     private void FixedUpdate()
     {
         if (targetEnemy != Vector3.zero &&!GetInPut())
@@ -41,21 +41,21 @@ public class Player : Character
     {
        int currenIndexWeapon =  PlayerPrefs.GetInt("currrenWeapon");
        ChangeWeapon((WeaponType)currenIndexWeapon);
-       SetJoystick();
-       
+
+      
 
     }
-    private void SetJoystick()
+    public void SetJoystick()
     {
-        horizontal = UIManager.Instance.Joystick.Horizontal;
-        vertical = UIManager.Instance.Joystick.Vertical;
+        horizontal = Joystick.Horizontal;
+        vertical = Joystick.Vertical;
 
     }
     private bool GetInPut()
     {
-        if (UIManager.Instance.Joystick != null)
+        if (Joystick!= null)
         {
-            
+            SetJoystick();
             if (Mathf.Abs(horizontal) < 0.01f && Mathf.Abs(vertical) < 0.01f)
             {
                 return false;
@@ -68,7 +68,7 @@ public class Player : Character
     }
     private void MovePlayer()
     {
-        Vector3 direction = Vector3.forward * UIManager.Instance.Joystick.Vertical + Vector3.right * UIManager.Instance.Joystick.Horizontal;
+        Vector3 direction = Vector3.forward * Joystick.Vertical + Vector3.right * Joystick.Horizontal;
         if (direction != Vector3.zero)
         {
             ChangeAnim(Constants.RUN_ANIM_NAME);

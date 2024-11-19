@@ -6,7 +6,11 @@ using UnityEngine;
 public class CanvasGamePlay : UICanvas
 {
     [SerializeField] TextMeshProUGUI coinText;
-
+    [SerializeField] Joystick joystick;
+    public Joystick GetJoytick()
+    {
+        return joystick;
+    }
     public override void Setup()
     {
         base.Setup();

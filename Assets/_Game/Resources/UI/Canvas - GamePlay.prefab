@@ -424,7 +424,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1987175163119938048
 RectTransform:
   m_ObjectHideFlags: 0
@@ -523,6 +523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDestroyOnClose: 0
   coinText: {fileID: 7160266094147206440}
+  joystick: {fileID: 8597814765794514674}
 --- !u!1 &4425463636968818971
 GameObject:
   m_ObjectHideFlags: 0

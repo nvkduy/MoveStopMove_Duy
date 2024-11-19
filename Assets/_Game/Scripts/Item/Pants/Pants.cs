@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hats : GameUnit
+public class Pants : GameUnit
 {
-   
+  
 }

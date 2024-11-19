@@ -1,21 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DataManager : Singleton<DataManager>
 {
     [SerializeField] WeaponData weaponData;
     [SerializeField] HatsData hatsData;
+    [SerializeField] PantData pantData;
     public Weapon GetWeapon(WeaponType weaponType)
     {
         return weaponData.GetWeapon(weaponType).Weapon;
     }
 
-    public Character GetHats(HatType hatsType)
+    public Hats GetHat(HatsType hatType)
     {
-        return hatsData.GetHat(hatsType).Character;
+        return hatsData.GetHat(hatType).Hats;
     }
 
-
-    
+    public Material GetPant(PantsType pantType)
+    {
+        return pantData.GetHat(pantType).Material;
+    }
 }

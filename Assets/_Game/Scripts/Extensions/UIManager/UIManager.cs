@@ -8,8 +8,8 @@ public class UIManager : Singleton<UIManager>
     Dictionary<System.Type, UICanvas> canvasActives = new Dictionary<System.Type, UICanvas>();
     Dictionary<System.Type, UICanvas> canvasPrefabs = new Dictionary<System.Type, UICanvas>();
     [SerializeField] Transform parent;
-    [SerializeField]  Joystick joystick;
-    public Joystick Joystick { get { return joystick; } }
+    //[SerializeField]  Joystick joystick;
+    //public Joystick Joystick { get { return joystick; } }
     private void Awake()
     {
         //Load UI pr từ Resources

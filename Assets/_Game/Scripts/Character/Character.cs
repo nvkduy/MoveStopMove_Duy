@@ -6,15 +6,19 @@ using UnityEngine.AI;
 
 public class Character : GameUnit
 {
-    public Weapon currentWeapon;
+    
     public int numOfEnemy;
 
+    [SerializeField] protected Transform weaponParent;
+    [SerializeField] protected Transform hatParent;
     [SerializeField] protected float radius;
     [SerializeField] protected NavMeshAgent agent;
+
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] private Animator animator;
-    [SerializeField] protected Transform weaponParent;
-    [SerializeField] Transform weaponPreviewPoint;
+    [SerializeField] SkinnedMeshRenderer skinnedMeshRenderer;
+    
+    //[SerializeField] Transform weaponPreviewPoint;
 
     internal Vector3 targetEnemy;
     internal float currentTime = 0;
@@ -23,9 +27,12 @@ public class Character : GameUnit
 
     Collider[] hitColliders = new Collider[20];
     private string currentAnim;
-    private Weapon currentPreviewWeapon;
+    //private Weapon currentPreviewWeapon;
     private LevelManager levelManager;
     private int numberBots;
+    private Weapon currentWeapon;
+    private Hats currentHat;
+    private Pants currentPant;
     public int Coins { get; set; } = 1000;
 
 
@@ -134,11 +141,11 @@ public class Character : GameUnit
     public void ChangeWeapon(WeaponType weaponType)
     {
         Weapon wp = DataManager.Instance.GetWeapon(weaponType);
-        if (currentPreviewWeapon != null)
-        {
-            SimplePool.Despawn(currentPreviewWeapon);
-            currentPreviewWeapon = null;
-        }
+        //if (currentPreviewWeapon != null)
+        //{
+        //    SimplePool.Despawn(currentPreviewWeapon);
+        //    currentPreviewWeapon = null;
+        //}
 
         currentWeapon = SimplePool.Spawn<Weapon>(wp, weaponParent);
 
@@ -157,16 +164,18 @@ public class Character : GameUnit
 
     //    Debug.Log("PreviewWeapon: " + weaponPrefab.name);
     //}
-    //public void ChangeHat(HatType hatType)
-    //{
+    public void ChangeHat(HatsType hatsType)
+    {
+        Hats hat = DataManager.Instance.GetHat(hatsType);
+        currentHat = SimplePool.Spawn<Hats>(hat, hatParent);
+    }
+    public void ChangePant(PantsType pantType)
+    {
+        Material pantMaterial = DataManager.Instance.GetPant(pantType);
+        skinnedMeshRenderer.material = pantMaterial;
+    }
 
-    //}
-    //public void ChangePant(PantType pantType)
-    //{
-
-    //}
-
-    //public void PreviewSkin(SkinType skinType)
+    //public void ColorSkin(SkinType skinType)
     //{
 
     //}

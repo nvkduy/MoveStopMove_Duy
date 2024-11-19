@@ -36,7 +36,6 @@ public class FindState : IState<Bot>
     {
         var playerPos = LevelManager.Instance.Player;
         Vector3 centerPos = playerPos.transform.position;
-        Debug.Log("CenterPos: " +  centerPos);
         Vector3 point;
         if (t.RandomPoint(centerPos, t.range, out point))
         {
