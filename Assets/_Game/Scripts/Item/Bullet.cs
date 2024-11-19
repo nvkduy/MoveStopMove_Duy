@@ -45,6 +45,7 @@ public class Bullet : GameUnit
     {
         if (((1<<collider.gameObject.layer)&playerLayer)!=0)
         {
+            
             Character victim = Cache.GetCharacter(collider);
             onHit?.Invoke(attacker, victim);
             if (attacker != victim && victim !=null)

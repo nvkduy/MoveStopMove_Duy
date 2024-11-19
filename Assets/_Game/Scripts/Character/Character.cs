@@ -127,7 +127,7 @@ public class Character : GameUnit
     public void UpSize()
     {
         
-        transform.localScale += Vector3.one * 0.5f;
+        transform.localScale += Vector3.one * 0.5f; 
         radius += 1f;
     }
 
@@ -143,20 +143,20 @@ public class Character : GameUnit
         currentWeapon = SimplePool.Spawn<Weapon>(wp, weaponParent);
 
     }
-    public void PreviewWeapon(WeaponType weaponType)
-    {
-        Weapon weaponPrefab = DataManager.Instance.GetWeapon(weaponType);
-        if (currentPreviewWeapon != null)
-        {
-            SimplePool.Despawn(currentPreviewWeapon);
-        }
-        currentPreviewWeapon = SimplePool.Spawn<Weapon>(weaponPrefab, weaponPreviewPoint);
-        currentPreviewWeapon.transform.localScale = weaponPrefab.transform.localScale;
-        currentPreviewWeapon.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        currentPreviewWeapon.transform.SetParent(weaponPreviewPoint);
+    //public void PreviewWeapon(WeaponType weaponType)
+    //{
+    //    Weapon weaponPrefab = DataManager.Instance.GetWeapon(weaponType);
+    //    if (currentPreviewWeapon != null)
+    //    {
+    //        SimplePool.Despawn(currentPreviewWeapon);
+    //    }
+    //    currentPreviewWeapon = SimplePool.Spawn<Weapon>(weaponPrefab, weaponPreviewPoint);
+    //    currentPreviewWeapon.transform.localScale = weaponPrefab.transform.localScale;
+    //    currentPreviewWeapon.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+    //    currentPreviewWeapon.transform.SetParent(weaponPreviewPoint);
 
-        Debug.Log("PreviewWeapon: " + weaponPrefab.name);
-    }
+    //    Debug.Log("PreviewWeapon: " + weaponPrefab.name);
+    //}
     //public void ChangeHat(HatType hatType)
     //{
 

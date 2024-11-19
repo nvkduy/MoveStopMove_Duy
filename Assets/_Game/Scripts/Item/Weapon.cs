@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Weapon : GameUnit
 {
-    private Character character;
+    //private Character character;
     [SerializeField] float attackForce;
     [SerializeField] private Bullet bulletPrefab;
     public void Throw(Character character, Action<Character, Character> onHit)

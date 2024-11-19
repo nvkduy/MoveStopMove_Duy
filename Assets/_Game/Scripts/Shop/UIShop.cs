@@ -27,7 +27,7 @@ public abstract class UIShop : UICanvas
     }
     public void OnInit()
     {
-        maxNumberOfData = weaponDataOfNum.Count;
+        maxNumberOfData = weaponDataOfNum.CountWp;
         btnNext.onClick.AddListener(ChangeNext);
         btnPrev.onClick.AddListener(ChangePrev);
         btnBuy.onClick.AddListener(BuyItem);
@@ -98,5 +98,6 @@ public abstract class UIShop : UICanvas
     
     public abstract void ChangeItem();
     protected abstract void EquipItem(ItemData itemData);
-    protected abstract void PreviewItem(ItemData itemData);
+    //Preview 3D
+    //protected abstract void PreviewItem(ItemData itemData);
 }

@@ -12,8 +12,10 @@ public enum GameState
 
 public class GameManager : Singleton<GameManager>
 {
+    [SerializeField] private CameraFollower cameraFollower;
     private GameState gameState;
 
+    
     private void Start()
     {
         ChangeState(GameState.MainMenu);
@@ -28,4 +30,5 @@ public class GameManager : Singleton<GameManager>
     {
         return this.gameState == gameState;
     }
+
 }

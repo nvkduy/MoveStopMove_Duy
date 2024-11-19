@@ -34,9 +34,11 @@ public class FindState : IState<Bot>
     }
     private void SeekTarget(Bot t)
     {
-      
+        var playerPos = LevelManager.Instance.Player;
+        Vector3 centerPos = playerPos.transform.position;
+        Debug.Log("CenterPos: " +  centerPos);
         Vector3 point;
-        if (t.RandomPoint(t.transform.position, t.range, out point))
+        if (t.RandomPoint(centerPos, t.range, out point))
         {
             t.ChangeAnim(Constants.RUN_ANIM_NAME);
             Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);

@@ -12,7 +12,8 @@ public class WeaponShop : UIShop
     {
         currentItemData = weaponData.GetWeapon((WeaponType)currentItem);
         UpdateUI();
-        PreviewItem(currentItemData);
+        //PreviewItem(currentItemData);
+        UpdatePreview(currentItemData.icon);
     }
 
 
@@ -26,13 +27,14 @@ public class WeaponShop : UIShop
         }
     }
 
-    protected override void PreviewItem(ItemData itemData)
-    {
-        WeaponItemData weaponItem = itemData as WeaponItemData;
-        if (weaponItem != null)
-        {
-            character.PreviewWeapon(weaponItem.WeaponType);
-        }
-    }
 
+    //protected override void PreviewItem(ItemData itemData)
+
+    //{
+    //    WeaponItemData weaponItem = itemData as WeaponItemData;
+    //    //if (weaponItem != null)
+    //    //{
+    //    //    character.PreviewWeapon(weaponItem.WeaponType);
+    //    //}
+    //}
 }

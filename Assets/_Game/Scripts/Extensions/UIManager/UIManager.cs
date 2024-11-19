@@ -10,7 +10,6 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] Transform parent;
     [SerializeField]  Joystick joystick;
     public Joystick Joystick { get { return joystick; } }
-    public Action OnLoad;
     private void Awake()
     {
         //Load UI pr từ Resources
@@ -20,7 +19,6 @@ public class UIManager : Singleton<UIManager>
         {
             canvasPrefabs.Add(prefabs[i].GetType(), prefabs[i]);
         }
-        OnLoad?.Invoke();
     }
 
     //Mở canvas

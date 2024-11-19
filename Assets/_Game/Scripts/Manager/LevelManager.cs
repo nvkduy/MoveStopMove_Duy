@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,9 +14,10 @@ public class LevelManager : Singleton<LevelManager>
     public Level[] levelPrefab;
     public List<Bot> bots = new List<Bot>();
     public Player Player { get { return player; } }
+
     private Level currentLevel;
     private int levelIndex;
-  
+    public Action<Transform> PlayerTF;
     public int CountOfBot => bots.Count;
     private void Awake()
     {
@@ -46,11 +49,12 @@ public class LevelManager : Singleton<LevelManager>
         }
 
         //Set vị trí player
-        int rand = Random.Range(0, CharacterAmount);
+        int rand = UnityEngine.Random.Range(0, CharacterAmount);
         player.transform.position = startPoints[rand];
         player = SimplePool.Spawn<Player>(player, startPoints[rand],Quaternion.identity);
         startPoints.RemoveAt(rand);
         player.OnInit();
+        PlayerTF?.Invoke(player.transform);
 
         //Set vị trí bot
         for (int i = 0; i < CharacterAmount - 2; i++)

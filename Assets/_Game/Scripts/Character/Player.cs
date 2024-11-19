@@ -11,6 +11,7 @@ public class Player : Character
     float horizontal;
     float vertical;
 
+   
     private void FixedUpdate()
     {
         if (targetEnemy != Vector3.zero &&!GetInPut())
@@ -40,19 +41,21 @@ public class Player : Character
     {
        int currenIndexWeapon =  PlayerPrefs.GetInt("currrenWeapon");
        ChangeWeapon((WeaponType)currenIndexWeapon);
+       SetJoystick();
        
 
     }
-    private void SetJoystick(Joystick joystick)
+    private void SetJoystick()
     {
-        
+        horizontal = UIManager.Instance.Joystick.Horizontal;
+        vertical = UIManager.Instance.Joystick.Vertical;
+
     }
     private bool GetInPut()
     {
         if (UIManager.Instance.Joystick != null)
         {
-            horizontal = UIManager.Instance.Joystick.Horizontal;
-            vertical = UIManager.Instance.Joystick.Vertical;
+            
             if (Mathf.Abs(horizontal) < 0.01f && Mathf.Abs(vertical) < 0.01f)
             {
                 return false;
