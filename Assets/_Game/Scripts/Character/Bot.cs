@@ -41,7 +41,7 @@ public class Bot : Character
     }
     public void ChangeState(IState<Bot> state)
     {
-        if (currentState != null)
+        if (GameManager.Instance.IsState(GameState.GamePlay) && currentState != null)
         {
             currentState.OnExit(this);
         }

@@ -1,9 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CanvasMainMenu : UICanvas
 {
+    [SerializeField] Button btnPlay;
+    [SerializeField] Button btnSetting;
+    [SerializeField] Button btnShop;
+    public override void Setup()
+    {
+        base.Setup();
+        btnPlay.onClick.AddListener(PlayButton);
+        btnSetting.onClick.AddListener(SettingButton);
+        btnShop.onClick.AddListener(ShopButton);
+
+    }
     public void PlayButton()
     {
         Close(0);

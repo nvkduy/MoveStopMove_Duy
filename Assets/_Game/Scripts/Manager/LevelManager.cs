@@ -9,6 +9,7 @@ public class LevelManager : Singleton<LevelManager>
 {
     [SerializeField] Bot bot;
     [SerializeField] Player player;
+    [SerializeField] Player playerPrefab;
     [SerializeField] Bot botPrefab;
     public int CharacterAmount => currentLevel.botAmount + 1;
     public Level[] levelPrefab;
@@ -51,7 +52,7 @@ public class LevelManager : Singleton<LevelManager>
         //Set vị trí player
         int rand = UnityEngine.Random.Range(0, CharacterAmount);
         player.transform.position = startPoints[rand];
-        player = SimplePool.Spawn<Player>(player, startPoints[rand],Quaternion.identity);
+        player = SimplePool.Spawn<Player>(PoolType.Player, startPoints[rand],Quaternion.identity);
         startPoints.RemoveAt(rand);
         player.OnInit();
         PlayerTF?.Invoke(player.transform);
@@ -59,7 +60,7 @@ public class LevelManager : Singleton<LevelManager>
         //Set vị trí bot
         for (int i = 0; i < CharacterAmount - 2; i++)
         {
-            bot = SimplePool.Spawn<Bot>(botPrefab, startPoints[i],Quaternion.identity);
+            bot = SimplePool.Spawn<Bot>(PoolType.Bot, startPoints[i],Quaternion.identity);
             bot.OnInit();
             bots.Add(bot);
         }
@@ -67,7 +68,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void OnStartGame()
     {
-        GameManager.Instance.ChangeState(GameState.Gameplay);
+        GameManager.Instance.ChangeState(GameState.GamePlay);
         for (int i = 0; i < bots.Count; i++)
         {
             bots[i].ChangeState(new FindState());

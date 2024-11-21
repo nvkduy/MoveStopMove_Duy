@@ -17,6 +17,9 @@ public class DataManager : Singleton<DataManager>
 
     public Material GetPant(PantsType pantType)
     {
-        return pantData.GetHat(pantType).Material;
+        return pantData.GetPant(pantType).Material;
     }
+
+    
+
 }

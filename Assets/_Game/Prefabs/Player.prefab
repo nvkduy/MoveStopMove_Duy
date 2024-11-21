@@ -112,7 +112,7 @@ Transform:
   m_GameObject: {fileID: 2857597254155319059}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.863073, y: 0.01999998, z: 9.378288}
+  m_LocalPosition: {x: 2.299488, y: 0.01999998, z: 10.74111}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eec7f27812779b42ba95ec6e1ea978a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 0
+  poolType: 25
   numOfEnemy: 0
   weaponParent: {fileID: 3464538859178344447}
   hatParent: {fileID: 2908589201238178052}

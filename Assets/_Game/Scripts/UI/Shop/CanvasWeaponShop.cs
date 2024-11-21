@@ -1,14 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.TextCore.Text;
+﻿using UnityEngine;
 
-public class WeaponShop : UIShop
+public class CanvasWeaponShop : UIShop
 {
-    [SerializeField]
-    private WeaponData weaponData;
+    [SerializeField] WeaponData weaponData;
 
-   public override void ChangeItem()
+
+    protected override void SetMaxNumberItem()
+    {
+        maxNumberOfData = weaponData.CountWp;
+    }
+    protected override void ChangeItem()
     {
         currentItemData = weaponData.GetWeapon((WeaponType)currentItem);
         UpdateUI();
@@ -22,8 +23,8 @@ public class WeaponShop : UIShop
         WeaponItemData weaponItem = itemData as WeaponItemData;
         if (weaponItem != null)
         {
-            PlayerPrefs.SetInt("currrenWeapon",(int) weaponItem.WeaponType );
-            
+            PlayerPrefs.SetInt("currrenWeapon", (int)weaponItem.WeaponType);
+
         }
     }
 

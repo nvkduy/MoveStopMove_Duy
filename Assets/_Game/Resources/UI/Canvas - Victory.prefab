@@ -660,19 +660,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5685857796120433658}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5990048927302710631}
-        m_TargetAssemblyTypeName: CanvasVictory, Assembly-CSharp
-        m_MethodName: MainMenuButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &5959308301866931767
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,6 +1028,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDestroyOnClose: 0
   scoreText: {fileID: 966468927679615418}
+  btnMainMenu: {fileID: 8645669397069298170}
+  btnNextLevel: {fileID: 638239926948295375}
 --- !u!1 &7414882107529136298
 GameObject:
   m_ObjectHideFlags: 0
@@ -1160,16 +1150,4 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1931357590649342791}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5990048927302710631}
-        m_TargetAssemblyTypeName: CanvasVictory, Assembly-CSharp
-        m_MethodName: NextLevelButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []

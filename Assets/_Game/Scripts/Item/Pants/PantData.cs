@@ -7,9 +7,9 @@ public class PantData : ScriptableObject
 {
     [SerializeField] List<PantItemData> pantItemDatas;
 
-    public int CountPantItem => pantItemDatas.Count;
+    public int CountPant => pantItemDatas.Count;
 
-    public PantItemData GetHat(PantsType pantsType)
+    public PantItemData GetPant(PantsType pantsType)
     {
         return pantItemDatas[(int)pantsType];
     }

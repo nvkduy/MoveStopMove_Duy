@@ -605,19 +605,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4527805149638228117}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4231089215152609588}
-        m_TargetAssemblyTypeName: CanvasShop, Assembly-CSharp
-        m_MethodName: SkinButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &7485473492355208075
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,19 +726,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5837496249553051306}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4231089215152609588}
-        m_TargetAssemblyTypeName: CanvasShop, Assembly-CSharp
-        m_MethodName: WeaponButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &7577661840819258539
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,19 +983,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3778534546476729237}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4231089215152609588}
-        m_TargetAssemblyTypeName: CanvasShop, Assembly-CSharp
-        m_MethodName: Back
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &9131043539567261537
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,7 +1003,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8620386981673015574
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1136,3 +1100,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDestroyOnClose: 0
+  btnWeaponShop: {fileID: 8653410039664903991}
+  btnSkinShop: {fileID: 8093515335432132917}
+  btnBack: {fileID: 1123394684538423176}

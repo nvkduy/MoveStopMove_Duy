@@ -253,19 +253,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1293752958060400521}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CanvasShop, Assembly-CSharp
-        m_MethodName: SkinButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1104886170403390777
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,19 +374,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 741925630479333144}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CanvasShop, Assembly-CSharp
-        m_MethodName: WeaponButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1935762228908345071
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,7 +434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -474,37 +450,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &3564876402723395283
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7724718241036961281}
-  m_Layer: 5
-  m_Name: WeaponPreviewPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7724718241036961281
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3564876402723395283}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 168.99998, y: 168.99998, z: 168.99998}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 3703903932678058779}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4549783947849331283
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,19 +840,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5289464281079830509}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CanvasShop, Assembly-CSharp
-        m_MethodName: WeaponButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &6394575058510243323
 GameObject:
   m_ObjectHideFlags: 0
@@ -1027,19 +960,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2905915629554393978}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CanvasShop, Assembly-CSharp
-        m_MethodName: SkinButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &7054131903584703713
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,7 +1063,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3703903932678058779
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1156,7 +1077,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6672578606686703760}
-  - {fileID: 7724718241036961281}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1240,7 +1160,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDestroyOnClose: 0
-  weaponDataOfNum: {fileID: 11400000, guid: 93a955a27bb9360448d730d1c5b5c118, type: 2}
   previewImage: {fileID: 8069333441401760309}
   btnPrev: {fileID: 4196975372682835920}
   btnNext: {fileID: 4313068505154938628}
@@ -1262,16 +1181,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolType: 0
-  currentWeapon: {fileID: 0}
   numOfEnemy: 0
+  weaponParent: {fileID: 0}
+  hatParent: {fileID: 0}
   radius: 0
   agent: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
   animator: {fileID: 0}
-  weaponParent: {fileID: 0}
-  weaponPreviewPoint: {fileID: 7724718241036961281}
+  skinnedMeshRenderer: {fileID: 0}
 --- !u!1 &8349708312788163111
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,19 +1311,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1026803478777181984}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CanvasShop, Assembly-CSharp
-        m_MethodName: WeaponButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &8642025622217855598
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum GameState
 {
     MainMenu,
-    Gameplay,
+    GamePlay,
     Pasue
 
 }
@@ -13,22 +11,31 @@ public enum GameState
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private CameraFollower cameraFollower;
-    private GameState gameState;
+    private GameState currentState;
 
-    
+
     private void Start()
     {
         ChangeState(GameState.MainMenu);
     }
 
-    public void ChangeState(GameState gameState)
+    public void ChangeState(GameState newState)
     {
-        this.gameState = gameState;
+        currentState = newState;
+        switch (newState)
+        {
+            case GameState.MainMenu:
+                break;
+            case GameState.GamePlay:
+                break;
+
+
+
+        }
     }
 
     public bool IsState(GameState gameState)
     {
-        return this.gameState == gameState;
+        return this.currentState == gameState;
     }
-
 }

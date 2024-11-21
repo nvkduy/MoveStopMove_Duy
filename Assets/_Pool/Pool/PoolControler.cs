@@ -169,7 +169,11 @@ public enum PoolType
     WeaponKnife,
     WeaponUzi,
 
-    Bot
+    HatCowBoy,
+    HatCrown,
+    HatEar,
+    Bot,
+    Player
 }
 
 

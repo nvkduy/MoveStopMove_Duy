@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player : Character
 {
@@ -11,22 +9,22 @@ public class Player : Character
     float horizontal;
     float vertical;
     private Joystick joystick;
-    public  Joystick Joystick { get; set; }
+    public Joystick Joystick { get; set; }
     private void FixedUpdate()
     {
-        if (targetEnemy != Vector3.zero &&!GetInPut())
+        if (targetEnemy != Vector3.zero && !GetInPut())
         {
             Attack();
         }
         currentTime -= Time.deltaTime;
-        FindEnemy(transform.position,radius);
-        
+        FindEnemy(transform.position, radius);
+
     }
     private void Update()
     {
-        if (GetInPut())
+        if (GameManager.Instance.IsState(GameState.GamePlay) && GetInPut())
         {
-            
+
             MovePlayer();
         }
         else
@@ -34,15 +32,15 @@ public class Player : Character
 
             ChangeAnim(Constants.IDLE_ANIM_NAME);
         }
-       
+
     }
 
-    public  void OnInit()
+    public void OnInit()
     {
-       int currenIndexWeapon =  PlayerPrefs.GetInt("currrenWeapon");
-       ChangeWeapon((WeaponType)currenIndexWeapon);
+        int currenIndexWeapon = PlayerPrefs.GetInt("currrenWeapon");
+        ChangeWeapon((WeaponType)currenIndexWeapon);
 
-      
+
 
     }
     public void SetJoystick()
@@ -53,7 +51,7 @@ public class Player : Character
     }
     private bool GetInPut()
     {
-        if (Joystick!= null)
+        if (Joystick != null)
         {
             SetJoystick();
             if (Mathf.Abs(horizontal) < 0.01f && Mathf.Abs(vertical) < 0.01f)
@@ -63,8 +61,8 @@ public class Player : Character
             return true;
         }
         return false;
-      
-       
+
+
     }
     private void MovePlayer()
     {
@@ -86,6 +84,7 @@ public class Player : Character
     public override void Die()
     {
         base.Die();
+        GameManager.Instance.ChangeState(GameState.Pasue);
         UIManager.Instance.OpenUI<CanvasFail>();
     }
 }

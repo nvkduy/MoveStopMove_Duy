@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public abstract class UIShop : UICanvas
 {
-    [SerializeField] private WeaponData weaponDataOfNum;
+
     [SerializeField] protected Image previewImage;
     [SerializeField] protected Button btnPrev;
     [SerializeField] protected Button btnNext;
@@ -25,9 +25,9 @@ public abstract class UIShop : UICanvas
         OnInit();
         
     }
-    public void OnInit()
+    private void OnInit()
     {
-        maxNumberOfData = weaponDataOfNum.CountWp;
+        SetMaxNumberItem();
         btnNext.onClick.AddListener(ChangeNext);
         btnPrev.onClick.AddListener(ChangePrev);
         btnBuy.onClick.AddListener(BuyItem);
@@ -35,7 +35,9 @@ public abstract class UIShop : UICanvas
         btnBack.onClick.AddListener(BackShop);
         ChangeItem();
     }
-    public void ChangePrev()
+
+   
+    private void ChangePrev()
     {
         if (currentItem > 0)
         {
@@ -44,7 +46,7 @@ public abstract class UIShop : UICanvas
             Debug.Log("p");
         }
     }
-    public void ChangeNext()
+    private void ChangeNext()
     {
         if (currentItem < maxNumberOfData - 1)
         {
@@ -53,7 +55,7 @@ public abstract class UIShop : UICanvas
         }
     }
 
-    public void BuyItem()
+    private void BuyItem()
     {
         if (!currentItemData.isUnlocked && character.Coins >= currentItemData.price)
         {
@@ -67,7 +69,7 @@ public abstract class UIShop : UICanvas
             Debug.Log("not coins");
         }
     }
-    public void TakeItem()
+    private void TakeItem()
     {
         if (currentItemData.isUnlocked)
         {
@@ -77,7 +79,7 @@ public abstract class UIShop : UICanvas
         }
     }
 
-    public void BackShop()
+    private void BackShop()
     {
         Close(0);
         UIManager.Instance.OpenUI<CanvasShop>();
@@ -96,8 +98,9 @@ public abstract class UIShop : UICanvas
         }
     }
     
-    public abstract void ChangeItem();
+    protected abstract void ChangeItem();
     protected abstract void EquipItem(ItemData itemData);
+    protected abstract void SetMaxNumberItem();
     //Preview 3D
     //protected abstract void PreviewItem(ItemData itemData);
 }
