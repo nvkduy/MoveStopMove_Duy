@@ -36,11 +36,7 @@ public class Character : GameUnit
     public int Coins { get; set; } = 1000;
 
 
-    private void Start()
-    {
-       //numberBots = levelManager.CountOfBot;
-    }
-
+  
     
     public void FindEnemy(Vector3 position, float radius)
     {
@@ -118,17 +114,23 @@ public class Character : GameUnit
             Victim.Die();
             accterker.UpSize();
         }
-    //    if (accterker is Player && numberBots ==0)
-    //    {
+       
+        
             
-    //        UIManager.Instance.OpenUI<CanvasVictory>();
-    //    }
+        
     }
     public virtual void Die()
     {
         ChangeAnim(Constants.DIE_ANIM_NAME);
-        Destroy(gameObject, 1f);
-        
+        SimplePool.Despawn(this);
+        if (LevelManager.Instance.CountOfBot == 1)
+        {
+            UIManager.Instance.CloseAll();
+            UIManager.Instance.OpenUI<CanvasVictory>();
+        }
+      
+
+
     }
 
     public void UpSize()

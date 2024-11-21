@@ -412,7 +412,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Continue
+  m_text: Retry
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -494,7 +494,7 @@ GameObject:
   - component: {fileID: 8972230923423536684}
   - component: {fileID: 7988654287874302349}
   m_Layer: 5
-  m_Name: Button - Continue
+  m_Name: Button - Retry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -638,7 +638,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 150, y: 450}
   m_SizeDelta: {x: 250, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2964558766204798602
@@ -979,7 +979,7 @@ MonoBehaviour:
   - {fileID: 8947571113879904911}
   - {fileID: 5017726190507159311}
   - {fileID: 7458394375380382560}
-  btnContinue: {fileID: 7988654287874302349}
+  btnRetry: {fileID: 7988654287874302349}
   btnClose: {fileID: 4965073688410340918}
   btnMainMenu: {fileID: 3339264832790350688}
 --- !u!1 &8947571113879904911

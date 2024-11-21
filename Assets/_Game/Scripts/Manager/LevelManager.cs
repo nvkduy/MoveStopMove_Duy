@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class LevelManager : Singleton<LevelManager>
 {
@@ -12,7 +9,7 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField] Player playerPrefab;
     [SerializeField] Bot botPrefab;
     public int CharacterAmount => currentLevel.botAmount + 1;
-    public Level[] levelPrefab;
+    public List<Level> levelPrefab;
     public List<Bot> bots = new List<Bot>();
     public Player Player { get { return player; } }
 
@@ -23,18 +20,32 @@ public class LevelManager : Singleton<LevelManager>
     private void Awake()
     {
         //  UIManager.Instance.OnLoad += OnInit;
-        
+
     }
 
     private void Start()
     {
+        levelIndex = PlayerPrefs.GetInt("Level", 0);
         UIManager.Instance.OpenUI<CanvasMainMenu>();
     }
 
+    //public Level GetLevel(int levelIndex)
+    //{
+    //    if (levelIndex >= 0 && levelIndex <= levelPrefab.Count)
+    //    {
+    //        return levelPrefab[levelIndex];
+    //    }
+    //    else
+    //    {
+    //        return null;
+    //    }
+
+    //}
+
     public void OnInit()
     {
-        
-        levelIndex = PlayerPrefs.GetInt("Level", 0);
+
+
         //init vị trí bắt đầu game
         Vector3 index = currentLevel.startPoint.position;
         Vector3 point;
@@ -43,7 +54,7 @@ public class LevelManager : Singleton<LevelManager>
         {
             if (bot.RandomPoint(index, bot.range, out point))
             {
-                startPoints.Add(point+Vector3.right*i);
+                startPoints.Add(point + Vector3.right * i);
 
             }
 
@@ -52,15 +63,15 @@ public class LevelManager : Singleton<LevelManager>
         //Set vị trí player
         int rand = UnityEngine.Random.Range(0, CharacterAmount);
         player.transform.position = startPoints[rand];
-        player = SimplePool.Spawn<Player>(PoolType.Player, startPoints[rand],Quaternion.identity);
+        player = SimplePool.Spawn<Player>(PoolType.Player, startPoints[rand], Quaternion.identity);
         startPoints.RemoveAt(rand);
         player.OnInit();
         PlayerTF?.Invoke(player.transform);
 
         //Set vị trí bot
-        for (int i = 0; i < CharacterAmount - 2; i++)
+        for (int i = 0; i < CharacterAmount - 1; i++)
         {
-            bot = SimplePool.Spawn<Bot>(PoolType.Bot, startPoints[i],Quaternion.identity);
+            bot = SimplePool.Spawn<Bot>(PoolType.Bot, startPoints[i], Quaternion.identity);
             bot.OnInit();
             bots.Add(bot);
         }
@@ -82,11 +93,11 @@ public class LevelManager : Singleton<LevelManager>
     {
         if (currentLevel != null)
         {
-            Destroy(currentLevel.gameObject);
+          //  DestroyImmediate(currentLevel.gameObject);
         }
-        else if (level < levelPrefab.Length)
+        else if (level <= levelPrefab.Count)
         {
-            PlayerPrefs.SetInt("Level", levelIndex);
+            PlayerPrefs.SetInt("Level", level);
             currentLevel = Instantiate(levelPrefab[level]);
         }
     }
@@ -97,7 +108,9 @@ public class LevelManager : Singleton<LevelManager>
     }
     internal void NextLevel()
     {
+
         levelIndex++;
+        levelIndex = levelPrefab.IndexOf(currentLevel);
         PlayerPrefs.SetInt("Level", levelIndex);
         OnReset();
         LoadLevel(levelIndex);
@@ -111,7 +124,7 @@ public class LevelManager : Singleton<LevelManager>
             Bot remove = bots[bots.Count - 1];
             bots.Remove(remove);
         }
-        
+
     }
 
     internal void RetryLevel()
@@ -119,7 +132,6 @@ public class LevelManager : Singleton<LevelManager>
         OnReset();
         LoadLevel(levelIndex);
         OnInit();
-        UIManager.Instance.OpenUI<CanvasMainMenu>();
     }
 
 }

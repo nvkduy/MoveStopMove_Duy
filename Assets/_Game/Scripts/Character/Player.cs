@@ -38,7 +38,12 @@ public class Player : Character
     public void OnInit()
     {
         int currenIndexWeapon = PlayerPrefs.GetInt("currrenWeapon");
+        int currentIndexHat = PlayerPrefs.GetInt("currentHat");
+        int currentIndexPant = PlayerPrefs.GetInt("currentPant");
         ChangeWeapon((WeaponType)currenIndexWeapon);
+        ChangeHat((HatsType)currentIndexHat);
+        ChangePant((PantsType)currentIndexPant);
+
 
 
 

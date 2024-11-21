@@ -96,6 +96,7 @@ public class Bot : Character
     {
         base.Die();
         agent.enabled = false;
+        LevelManager.Instance.RemoveBots();
     }
     
    
