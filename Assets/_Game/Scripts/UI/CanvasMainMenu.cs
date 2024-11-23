@@ -20,12 +20,13 @@ public class CanvasMainMenu : UICanvas
     {
         Close(0);
         //Instance key để truy cập tới đối tượng duy nhất của lớp UIManager mà không cần phải tạo mới mỗi lần muốn sử dụng.
-        CanvasGamePlay playCanve = UIManager.Instance.OpenUI<CanvasGamePlay>();
+        CanvasGamePlay playCanvas = UIManager.Instance.OpenUI<CanvasGamePlay>();
         
-        LevelManager.Instance.LoadLevel(0);
+        LevelManager.Instance.LoadLevel(LevelManager.Instance.LevelIndex);
         LevelManager.Instance.OnInit();
         LevelManager.Instance.OnStartGame();
-        LevelManager.Instance.Player.Joystick = playCanve.GetJoytick();
+        LevelManager.Instance.Player.Joystick = playCanvas.GetJoytick();
+
     }
 
     public void SettingButton()

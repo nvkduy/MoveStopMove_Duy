@@ -7,6 +7,7 @@ public class Bullet : GameUnit
 {
     [SerializeField] private float rotationSpeed;
     [SerializeField] private LayerMask playerLayer;
+
     protected Character attacker;
     protected Action<Character ,Character >onHit;
 
@@ -38,9 +39,7 @@ public class Bullet : GameUnit
     {
         this.attacker = attacker;
         this.onHit = onHit;
-        
     }
-
     private void OnTriggerEnter(Collider collider)
     {
         if (((1<<collider.gameObject.layer)&playerLayer)!=0)
@@ -56,50 +55,5 @@ public class Bullet : GameUnit
         
     }
 }
-
-
-    //public class Bullet
-    //protected Character attacker;
-    //protected Action<Character attacker, Character victim> onHit;
-    //// set bullet data for bullet
-    //public virtual void OnInit(Character attacker, Action<Character attacker, Character victim> onHit)
-    //{
-    //    this.attacker = attacker;
-    //    this.onHit = onHit;
-    //}
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag(Constant.TAG_CHARACTER_NAME))
-    //    {
-    //        Character victim = Cache.GetCharacter(other);
-    //        onHit?.Invoke(attacker, victim);
-    //    }
-    //}
-    //public class WeaponAxe_1 :
-    //{
-
-    //    public void Throw(Character character, Action<Character attacker, Character victim> onHit)
-    //    {
-    //        Bullet bullet = LeanPool.Spawn(bullet);
-    //        bullet.OnInit(character, onHit);
-    //    }
-
-    //}
-    //Đại Hoàng
-    //public class Character :
-    //{
-    //    public void Throw()
-    //    {
-    //        currentSkin.WeaponAxe_1.Throw(this, OnHitVictim);
-    //    }
-    //    // Logic when bullet hit victim
-    //    protected virtual OnHitVictim(Character attacker, Character victim)
-    //    {
-    //        victim.DoDead();
-    //        .....
-    //}
-
-    //}
 
 

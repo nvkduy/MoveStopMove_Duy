@@ -5,7 +5,7 @@ using Sabresaurus.PlayerPrefsExtensions;
 
 public static class PlayerPrefsUtility
 {
-	// Each encrypted player pref key is given a prefix (this helps the Editor to identify them)
+	// Each encrypted players pref key is given a prefix (this helps the Editor to identify them)
 	public const string KEY_PREFIX = "ENC-";
 
 	// Each encrypted value is prefixed with a type identifier (because encrypted values are stored as strings)
@@ -14,7 +14,7 @@ public static class PlayerPrefsUtility
 	public const string VALUE_STRING_PREFIX = "2";
 
 	/// <summary>
-	/// Determines if the specified player pref key refers to an encrypted record
+	/// Determines if the specified players pref key refers to an encrypted record
 	/// </summary>
 	public static bool IsEncryptedKey (string key)
 	{
@@ -48,7 +48,7 @@ public static class PlayerPrefsUtility
 	}
 
 	/// <summary>
-	/// Encrypted version of PlayerPrefs.SetFloat(), stored key and value is encrypted in player prefs
+	/// Encrypted version of PlayerPrefs.SetFloat(), stored key and value is encrypted in players prefs
 	/// </summary>
 	public static void SetEncryptedFloat(string key, float value)
 	{
@@ -60,7 +60,7 @@ public static class PlayerPrefsUtility
 	}
 
 	/// <summary>
-	/// Encrypted version of PlayerPrefs.SetInt(), stored key and value is encrypted in player prefs
+	/// Encrypted version of PlayerPrefs.SetInt(), stored key and value is encrypted in players prefs
 	/// </summary>
 	public static void SetEncryptedInt(string key, int value)
 	{
@@ -72,7 +72,7 @@ public static class PlayerPrefsUtility
 	}
 
 	/// <summary>
-	/// Encrypted version of PlayerPrefs.SetString(), stored key and value is encrypted in player prefs
+	/// Encrypted version of PlayerPrefs.SetString(), stored key and value is encrypted in players prefs
 	/// </summary>
 	public static void SetEncryptedString(string key, string value)
 	{
@@ -84,7 +84,7 @@ public static class PlayerPrefsUtility
 	}
 
 	/// <summary>
-	/// Helper method that can handle any of the encrypted player pref types, returning a float, int or string based
+	/// Helper method that can handle any of the encrypted players pref types, returning a float, int or string based
 	/// on what type of value has been stored.
 	/// </summary>
 	public static object GetEncryptedValue(string encryptedKey, string encryptedValue)
@@ -116,7 +116,7 @@ public static class PlayerPrefsUtility
 	/// </summary>
 	public static float GetEncryptedFloat(string key, float defaultValue = 0.0f)
 	{
-		// Encrypt and prefix the key so we can look it up from player prefs
+		// Encrypt and prefix the key so we can look it up from players prefs
 		string encryptedKey = KEY_PREFIX + SimpleEncryption.EncryptString(key);
 
 		// Look up the encrypted value
@@ -132,7 +132,7 @@ public static class PlayerPrefsUtility
 		}
 		else
 		{
-			// No existing player pref value, so return defaultValue instead
+			// No existing players pref value, so return defaultValue instead
 			return defaultValue;
 		}
 	}
@@ -142,7 +142,7 @@ public static class PlayerPrefsUtility
 	/// </summary>
 	public static int GetEncryptedInt(string key, int defaultValue = 0)
 	{
-		// Encrypt and prefix the key so we can look it up from player prefs
+		// Encrypt and prefix the key so we can look it up from players prefs
 		string encryptedKey = KEY_PREFIX + SimpleEncryption.EncryptString(key);
 		
 		// Look up the encrypted value
@@ -158,7 +158,7 @@ public static class PlayerPrefsUtility
 		}
 		else
 		{
-			// No existing player pref value, so return defaultValue instead
+			// No existing players pref value, so return defaultValue instead
 			return defaultValue;
 		}
 	}
@@ -168,7 +168,7 @@ public static class PlayerPrefsUtility
 	/// </summary>
 	public static string GetEncryptedString(string key, string defaultValue = "")
 	{
-		// Encrypt and prefix the key so we can look it up from player prefs
+		// Encrypt and prefix the key so we can look it up from players prefs
 		string encryptedKey = KEY_PREFIX + SimpleEncryption.EncryptString(key);
 		
 		// Look up the encrypted value
@@ -184,7 +184,7 @@ public static class PlayerPrefsUtility
 		}
 		else
 		{
-			// No existing player pref value, so return defaultValue instead
+			// No existing players pref value, so return defaultValue instead
 			return defaultValue;
 		}
 	}
@@ -227,7 +227,7 @@ public static class PlayerPrefsUtility
 		}
 		else
 		{
-			// No existing player pref value, so return defaultValue instead
+			// No existing players pref value, so return defaultValue instead
 			return defaultValue;
 		}
 	}
@@ -257,7 +257,7 @@ public static class PlayerPrefsUtility
 		}
 		else 
 		{
-			// No player pref for this, just return default. If no default is supplied this will be the enum's default
+			// No players pref for this, just return default. If no default is supplied this will be the enum's default
 			return defaultValue;
 		}
 	}
@@ -279,7 +279,7 @@ public static class PlayerPrefsUtility
 		}
 		else
 		{
-			// No player pref for this key, so just return supplied default. It's required to supply a default value,
+			// No players pref for this key, so just return supplied default. It's required to supply a default value,
 			// you can just pass null, but you would then need to do a null check where you call non-generic GetEnum().
 			// Consider using GetEnum<T>() which doesn't require a default to be passed (supplying default(T) instead)
 			return defaultValue;
@@ -311,7 +311,7 @@ public static class PlayerPrefsUtility
 		}
 		else
 		{
-			// No existing player pref value, so return defaultValue instead
+			// No existing players pref value, so return defaultValue instead
 			return defaultValue;
 		}
 	}
@@ -340,7 +340,7 @@ public static class PlayerPrefsUtility
 		}
 		else
 		{
-			// No existing player pref value, so return defaultValue instead
+			// No existing players pref value, so return defaultValue instead
 			return defaultValue;
 		}
 	}

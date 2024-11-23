@@ -16,7 +16,6 @@ public class CameraFollower : MonoBehaviour
         
     }
    
-
     private void LateUpdate()
     {
         if (playerTF != null)

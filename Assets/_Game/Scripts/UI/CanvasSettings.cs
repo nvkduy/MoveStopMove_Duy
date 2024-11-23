@@ -51,11 +51,14 @@ public class CanvasSettings : UICanvas
 
     public void RetryButton()
     {
+        Close(0);
         LevelManager.Instance.RetryLevel();
     }
     public void MainMenuButton()
     {
         UIManager.Instance.CloseAll();
+        LevelManager.Instance.OnFinshGame();
+
         UIManager.Instance.OpenUI<CanvasMainMenu>();
     }
 }

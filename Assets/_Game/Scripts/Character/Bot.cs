@@ -37,6 +37,10 @@ public class Bot : Character
         ChangeState(new FindState());
         weaponType =(WeaponType) Random.Range(0, 3);
         ChangeWeapon(weaponType);
+        transform.localScale = Vector3.one;
+        radius = 2f;
+        currentTime = 0;
+        targetEnemy = Vector3.zero;
 
     }
     public void ChangeState(IState<Bot> state)
@@ -92,11 +96,12 @@ public class Bot : Character
     {
         agent.enabled = false;
     }
-    public override void Die()
+    protected override void Die()
     {
         base.Die();
         agent.enabled = false;
         LevelManager.Instance.RemoveBots();
+
     }
     
    

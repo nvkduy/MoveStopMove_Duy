@@ -13,32 +13,21 @@ public class Character : GameUnit
     [SerializeField] protected Transform hatParent;
     [SerializeField] protected float radius;
     [SerializeField] protected NavMeshAgent agent;
-
-    [SerializeField] LayerMask enemyLayer;
+    [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private Animator animator;
-    [SerializeField] SkinnedMeshRenderer skinnedMeshRenderer;
+    [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
     
-    //[SerializeField] Transform weaponPreviewPoint;
-
     internal Vector3 targetEnemy;
     internal float currentTime = 0;
     
-    protected bool isAttack = false;
-
-    Collider[] hitColliders = new Collider[20];
+    private Collider[] hitColliders = new Collider[20];
     private string currentAnim;
-    //private Weapon currentPreviewWeapon;
-    private LevelManager levelManager;
-    private int numberBots;
     private Weapon currentWeapon;
     private Hats currentHat;
-    private Pants currentPant;
+
     public int Coins { get; set; } = 1000;
 
-
-  
-    
-    public void FindEnemy(Vector3 position, float radius)
+    protected void FindEnemy(Vector3 position, float radius)
     {
 
         numOfEnemy = Physics.OverlapSphereNonAlloc(position, radius, hitColliders, enemyLayer);
@@ -69,8 +58,7 @@ public class Character : GameUnit
         }
 
     }
-
-    public void OnDrawGizmos()
+     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, radius);
@@ -88,22 +76,16 @@ public class Character : GameUnit
 
     }
     
-    public void Attack()
+    protected void Attack()
     {
         if (currentWeapon != null && currentTime <= 0)
         {
-            
             ChangeAnim(Constants.ATTACK_ANIM_NAME);
             currentWeapon.Throw(this, OnHitVicTim); // Gọi phương thức với tham số            
             currentTime = 3f;
-      
         }
     }
 
-    protected void ResetAttack()
-    {
-        isAttack = true;
-    }
 
     protected virtual void OnHitVicTim(Character accterker, Character Victim)
     {
@@ -115,11 +97,8 @@ public class Character : GameUnit
             accterker.UpSize();
         }
        
-        
-            
-        
     }
-    public virtual void Die()
+    protected virtual void Die()
     {
         ChangeAnim(Constants.DIE_ANIM_NAME);
         SimplePool.Despawn(this);
@@ -128,19 +107,15 @@ public class Character : GameUnit
             UIManager.Instance.CloseAll();
             UIManager.Instance.OpenUI<CanvasVictory>();
         }
-      
-
-
     }
 
-    public void UpSize()
+    protected void UpSize()
     {
-        
         transform.localScale += Vector3.one * 0.5f; 
         radius += 1f;
     }
 
-    public void ChangeWeapon(WeaponType weaponType)
+    protected void ChangeWeapon(WeaponType weaponType)
     {
         Weapon wp = DataManager.Instance.GetWeapon(weaponType);
         //if (currentPreviewWeapon != null)
@@ -148,8 +123,8 @@ public class Character : GameUnit
         //    SimplePool.Despawn(currentPreviewWeapon);
         //    currentPreviewWeapon = null;
         //}
-
         currentWeapon = SimplePool.Spawn<Weapon>(wp, weaponParent);
+        currentWeapon.transform.localScale = wp.transform.localScale; 
 
     }
     //public void PreviewWeapon(WeaponType weaponType)
@@ -166,22 +141,16 @@ public class Character : GameUnit
 
     //    Debug.Log("PreviewWeapon: " + weaponPrefab.name);
     //}
-    public void ChangeHat(HatsType hatsType)
+    protected void ChangeHat(HatsType hatsType)
     {
         Hats hat = DataManager.Instance.GetHat(hatsType);
         currentHat = SimplePool.Spawn<Hats>(hat, hatParent);
     }
-    public void ChangePant(PantsType pantType)
+    protected void ChangePant(PantsType pantType)
     {
         Material pantMaterial = DataManager.Instance.GetPant(pantType);
         skinnedMeshRenderer.material = pantMaterial;
     }
-
-    //public void ColorSkin(SkinType skinType)
-    //{
-
-    //}
-
 
     public void ChangeAnim(string animName)
     {
@@ -192,6 +161,4 @@ public class Character : GameUnit
             animator.SetTrigger(currentAnim);
         }
     }
-
-
 }

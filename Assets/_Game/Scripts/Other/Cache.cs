@@ -5,27 +5,40 @@ using UnityEngine.UIElements;
 
 public class Cache : MonoBehaviour
 {
-    private static Dictionary<Collider, Bot> bot = new Dictionary<Collider, Bot>();
-    private static Dictionary<Collider, Character> characters = new Dictionary<Collider, Character>();
-    public static Bot GetBot(Collider collider)
-    {
-        if (!bot.ContainsKey(collider))
-        {
-            bot.Add(collider, collider.GetComponent<Bot>());
-        }
-
-        return bot[collider];
-    }
+    private static Dictionary<Collider, Character> characterCache = new Dictionary<Collider, Character>();
+    private static Dictionary<GameObject, Bot> botCache = new Dictionary<GameObject, Bot>();
+    private static Dictionary<GameObject,Level> levelCache = new Dictionary<GameObject, Level>();
     public static Character GetCharacter(Collider collider)
     {
-        if (!characters.ContainsKey(collider))
+        if (!characterCache.ContainsKey(collider))
         {
-            characters.Add(collider, collider.GetComponent<Character>());
+            characterCache.Add(collider, collider.GetComponent<Character>());
             
         }
 
-        return characters[collider];
+        return characterCache[collider];
     }
+
+    // metho to creat cache Get component Bot from objcet không sử dụng collider
+    public static Bot GetBot(GameObject gameObject)
+    {
+        if (!botCache.ContainsKey(gameObject))
+        {
+            botCache.Add(gameObject, gameObject.GetComponent<Bot>());
+        }
+        return botCache[gameObject];
+    }
+
+    public static Level GetLevel(GameObject gameObject)
+    {
+        if (!levelCache.ContainsKey(gameObject))
+        {
+            levelCache.Add(gameObject, gameObject.GetComponent<Level>());
+        }
+        return levelCache[gameObject];
+    }
+
+
 
 
 }

@@ -23,12 +23,13 @@ public class CanvasVictory : UICanvas
     public void MainMenuButton()
     {
         UIManager.Instance.CloseAll();
+        LevelManager.Instance.OnFinshGame();
         UIManager.Instance.OpenUI<CanvasMainMenu>();   
     }
 
     public void NextLevelButton()
     {
-        UIManager.Instance.CloseAll();
+        Close(0);
         LevelManager.Instance.NextLevel();
     }
 }

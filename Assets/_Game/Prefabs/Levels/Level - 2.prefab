@@ -5225,6 +5225,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPoint: {fileID: 14228350818420577}
   botAmount: 8
+  bot: {fileID: 4240158845472298556, guid: 16bde1aee64213f489a1deb0e9ce7ba7, type: 3}
+  player: {fileID: 7996478411084806108, guid: da0789517aaa1d4468739e8d489e6893, type: 3}
 --- !u!1 &4017083631293398615
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,7 +19,8 @@ public class DataManager : Singleton<DataManager>
     {
         return pantData.GetPant(pantType).Material;
     }
+  
+   
 
-    
 
 }
