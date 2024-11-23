@@ -12,6 +12,9 @@ public class Constants
     public const string WIN_ANIM_NAME = "win";
 
     public const string TAG_CHARACTER_NAME = "Character";
+    public const string CURRENT_PANT_NAME = "currentPant";
+    public const string CURRENT_HAT_NAME = "currentHat";
+    public const string CURRENT_WEAPON_NAME = "currentWeapon";
 
 }
 

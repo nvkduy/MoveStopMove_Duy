@@ -23,7 +23,7 @@ public class CanvasWeaponShop : UIShop
         WeaponItemData weaponItem = itemData as WeaponItemData;
         if (weaponItem != null)
         {
-            PlayerPrefs.SetInt("currrenWeapon", (int)weaponItem.WeaponType);
+            PlayerPrefs.SetInt(Constants.CURRENT_WEAPON_NAME, (int)weaponItem.WeaponType);
 
         }
     }

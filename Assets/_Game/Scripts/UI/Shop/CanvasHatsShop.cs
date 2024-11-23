@@ -20,7 +20,7 @@ public class CanvasHatsShop : UIShop
         HatsItemData hatItem = itemData as HatsItemData;
         if (hatItem != null)
         {
-            PlayerPrefs.SetInt("currrenHat", (int)hatItem.HatType);
+            PlayerPrefs.SetInt(Constants.CURRENT_HAT_NAME, (int)hatItem.HatType);
 
         }
     }

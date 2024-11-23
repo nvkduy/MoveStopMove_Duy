@@ -16,6 +16,7 @@ public class LevelManager : Singleton<LevelManager>
     private int currentBotAmount;
     private int maxCurrentBotAmount = 5;
     private int botAppearAmount;
+    private bool isInitialized = false; // Flag to check if OnInit has been called
 
     public int LevelIndex => levelIndex;
     public int CountOfBot => bots.Count;
@@ -32,11 +33,14 @@ public class LevelManager : Singleton<LevelManager>
 
     public void OnInit()
     {
+       
+
         if (currentLevel == null)
         {
             Debug.LogError("Current level is not loaded.");
             return;
         }
+
 
         // Initialize starting positions
         Vector3 index = currentLevel.startPoint.position;
@@ -99,6 +103,7 @@ public class LevelManager : Singleton<LevelManager>
             currentBotAmount++;
         }
     }
+
     public void OnStartGame()
     {
         GameManager.Instance.ChangeState(GameState.GamePlay);
@@ -134,7 +139,6 @@ public class LevelManager : Singleton<LevelManager>
         currentBotAmount = 0;
         botAppearAmount = 0;
         startPoints.Clear();
-
     }
 
     internal void NextLevel()
@@ -142,7 +146,7 @@ public class LevelManager : Singleton<LevelManager>
         levelIndex++;
         if (levelIndex >= levelPrefab.Count)
         {
-            levelIndex = 0; // Quay lại level đầu tiên nếu vượt quá số lượng level
+            levelIndex = 0;
         }
         PlayerPrefs.SetInt("Level", levelIndex);
         OnReset();
@@ -165,7 +169,6 @@ public class LevelManager : Singleton<LevelManager>
     internal void RetryLevel()
     {
         OnReset();
-        LoadLevel(levelIndex);
         OnInit();
         UIManager.Instance.OpenUI<CanvasGamePlay>();
     }

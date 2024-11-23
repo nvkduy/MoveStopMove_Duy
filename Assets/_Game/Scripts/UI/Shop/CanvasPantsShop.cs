@@ -22,7 +22,7 @@ public class CanvasPantsShop : UIShop
         PantItemData pantItem = itemData as PantItemData;
         if (pantItem != null)
         {
-            PlayerPrefs.SetInt("currrenPant", (int)pantItem.PantsType);
+            PlayerPrefs.SetInt(Constants.CURRENT_PANT_NAME, (int)pantItem.PantsType);
 
         }
     }

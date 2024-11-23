@@ -36,9 +36,9 @@ public class Player : Character
 
     public void OnInit()
     {
-        int currenIndexWeapon = PlayerPrefs.GetInt("currrenWeapon");
-        int currentIndexHat = PlayerPrefs.GetInt("currentHat");
-        int currentIndexPant = PlayerPrefs.GetInt("currentPant");
+        int currenIndexWeapon = PlayerPrefs.GetInt(Constants.CURRENT_WEAPON_NAME);
+        int currentIndexHat = PlayerPrefs.GetInt(Constants.CURRENT_HAT_NAME);
+        int currentIndexPant = PlayerPrefs.GetInt(Constants.CURRENT_PANT_NAME);
         ChangeWeapon((WeaponType)currenIndexWeapon);
         ChangeHat((HatsType)currentIndexHat);
         ChangePant((PantsType)currentIndexPant);
@@ -101,7 +101,6 @@ public class Player : Character
     {
         base.Die();
         GameManager.Instance.ChangeState(GameState.Pasue);
-        UIManager.Instance.CloseAll();
         UIManager.Instance.OpenUI<CanvasFail>();
     }
 }

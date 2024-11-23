@@ -22,7 +22,6 @@ public class CanvasVictory : UICanvas
     }
     public void MainMenuButton()
     {
-        UIManager.Instance.CloseAll();
         LevelManager.Instance.OnFinshGame();
         UIManager.Instance.OpenUI<CanvasMainMenu>();   
     }

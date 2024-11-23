@@ -104,7 +104,7 @@ public class Character : GameUnit
         SimplePool.Despawn(this);
         if (LevelManager.Instance.CountOfBot == 1)
         {
-            UIManager.Instance.CloseAll();
+            
             UIManager.Instance.OpenUI<CanvasVictory>();
         }
     }

@@ -37,6 +37,24 @@ public class UIManager : Singleton<UIManager>
         canvas.Open();
         return canvas;
     }
+    // Method add to close canvas when open new canvas
+    public T OpenUI<T>(bool closeCurrent) where T : UICanvas
+    {
+        if (closeCurrent)
+        {
+            foreach (var activeCanvas in canvasActives)
+            {
+                if (activeCanvas.Value != null && activeCanvas.Value.gameObject.activeSelf)
+                {
+                    activeCanvas.Value.Close(0);
+                }
+            }
+        }
+        T canvas = GetUI<T>();
+        canvas.Setup();
+        canvas.Open();
+        return canvas;
+    }
 
     // Đóng canvas sau time s
     public void CloseUI<T>(float time) where T : UICanvas
@@ -90,11 +108,11 @@ public class UIManager : Singleton<UIManager>
     // Đóng tất cả
     public void CloseAll()
     {
-        foreach (var canvas in canvasActives)
+        foreach (var activeCanvas in canvasActives)
         {
-            if (canvas.Value != null && canvas.Value.gameObject.activeSelf)
+            if (activeCanvas.Value != null && activeCanvas.Value.gameObject.activeSelf)
             {
-                canvas.Value.Close(0);
+                activeCanvas.Value.Close(0);
             }
         }
     }
