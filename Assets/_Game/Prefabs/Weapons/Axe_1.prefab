@@ -98,6 +98,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36184124cc2646f449740ff55601fd91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 12
+  poolType: 5
   attackForce: 40
   bulletPrefab: {fileID: 3715678947349725646, guid: 26ac240eab9738a4a9be80503a50f0fb, type: 3}

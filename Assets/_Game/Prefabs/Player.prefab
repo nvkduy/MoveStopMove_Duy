@@ -132,8 +132,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eec7f27812779b42ba95ec6e1ea978a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 25
+  poolType: 11
   numOfEnemy: 0
+  currentWeapon: {fileID: 0}
   weaponParent: {fileID: 3464538859178344447}
   hatParent: {fileID: 2908589201238178052}
   radius: 2

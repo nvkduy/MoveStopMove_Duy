@@ -6,9 +6,8 @@ using UnityEngine.AI;
 
 public class Character : GameUnit
 {
-    
     public int numOfEnemy;
-
+    protected Weapon currentWeapon;
     [SerializeField] protected Transform weaponParent;
     [SerializeField] protected Transform hatParent;
     [SerializeField] protected float radius;
@@ -16,20 +15,18 @@ public class Character : GameUnit
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private Animator animator;
     [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
-    
+
     internal Vector3 targetEnemy;
     internal float currentTime = 0;
-    
+
     private Collider[] hitColliders = new Collider[20];
     private string currentAnim;
-    private Weapon currentWeapon;
     private Hats currentHat;
 
     public int Coins { get; set; } = 1000;
 
     protected void FindEnemy(Vector3 position, float radius)
     {
-
         numOfEnemy = Physics.OverlapSphereNonAlloc(position, radius, hitColliders, enemyLayer);
         float minDistance = Mathf.Infinity;
         Collider nearestEnemy = null;
@@ -45,20 +42,18 @@ public class Character : GameUnit
                     nearestEnemy = hitColliders[i];
                 }
             }
-
         }
         if (nearestEnemy != null)
         {
             targetEnemy = nearestEnemy.transform.position;
-
         }
         if (numOfEnemy == 1)
         {
             targetEnemy = Vector3.zero;
         }
-
     }
-     private void OnDrawGizmos()
+
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, radius);
@@ -70,12 +65,10 @@ public class Character : GameUnit
                 {
                     Gizmos.DrawLine(transform.position, hitColliders[i].transform.position);
                 }
-
             }
         }
-
     }
-    
+
     protected void Attack()
     {
         if (currentWeapon != null && currentTime <= 0)
@@ -86,72 +79,66 @@ public class Character : GameUnit
         }
     }
 
-
     protected virtual void OnHitVicTim(Character accterker, Character Victim)
     {
-
-        if ( Victim !=null && accterker != Victim)
+        if (Victim != null && accterker != Victim)
         {
-            
             Victim.Die();
             accterker.UpSize();
         }
-       
     }
+
     protected virtual void Die()
     {
         ChangeAnim(Constants.DIE_ANIM_NAME);
         SimplePool.Despawn(this);
         if (LevelManager.Instance.CountOfBot == 1)
         {
-            
             UIManager.Instance.OpenUI<CanvasVictory>();
         }
     }
 
     protected void UpSize()
     {
-        transform.localScale += Vector3.one * 0.5f; 
+        transform.localScale += Vector3.one * 0.5f;
         radius += 1f;
     }
 
-    protected void ChangeWeapon(WeaponType weaponType)
+    public void ChangeWeapon(WeaponType weaponType)
     {
+        // Hide the old weapon if it exists
+        if (currentWeapon != null)
+        {
+            SimplePool.Despawn(currentWeapon);
+            currentWeapon = null;
+        }
         Weapon wp = DataManager.Instance.GetWeapon(weaponType);
-        //if (currentPreviewWeapon != null)
-        //{
-        //    SimplePool.Despawn(currentPreviewWeapon);
-        //    currentPreviewWeapon = null;
-        //}
+        // Spawn the new weapon
         currentWeapon = SimplePool.Spawn<Weapon>(wp, weaponParent);
-        currentWeapon.transform.localScale = wp.transform.localScale; 
-
+       // currentWeapon = Instantiate(wp, weaponParent);  
+        currentWeapon.transform.localScale = wp.transform.localScale;
     }
-    //public void PreviewWeapon(WeaponType weaponType)
-    //{
-    //    Weapon weaponPrefab = DataManager.Instance.GetWeapon(weaponType);
-    //    if (currentPreviewWeapon != null)
-    //    {
-    //        SimplePool.Despawn(currentPreviewWeapon);
-    //    }
-    //    currentPreviewWeapon = SimplePool.Spawn<Weapon>(weaponPrefab, weaponPreviewPoint);
-    //    currentPreviewWeapon.transform.localScale = weaponPrefab.transform.localScale;
-    //    currentPreviewWeapon.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-    //    currentPreviewWeapon.transform.SetParent(weaponPreviewPoint);
 
-    //    Debug.Log("PreviewWeapon: " + weaponPrefab.name);
-    //}
-    protected void ChangeHat(HatsType hatsType)
+    public void ChangeHat(HatsType hatsType)
     {
+        // Hide the old hat if it exists
+        if (currentHat != null)
+        {
+            SimplePool.Despawn(currentHat);
+            currentHat = null;
+        }
         Hats hat = DataManager.Instance.GetHat(hatsType);
+        // Spawn the new hat
         currentHat = SimplePool.Spawn<Hats>(hat, hatParent);
     }
-    protected void ChangePant(PantsType pantType)
+
+    public void ChangePant(PantsType pantType)
     {
         Material pantMaterial = DataManager.Instance.GetPant(pantType);
         skinnedMeshRenderer.material = pantMaterial;
     }
 
+ 
     public void ChangeAnim(string animName)
     {
         if (currentAnim != animName)

@@ -11,18 +11,16 @@ public class LevelManager : Singleton<LevelManager>
     public List<Bot> bots = new List<Bot>();
 
     private Level currentLevel;
-    List<Vector3> startPoints = new List<Vector3>();
+    private List<Vector3> startPoints = new List<Vector3>();
     private int levelIndex;
     private int currentBotAmount;
-    private int maxCurrentBotAmount = 5;
+    private const int maxCurrentBotAmount = 5;
     private int botAppearAmount;
-    private bool isInitialized = false; // Flag to check if OnInit has been called
-
+    private bool isInitialized = false;
     public int LevelIndex => levelIndex;
     public int CountOfBot => bots.Count;
     public int BotAppearAmount => botAppearAmount;
     public int CharacterAmount => currentLevel.botAmount + 1;
-
     public Player Player => player;
 
     private void Start()
@@ -33,59 +31,59 @@ public class LevelManager : Singleton<LevelManager>
 
     public void OnInit()
     {
-       
-
         if (currentLevel == null)
         {
             Debug.LogError("Current level is not loaded.");
             return;
         }
 
+        Vector3 pos = currentLevel.startPoint.position;
+        startPoints.Clear();
 
-        // Initialize starting positions
-        Vector3 index = currentLevel.startPoint.position;
-        Vector3 point;
-
-        int retries = CharacterAmount; // Number of retries to generate points
-
-        for (int i = 0; i <= CharacterAmount; i++)
+        for (int i = 0; i < CharacterAmount; i++)
         {
-            bool pointGenerated = false;
-            int retryCount = 0;
-            while (!pointGenerated && retryCount < retries)
+            if (!GenerateStartPoint(pos, out Vector3 point))
             {
-                if (bot.RandomPoint(index, 10, out point))
-                {
-                    startPoints.Add(point);
-                    pointGenerated = true;
-                }
-                retryCount++;
+                Debug.LogWarning($"Failed to generate point for character {i}.");
             }
-            if (!pointGenerated)
+            else
             {
-                Debug.LogError($"Failed to generate point for character {i} after {retryCount} retries.");
+                startPoints.Add(point);
             }
         }
 
-        if (startPoints.Count < CharacterAmount)
+        if (startPoints.Count < CharacterAmount - 1)
         {
             Debug.LogError("Not enough start points generated.");
             return;
         }
 
-        // Set player position and spawn player
         SpawnPlayer();
-
-        // Set bot positions and spawn bots
         SpawnBot();
+    }
+
+    private bool GenerateStartPoint(Vector3 pos, out Vector3 point)
+    {
+        int retries = CharacterAmount ;
+        HashSet<Vector3> attemptedPoints = new HashSet<Vector3>();
+
+        for (int retryCount = 0; retryCount < retries; retryCount++)
+        {
+            if (bot.RandomPoint(pos, 10, out point) && !attemptedPoints.Contains(point))
+            {
+                return true;
+            }
+            attemptedPoints.Add(point);
+        }
+
+        point = Vector3.zero;
+        return false;
     }
 
     private void SpawnPlayer()
     {
         int rand = UnityEngine.Random.Range(0, CharacterAmount);
         player = SimplePool.Spawn<Player>(PoolType.Player, startPoints[rand], Quaternion.identity);
-        player.transform.position = startPoints[rand];
-        startPoints.RemoveAt(rand);
         player.OnInit();
         PlayerTF?.Invoke(player.transform);
     }
@@ -96,20 +94,33 @@ public class LevelManager : Singleton<LevelManager>
         {
             int ranPos = UnityEngine.Random.Range(0, startPoints.Count);
             Vector3 spawnPos = startPoints[ranPos];
-            bot = SimplePool.Spawn<Bot>(PoolType.Bot, spawnPos, Quaternion.identity);
-            bot.OnInit();
-            bots.Add(bot);
+            Bot Bot = SimplePool.Spawn<Bot>(PoolType.Bot, spawnPos, Quaternion.identity);
+            Bot.OnInit();
+            bots.Add(Bot);
             botAppearAmount++;
             currentBotAmount++;
         }
     }
 
+    private void NewSpawnBot()
+    {
+        while (currentBotAmount < maxCurrentBotAmount && botAppearAmount < CharacterAmount - 1)
+        {
+            int ranPos = UnityEngine.Random.Range(0, startPoints.Count);
+            Vector3 spawnPos = startPoints[ranPos];
+            Bot newBot = SimplePool.Spawn<Bot>(PoolType.Bot, spawnPos, Quaternion.identity);
+            newBot.Init();
+            bots.Add(newBot);
+            botAppearAmount++;
+            currentBotAmount++;
+        }
+    }
     public void OnStartGame()
     {
         GameManager.Instance.ChangeState(GameState.GamePlay);
-        for (int i = 0; i < bots.Count; i++)
+        foreach (var bot in bots)
         {
-            bots[i].ChangeState(new FindState());
+            bot.ChangeState(new FindState());
         }
     }
 
@@ -117,6 +128,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         OnReset();
         Destroy(currentLevel.gameObject);
+        Resources.UnloadUnusedAssets();
     }
 
     public void LoadLevel(int level)
@@ -124,6 +136,7 @@ public class LevelManager : Singleton<LevelManager>
         if (currentLevel != null)
         {
             Destroy(currentLevel.gameObject);
+            Resources.UnloadUnusedAssets();
         }
         if (level < levelPrefab.Count)
         {
@@ -135,21 +148,18 @@ public class LevelManager : Singleton<LevelManager>
     public void OnReset()
     {
         SimplePool.CollectAll();
+        SimplePool.CollectAllWeapons();
         bots.Clear();
         currentBotAmount = 0;
         botAppearAmount = 0;
-        startPoints.Clear();
     }
 
     internal void NextLevel()
     {
-        levelIndex++;
-        if (levelIndex >= levelPrefab.Count)
-        {
-            levelIndex = 0;
-        }
+        levelIndex = (levelIndex + 1) % levelPrefab.Count;
         PlayerPrefs.SetInt("Level", levelIndex);
         OnReset();
+        bots.Clear();
         LoadLevel(levelIndex);
         OnInit();
         UIManager.Instance.OpenUI<CanvasGamePlay>();
@@ -162,14 +172,15 @@ public class LevelManager : Singleton<LevelManager>
             Bot remove = bots[bots.Count - 1];
             bots.Remove(remove);
             currentBotAmount--;
-            SpawnBot();
+            NewSpawnBot();
         }
     }
 
     internal void RetryLevel()
     {
         OnReset();
-        OnInit();
-        UIManager.Instance.OpenUI<CanvasGamePlay>();
+        LoadLevel(levelIndex);
+        SpawnPlayer();
+        NewSpawnBot();
     }
 }

@@ -24,6 +24,7 @@ public class CanvasFail : UICanvas
     }
     public void MainMenuButton()
     {
+        Close(0);
         LevelManager.Instance.OnFinshGame();
         UIManager.Instance.OpenUI<CanvasMainMenu>();
     }
@@ -31,6 +32,7 @@ public class CanvasFail : UICanvas
     {
         Close(0);
         LevelManager.Instance.RetryLevel();
+        UIManager.Instance.OpenUI<CanvasGamePlay>();
     }
     
 }

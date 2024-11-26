@@ -147,31 +147,20 @@ public enum PoolType
 {
     None,
 
-    BulletAxe_0,
-    BulletAxe_1,
+    BulletAxe0,
+    BulletAxe1,
     BulletBoomerang,
-    BulletCandy_1,
-    BulletCandy_2,
-    BulletCandy_3,
-    BulletCandy_4,
-    BulletHamer,
-    BulletKnife,
-    BulletUzi,
+   
 
-    WeaponAxe_0,
-    WeaponAxe_1,
+    WeaponAxe0,
+    WeaponAxe1,
     WeaponBoomerang,
-    WeaponCandy_1,
-    WeaponCandy_2,
-    WeaponCandy_3,
-    WeaponCandy_4,
-    WeaponHamer,
-    WeaponKnife,
-    WeaponUzi,
+   
 
     HatCowBoy,
     HatCrown,
     HatEar,
+
     Bot,
     Player
 }

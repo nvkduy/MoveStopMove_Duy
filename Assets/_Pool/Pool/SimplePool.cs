@@ -237,7 +237,7 @@ public static class SimplePool
     public static HashSet<GameUnit> GetAllUnitIsActive(PoolType poolType)
     {
         return GetAllUnitIsActive(GetPrefabByType(poolType));
-    }  
+    }
 
     #endregion
 
@@ -269,7 +269,7 @@ public static class SimplePool
     static public T Spawn<T>(GameUnit obj, Vector3 localPoint, Quaternion localRot, Transform parent) where T : GameUnit
     {
         T unit = Spawn<T>(obj);
-        unit.TF.SetParent(parent);
+        unit.TF.SetParent(parent,false);
         unit.TF.localPosition = localPoint;
         unit.TF.localRotation = localRot;
         unit.TF.localScale = Vector3.one;
@@ -277,11 +277,11 @@ public static class SimplePool
         return unit;
     }
 
-    static public T Spawn<T> (PoolType poolType, Vector3 localPoint, Quaternion localRot, Transform parent) where T : GameUnit
+    static public T Spawn<T>(PoolType poolType, Vector3 localPoint, Quaternion localRot, Transform parent) where T : GameUnit
     {
         return Spawn<T>(GetPrefabByType(poolType), localPoint, localRot, parent);
     }
-     static public T Spawn<T> (PoolType poolType, Transform parent) where T : GameUnit
+    static public T Spawn<T>(PoolType poolType, Transform parent) where T : GameUnit
     {
         return Spawn<T>(GetPrefabByType(poolType), parent);
     }
@@ -371,6 +371,16 @@ public static class SimplePool
             if (item.Value.IsCollect)
             {
                 item.Value.Collect();
+            }
+        }
+    }
+    public static void CollectAllWeapons()
+    {
+        foreach (var item in poolInstance)
+        {
+            if (item.Key.ToString().StartsWith("Weapon"))
+            {
+                Collect(item.Key);
             }
         }
     }
