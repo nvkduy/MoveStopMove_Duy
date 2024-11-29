@@ -37,10 +37,8 @@ public class FindState : IState<Bot>
         {
             Vector3 centerPos = playerPos.transform.position;
             Vector3 point;
-            if (t.RandomPoint(centerPos, t.range, out point))
+            if (t.RandomPoint(centerPos,5f, out point))
             {
-                t.ChangeAnim(Constants.RUN_ANIM_NAME);
-                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
                 t.SetDestination(point);
             }
         }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UICanvas : MonoBehaviour
+public class UICanvas : Singleton<UICanvas>
 {
     [SerializeField] bool isDestroyOnClose = false;
 

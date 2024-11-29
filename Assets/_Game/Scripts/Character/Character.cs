@@ -8,7 +8,7 @@ public class Character : GameUnit
 {
     public int numOfEnemy;
     protected Weapon currentWeapon;
-    [SerializeField] protected Transform weaponParent;
+    [SerializeField] internal Transform weaponParent;
     [SerializeField] protected Transform hatParent;
     [SerializeField] protected float radius;
     [SerializeField] protected NavMeshAgent agent;
@@ -18,6 +18,8 @@ public class Character : GameUnit
 
     internal Vector3 targetEnemy;
     internal float currentTime = 0;
+
+    protected bool isAttack = false;
 
     private Collider[] hitColliders = new Collider[20];
     private string currentAnim;
@@ -71,7 +73,7 @@ public class Character : GameUnit
 
     protected void Attack()
     {
-        if (currentWeapon != null && currentTime <= 0)
+        if (currentWeapon != null && isAttack && currentTime <= 0)
         {
             ChangeAnim(Constants.ATTACK_ANIM_NAME);
             currentWeapon.Throw(this, OnHitVicTim); // Gọi phương thức với tham số            
@@ -79,19 +81,32 @@ public class Character : GameUnit
         }
     }
 
-    protected virtual void OnHitVicTim(Character accterker, Character Victim)
+    protected virtual void CanAttack()
     {
-        if (Victim != null && accterker != Victim)
+       StartCoroutine(CanAtack());
+    }
+    IEnumerator CanAtack()
+    {
+        yield return new WaitForSeconds(4f);
+        isAttack = true;
+    }
+    protected virtual void OnHitVicTim(Character attacker, Character victim)
+    {
+        if (victim != null && attacker != victim)
         {
-            Victim.Die();
-            accterker.UpSize();
+            victim.Die();
+            attacker.UpSize();
+           
+            Debug.Log("victim :" + victim.name + ", Attacker :" + attacker.name);
         }
+        
     }
 
     protected virtual void Die()
     {
         ChangeAnim(Constants.DIE_ANIM_NAME);
         SimplePool.Despawn(this);
+        
         if (LevelManager.Instance.CountOfBot == 1)
         {
             UIManager.Instance.OpenUI<CanvasVictory>();

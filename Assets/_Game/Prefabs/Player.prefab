@@ -134,7 +134,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolType: 11
   numOfEnemy: 0
-  currentWeapon: {fileID: 0}
   weaponParent: {fileID: 3464538859178344447}
   hatParent: {fileID: 2908589201238178052}
   radius: 2
@@ -165,8 +164,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.25526476, y: 0.8926034, z: 0.29468298}
-  m_Center: {x: -0.006775975, y: 0.47121787, z: 0.014085054}
+  m_Size: {x: 0.25526476, y: 2.56, z: 0.29468298}
+  m_Center: {x: -0.006775975, y: 1.33, z: 0.014085054}
 --- !u!54 &8833275708392973613
 Rigidbody:
   m_ObjectHideFlags: 0

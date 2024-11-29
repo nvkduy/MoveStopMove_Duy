@@ -13,32 +13,43 @@ public class Bullet : GameUnit
 
     private Vector3 startBullet;
     private float bulletTime;
+    private bool isBullet;
 
     private void Start()
     {
-        startBullet = transform.position;
         bulletTime = 3f;
     }
     void Update()
     {
+        if (isBullet)
+        {
+            return;
+        }
         transform.Rotate(new Vector3(0,0, rotationSpeed*Time.deltaTime));
         
         if (bulletTime<=0)
         {
-            SimplePool.Despawn(this);
-            bulletTime = 3f;
+            ResetBullet();
         }
         else
         {
             bulletTime -= Time.deltaTime;
         }
     }
-   
+
+    private void ResetBullet()
+    {
+        SimplePool.Despawn(this);   
+        bulletTime = 3f;
+        isBullet = false;
+    }
+
     //Set bullet data for bullet
     public virtual void OnInit(Character attacker, Action<Character, Character> onHit)
     {
         this.attacker = attacker;
         this.onHit = onHit;
+        bulletTime = 3f;
     }
     private void OnTriggerEnter(Collider collider)
     {
@@ -49,7 +60,7 @@ public class Bullet : GameUnit
             onHit?.Invoke(attacker, victim);
             if (attacker != victim && victim !=null)
             {
-                SimplePool.Despawn(this);
+                ResetBullet();
             }
         }
         

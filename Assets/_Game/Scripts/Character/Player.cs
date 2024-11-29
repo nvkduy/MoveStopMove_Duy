@@ -36,6 +36,7 @@ public class Player : Character
 
     public void OnInit()
     {
+        isAttack = false;
         int currenIndexWeapon = PlayerPrefs.GetInt(Constants.CURRENT_WEAPON_NAME);
         int currentIndexHat = PlayerPrefs.GetInt(Constants.CURRENT_HAT_NAME);
         int currentIndexPant = PlayerPrefs.GetInt(Constants.CURRENT_PANT_NAME);
@@ -44,10 +45,10 @@ public class Player : Character
         ChangePant((PantsType)currentIndexPant);
         transform.localScale = Vector3.one;
         radius = 2f;
-        currentTime = 0;
         targetEnemy = Vector3.zero;
         horizontal = 0;
         vertical = 0;
+        CanAttack();
         GameManager.Instance.ChangeState(GameState.GamePlay);
     }
 
@@ -93,9 +94,9 @@ public class Player : Character
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speedMove * Time.deltaTime);
     }
 
-    public void SpawnLookTarget()
+    protected override void CanAttack()
     {
-     //   GameObject lookTarget = SimplePool.Spawn
+        base.CanAttack();
     }
     protected override void Die()
     {

@@ -104,7 +104,7 @@ public static class SimplePool
 
                 if (memberInParent.Contains(obj.GetInstanceID()))
                 {
-                    obj.TF.SetParent(GetPool(obj).Root);
+                    //obj.TF.SetParent(GetPool(obj).Root);
                     memberInParent.Remove(obj.GetInstanceID());
                 }
             }
@@ -322,7 +322,8 @@ public static class SimplePool
             }
             else
             {
-                GameObject.Destroy(obj.gameObject);
+               GameObject.Destroy(obj.gameObject);
+                Debug.LogError("Destroy");
             }
         }
     }
