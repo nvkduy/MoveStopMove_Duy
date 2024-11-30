@@ -145,6 +145,7 @@ MonoBehaviour:
   skinnedMeshRenderer: {fileID: 5699824777253376761}
   speedMove: 2
   playerVisual: {fileID: 4944898280001083513}
+  lookEnemyPrefab: {fileID: 7241667001654523686, guid: 0156a451d66317f4aa629b3bf2332341, type: 3}
 --- !u!65 &992352790168577210
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -164,8 +165,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.25526476, y: 2.56, z: 0.29468298}
-  m_Center: {x: -0.006775975, y: 1.33, z: 0.014085054}
+  m_Size: {x: 0.25526476, y: 0.86, z: 0.29468298}
+  m_Center: {x: -0.006775975, y: 0.44, z: 0.014085054}
 --- !u!54 &8833275708392973613
 Rigidbody:
   m_ObjectHideFlags: 0

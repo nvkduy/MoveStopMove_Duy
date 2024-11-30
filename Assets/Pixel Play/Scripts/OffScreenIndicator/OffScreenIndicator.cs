@@ -47,12 +47,8 @@ public class OffScreenIndicator : MonoBehaviour
             float distanceFromCamera = target.NeedDistanceText ? target.GetDistanceFromCamera(mainCamera.transform.position) : float.MinValue;// Gets the target distance from the camera.
             Indicator indicator = null;
 
-            if(target.NeedBoxIndicator && isTargetVisible)
-            {
-                screenPosition.z = 0;
-                indicator = GetIndicator(ref target.indicator, IndicatorType.BOX); // Gets the box indicator from the pool.
-            }
-            else if(target.NeedArrowIndicator && !isTargetVisible)
+           
+             if(target.NeedArrowIndicator && !isTargetVisible)
             {
                 float angle = float.MinValue;
                 OffScreenIndicatorCore.GetArrowIndicatorPositionAndAngle(ref screenPosition, ref angle, screenCentre, screenBounds);
@@ -109,13 +105,13 @@ public class OffScreenIndicator : MonoBehaviour
             if(indicator.Type != type)
             {
                 indicator.Activate(false);
-                indicator = type == IndicatorType.BOX ? BoxObjectPool.current.GetPooledObject() : ArrowObjectPool.current.GetPooledObject();
+                indicator = ArrowObjectPool.current.GetPooledObject();
                 indicator.Activate(true); // Sets the indicator as active.
             }
         }
         else
         {
-            indicator = type == IndicatorType.BOX ? BoxObjectPool.current.GetPooledObject() : ArrowObjectPool.current.GetPooledObject();
+            indicator =  ArrowObjectPool.current.GetPooledObject();
             indicator.Activate(true); // Sets the indicator as active.
         }
         return indicator;

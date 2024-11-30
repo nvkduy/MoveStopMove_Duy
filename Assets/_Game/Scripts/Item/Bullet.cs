@@ -19,13 +19,17 @@ public class Bullet : GameUnit
     {
         bulletTime = 3f;
     }
-    void Update()
+
+    private void FixedUpdate()
     {
         if (isBullet)
         {
             return;
         }
-        transform.Rotate(new Vector3(0,0, rotationSpeed*Time.deltaTime));
+        transform.Rotate(new Vector3(0, 0, rotationSpeed * Time.deltaTime));
+    }
+    void Update()
+    {
         
         if (bulletTime<=0)
         {

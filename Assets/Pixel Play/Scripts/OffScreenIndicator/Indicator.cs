@@ -77,6 +77,5 @@ public class Indicator : MonoBehaviour
 
 public enum IndicatorType
 {
-    BOX,
     ARROW
 }

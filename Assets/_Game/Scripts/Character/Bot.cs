@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class Bot : Character
 {
     [SerializeField] private float speedMove;
+    [SerializeField] internal Transform lookEnemyParent;
     public float range = 10.0f;
 
     private IState<Bot> currentState;
@@ -35,7 +36,6 @@ public class Bot : Character
         transform.localScale = Vector3.one;
         radius = 2f;
         targetEnemy = Vector3.zero;
-        CanAttack();
         Debug.Log($"Bot initialized with weapon: {weaponType}, hat: {hatType}, pants: {pantsType}");
     }
 
@@ -46,7 +46,6 @@ public class Bot : Character
         transform.localScale = Vector3.one;
         radius = 2f;
         targetEnemy = Vector3.zero;
-        CanAttack();
 
     }
 
@@ -74,10 +73,7 @@ public class Bot : Character
         return false;
     }
 
-    protected override void CanAttack()
-    {
-        base.CanAttack();
-    }
+  
     public void SetDestination(Vector3 position)
     {
         agent.enabled = true;

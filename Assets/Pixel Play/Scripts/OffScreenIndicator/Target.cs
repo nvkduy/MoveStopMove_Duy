@@ -9,9 +9,6 @@ public class Target : MonoBehaviour
     [Tooltip("Change this color to change the indicators color for this target")]
     [SerializeField] private Color targetColor = Color.red;
 
-    [Tooltip("Select if box indicator is required for this target")]
-    [SerializeField] private bool needBoxIndicator = true;
-
     [Tooltip("Select if arrow indicator is required for this target")]
     [SerializeField] private bool needArrowIndicator = true;
 
@@ -36,16 +33,7 @@ public class Target : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Gets if box indicator is required for the target.
-    /// </summary>
-    public bool NeedBoxIndicator
-    {
-        get
-        {
-            return needBoxIndicator;
-        }
-    }
+   
 
     /// <summary>
     /// Gets if arrow indicator is required for the target.

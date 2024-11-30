@@ -99,5 +99,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolType: 5
-  attackForce: 40
+  attackForce: 80
   bulletPrefab: {fileID: 3715678947349725646, guid: 26ac240eab9738a4a9be80503a50f0fb, type: 3}

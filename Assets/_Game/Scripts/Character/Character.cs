@@ -1,7 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.Events;
 using UnityEngine.AI;
 
 public class Character : GameUnit
@@ -20,10 +17,12 @@ public class Character : GameUnit
     internal float currentTime = 0;
 
     protected bool isAttack = false;
+    protected Transform lookEnemy;
+    protected Collider[] hitColliders = new Collider[20];
 
-    private Collider[] hitColliders = new Collider[20];
     private string currentAnim;
     private Hats currentHat;
+
 
     public int Coins { get; set; } = 1000;
 
@@ -47,7 +46,8 @@ public class Character : GameUnit
         }
         if (nearestEnemy != null)
         {
-            targetEnemy = nearestEnemy.transform.position;
+            targetEnemy = new Vector3(nearestEnemy.transform.position.x, 0.2f, nearestEnemy.transform.position.z);
+            lookEnemy = nearestEnemy.transform;
         }
         if (numOfEnemy == 1)
         {
@@ -73,7 +73,7 @@ public class Character : GameUnit
 
     protected void Attack()
     {
-        if (currentWeapon != null && isAttack && currentTime <= 0)
+        if (currentWeapon != null && currentTime <= 0)
         {
             ChangeAnim(Constants.ATTACK_ANIM_NAME);
             currentWeapon.Throw(this, OnHitVicTim); // Gọi phương thức với tham số            
@@ -81,32 +81,22 @@ public class Character : GameUnit
         }
     }
 
-    protected virtual void CanAttack()
-    {
-       StartCoroutine(CanAtack());
-    }
-    IEnumerator CanAtack()
-    {
-        yield return new WaitForSeconds(4f);
-        isAttack = true;
-    }
+
     protected virtual void OnHitVicTim(Character attacker, Character victim)
     {
         if (victim != null && attacker != victim)
         {
             victim.Die();
             attacker.UpSize();
-           
-            Debug.Log("victim :" + victim.name + ", Attacker :" + attacker.name);
         }
-        
+
     }
 
     protected virtual void Die()
     {
         ChangeAnim(Constants.DIE_ANIM_NAME);
         SimplePool.Despawn(this);
-        
+
         if (LevelManager.Instance.CountOfBot == 1)
         {
             UIManager.Instance.OpenUI<CanvasVictory>();
@@ -130,7 +120,6 @@ public class Character : GameUnit
         Weapon wp = DataManager.Instance.GetWeapon(weaponType);
         // Spawn the new weapon
         currentWeapon = SimplePool.Spawn<Weapon>(wp, weaponParent);
-       // currentWeapon = Instantiate(wp, weaponParent);  
         currentWeapon.transform.localScale = wp.transform.localScale;
     }
 
@@ -153,7 +142,7 @@ public class Character : GameUnit
         skinnedMeshRenderer.material = pantMaterial;
     }
 
- 
+
     public void ChangeAnim(string animName)
     {
         if (currentAnim != animName)

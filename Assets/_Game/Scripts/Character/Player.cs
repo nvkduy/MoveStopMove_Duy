@@ -4,23 +4,14 @@ public class Player : Character
 {
     [SerializeField] private float speedMove = 5f;
     [SerializeField] GameObject playerVisual;
-
-    Vector3 targetPosition;
+    [SerializeField] LookEnemy lookEnemyPrefab;
+    private Transform botLookEnemy;
+    Vector3 positionMove;
     float horizontal;
     float vertical;
     private Joystick joystick;
     public Joystick Joystick { get =>joystick; set => joystick =value; }
 
-
-    private void FixedUpdate()
-    {
-        if (targetEnemy != Vector3.zero && !GetInPut())
-        {
-            Attack();
-        }
-        currentTime -= Time.deltaTime;
-        FindEnemy(transform.position, radius);
-    }
 
     private void Update()
     {
@@ -32,6 +23,13 @@ public class Player : Character
         {
             ChangeAnim(Constants.IDLE_ANIM_NAME);
         }
+        if (targetEnemy != Vector3.zero && !GetInPut())
+        {
+            Attack();
+        }
+        currentTime -= Time.deltaTime;
+        FindEnemy(transform.position, radius);
+        LookTargetEnemy();
     }
 
     public void OnInit()
@@ -45,13 +43,20 @@ public class Player : Character
         ChangePant((PantsType)currentIndexPant);
         transform.localScale = Vector3.one;
         radius = 2f;
-        targetEnemy = Vector3.zero;
         horizontal = 0;
         vertical = 0;
-        CanAttack();
         GameManager.Instance.ChangeState(GameState.GamePlay);
     }
 
+    public void Init()
+    {
+        isAttack = false;
+        targetEnemy = Vector3.zero;
+        transform.localScale = Vector3.one;
+        radius = 2f;
+        horizontal = 0;
+        vertical = 0;
+    }
     public void SetJoystick()
     {
         if (Joystick == null)
@@ -83,7 +88,7 @@ public class Player : Character
         if (direction != Vector3.zero)
         {
             ChangeAnim(Constants.RUN_ANIM_NAME);
-            targetPosition = transform.position + direction * speedMove * Time.deltaTime;
+            positionMove = transform.position + direction * speedMove * Time.deltaTime;
             Vector3 lookDirection = direction + playerVisual.transform.position;
             playerVisual.transform.LookAt(lookDirection);
         }
@@ -91,13 +96,24 @@ public class Player : Character
         {
             ChangeAnim(Constants.IDLE_ANIM_NAME);
         }
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speedMove * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, positionMove, speedMove * Time.deltaTime);
     }
 
-    protected override void CanAttack()
+    private void LookTargetEnemy()
     {
-        base.CanAttack();
+        if (lookEnemy == null)
+        {
+            return;
+        }
+        else if (hitColliders[0] != this.gameObject)
+        {
+            lookEnemy.gameObject.SetActive(true);
+        }
+        
+       // look.transform.position = lookEnemy.position;
     }
+
+   
     protected override void Die()
     {
         base.Die();

@@ -63,6 +63,13 @@ public class LevelManager : Singleton<LevelManager>
         PlayerTF?.Invoke(player.transform);
     }
 
+    private void RetrySpawmPlayer(Vector3 spawmPoint)
+    {
+        player = SimplePool.Spawn<Player>(PoolType.Player, spawmPoint, Quaternion.identity);
+        player.Init();
+        PlayerTF?.Invoke(player.transform);
+    }
+
     private void SpawnBot()
     {
         while (currentBotAmount < maxCurrentBotAmount && botAppearAmount < CharacterAmount - 1)
@@ -157,7 +164,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         OnReset();
         LoadLevel(levelIndex);
-        SpawnPlayer(currentStartPoint);
+        RetrySpawmPlayer(currentStartPoint);
         NewSpawnBot();
     }
 }
