@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_Game/Scenes/Demo_LaneCrosser.unity
+    guid: 1f7fcad5caafa5949ac2d0eb21aaebf4
   m_configObjects: {}

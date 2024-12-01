@@ -28,6 +28,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         levelIndex = PlayerPrefs.GetInt("Level", 0);
         UIManager.Instance.OpenUI<CanvasMainMenu>();
+        Application.targetFrameRate = 90;
     }
 
     internal void OnInit()
@@ -72,7 +73,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private void SpawnBot()
     {
-        while (currentBotAmount < maxCurrentBotAmount && botAppearAmount < CharacterAmount - 1)
+        while (currentBotAmount < maxCurrentBotAmount)
         {
             int ranPos = UnityEngine.Random.Range(0, startPoints.Count);
             Vector3 spawnPos = startPoints[ranPos];
@@ -86,7 +87,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private void NewSpawnBot()
     {
-        while (currentBotAmount < maxCurrentBotAmount && botAppearAmount < CharacterAmount - 1)
+        while (currentBotAmount < maxCurrentBotAmount && botAppearAmount < currentLevel.botAmount )
         {
             int ranPos = UnityEngine.Random.Range(0, startPoints.Count);
             Vector3 spawnPos = startPoints[ranPos];

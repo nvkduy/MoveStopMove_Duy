@@ -27,12 +27,14 @@ public class CanvasFail : UICanvas
         Close(0);
         LevelManager.Instance.OnFinshGame();
         UIManager.Instance.OpenUI<CanvasMainMenu>();
+        GameManager.Instance.ChangeState(GameState.MainMenu);
     }
     public void RetryButton()
     {
         Close(0);
         LevelManager.Instance.RetryLevel();
         UIManager.Instance.OpenUI<CanvasGamePlay>();
+        GameManager.Instance.ChangeState(GameState.GamePlay);
     }
     
 }
